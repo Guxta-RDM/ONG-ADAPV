@@ -1,0 +1,43 @@
+const express = require('express')
+const expressEjsLayout = require('express-ejs-layouts');
+
+let AdocaoRoute = require("./routes/adocaoRoutes");
+let AnimaisRoute = require("./routes/animaisRoutes");
+let AtividadesRoute = require("./routes/atividadesRoutes");
+let DoacoesRoute = require("./routes/doacoesRoutes");
+let EmpresasRoute = require("./routes/empresasRoutes");
+let EnderecoRoute = require("./routes/enderecoRoutes");
+let PessoaRoute = require("./routes/pessoaRoutes");
+let ProjetosRoute = require("./routes/projetosRoutes");
+let VoluntariosRoute = require("./routes/voluntariosRoutes");
+
+const app = express();
+
+// Configurações ---
+
+app.set("views", "./views");
+app.set("view engine", "ejs");
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static("public"))
+app.use(expressEjsLayout);
+
+// ---
+
+// Rotas ---
+
+app.use("/adocao", AdocaoRoute);
+app.use("/animais", AnimaisRoute);
+app.use("/atividades", AtividadesRoute);
+app.use("/doacoes", DoacoesRoute);
+app.use("/empresas", EmpresasRoute);
+app.use("/projetos", ProjetosRoute);
+app.use("/voluntarios", VoluntariosRoute);
+
+
+// ---
+
+app.listen(5000, function () {
+    console.log("Site está no ar.")
+})
