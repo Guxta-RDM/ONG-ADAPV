@@ -116,7 +116,7 @@ class EnderecoModel {
 
     // Funções
 
-    async listar() {
+    async listarEndereco() {
 
         let sql = "select * from tb_endereco";
 
@@ -148,3 +148,5 @@ class EnderecoModel {
     }
 
 }
+
+module.exports = EnderecoModel;
