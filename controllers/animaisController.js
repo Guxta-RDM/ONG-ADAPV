@@ -18,13 +18,13 @@ class AnimalController {
             if(result) {
                 res.send({
                     ok: true,
-                    msg: "Usuário cadastrado com sucesso!"
+                    msg: "Animal cadastrado com sucesso!"
                 });
             }   
             else{
                 res.send({
                     ok: false,
-                    msg: "Erro ao cadastrar usuário!"
+                    msg: "Erro ao cadastrar animal!"
                 });
             }
         }
