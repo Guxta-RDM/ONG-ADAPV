@@ -10,6 +10,7 @@ let EnderecoRoute = require("./routes/enderecoRoutes");
 let PessoaRoute = require("./routes/pessoaRoutes");
 let ProjetosRoute = require("./routes/projetosRoutes");
 let VoluntariosRoute = require("./routes/voluntariosRoutes");
+let HomeRoute = require("./routes/homeRoute")
 
 const app = express();
 
@@ -26,7 +27,7 @@ app.use(expressEjsLayout);
 // ---
 
 // Rotas ---
-
+app.use('/', HomeRoute)
 app.use("/adocao", AdocaoRoute);
 app.use("/animais", AnimaisRoute);
 app.use("/atividades", AtividadesRoute);

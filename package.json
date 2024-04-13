@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Guxta-RDM/ONG-ADAPV#readme",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "ejs": "^3.1.9",
     "express": "^4.19.2",
     "express-ejs-layouts": "^2.5.1",

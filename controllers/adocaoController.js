@@ -1,4 +1,4 @@
-const PessoaModel = require("../models/pessoaModel);");
+const PessoaModel = require("../models/pessoaModel");
 const AnimalModel = require("../models/animaisModel");
 
 class AdocaoController {

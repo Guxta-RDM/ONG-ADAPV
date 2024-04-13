@@ -11,31 +11,34 @@ class AnimaisModel {
     #ani_sexo;
     #ani_especie;
     #ani_pelagem;
+    #ani_ester
     #ani_estado;
-    #ani_dataCria;
-    #ani_dataAtualiza;
+    #createdAt;
+    #updatedAt;
 
 
     // Getters
-    get_aniId() { return this.#ani_id }
+    get ani_id() { return this.#ani_id }
 
-    get_AniNome() { return this.#ani_nome }
+    get ani_nome() { return this.#ani_nome }
 
-    get_AniNascimento() { return this.#ani_nascimento }
+    get ani_nascimento() { return this.#ani_nascimento }
 
-    get_AniRaça() { return this.#ani_raça }
+    get ani_raça() { return this.#ani_raça }
 
-    get_AniSexo() { return this.#ani_sexo }
+    get ani_sexo() { return this.#ani_sexo }
 
-    get_AniEspecie() { return this.#ani_especie }
+    get ani_especie() { return this.#ani_especie }
 
-    get_AniPelagem() { return this.#ani_pelagem }
+    get ani_pelagem() { return this.#ani_pelagem }
 
-    get_AniEstado() { return this.#ani_estado }
+    get ani_ester() { return this.#ani_ester}
 
-    get_AniDataCria() { return this.#ani_dataCria }
+    get ani_estado() { return this.#ani_estado }
 
-    get_AniDataAtualiza() { return this.#ani_dataAtualiza }
+    get ani_dataCria() { return this.#createdAt }
+
+    get ani_dataAtualiza() { return this.#updatedAt }
 
     // Setters
     set ani_id(ani_id) {
@@ -66,19 +69,23 @@ class AnimaisModel {
         this.#ani_pelagem = ani_pelagem;
     }
 
+    set ani_ester(ani_ester){
+        this.#ani_ester = ani_ester
+    }
+
     set ani_estado(ani_estado) {
         this.#ani_estado = ani_estado;
     }
 
-    set ani_dataCria(ani_dataCria) {
-        this.#ani_dataCria = ani_dataCria;
+    set createdAt(createdAt) {
+        this.#createdAt = createdAt;
     }
 
-    set ani_dataAtualiza(ani_dataAtualiza) {
-        this.#ani_dataAtualiza = ani_dataAtualiza;
+    set updatedAt(updatedAt) {
+        this.#updatedAt = updatedAt;
     }
 
-    constructor(ani_id, ani_nome, ani_nascimento, ani_raça, ani_sexo, ani_especie, ani_pelagem, ani_estado, ani_dataCria, ani_dataAtualiza) {
+    constructor(ani_id, ani_nome, ani_nascimento, ani_raça, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, createdAt, updatedAt) {
         this.#ani_id = ani_id;
         this.#ani_nome = ani_nome;
         this.#ani_nascimento = ani_nascimento;
@@ -86,9 +93,10 @@ class AnimaisModel {
         this.#ani_sexo = ani_sexo;
         this.#ani_especie = ani_especie;
         this.#ani_pelagem = ani_pelagem;
+        this.#ani_ester = ani_ester
         this.#ani_estado = ani_estado;
-        this.#ani_dataCria = ani_dataCria;
-        this.#ani_dataAtualiza = ani_dataAtualiza;
+        this.#createdAt = createdAt;
+        this.#updatedAt = updatedAt;
     }
 
     async listarAnimais() {
@@ -105,9 +113,10 @@ class AnimaisModel {
                 rows[i]["ani_sexo"],
                 rows[i]["ani_especie"],
                 rows[i]["ani_pelagem"],
+                rows[i]["ani_ester"],
                 rows[i]["ani_estado"],
                 rows[i]["createdAt"],
-                rows[i]["updateAt"]
+                rows[i]["updatedAt"]
             ));
         }
 
@@ -129,12 +138,34 @@ class AnimaisModel {
                 row["ani_sexo"],
                 row["ani_especie"],
                 row["ani_pelagem"],
+                row["ani_ester"],
                 row["ani_estado"],
                 row["createdAt"],
-                row["updateAt"]
+                row["updatedAt"]
             );
         }
     }
+
+    async cadastrar(){
+        if(this.#ani_id == 0) {
+            let sql = "insert into tb_animais (ani_nome, ani_nascimento, ani_raça, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, createdAt, updatedAt) values (?,?,?,?,?,?,?,?,?,?)";
+    
+            let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raça, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#createdAt, this.#updatedAt];
+    
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+    
+            return result;
+        }
+        else{
+            let sql = "update tb_animais set ani_nome = ?, ani_nascimento = ?, ani_raça = ?, ani_sexo = ?, ani_especie = ?, ani_pelagem = ?, ani_ester = ?, ani_estado = ?, createdAt = ?, updatedAt = ? where ani_id = ?";
+    
+            let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raça, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#createdAt, this.#updatedAt, this.#ani_id];
+    
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+            return result;
+        }
+    }
+    
 }
 
 module.exports = AnimaisModel;

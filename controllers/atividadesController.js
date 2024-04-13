@@ -4,6 +4,7 @@ const EmpresasModel = require("../models/empresasModel");
 
 class AtividadesController {
 
+    
 }
 
 module.exports = AtividadesController;
