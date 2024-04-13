@@ -5,6 +5,7 @@ let ctrl = new AnimaisController();
 
 let router = express.Router();
 
+router.get('/listar', ctrl.listagemView)
 router.get('/cadastrar', ctrl.cadastroView)
 router.post('/cadastrar', ctrl.cadastrar)
 

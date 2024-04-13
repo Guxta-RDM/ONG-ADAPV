@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
-
+    
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
         document.getElementById("sexo").style["border-color"] = "#ced4da";
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
             
 
-            fetch("/animais/cadastrar", {
+            fetch("/cadastrar/animais", {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {

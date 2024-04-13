@@ -37,6 +37,13 @@ class AnimalController {
         }
     }
 
+    async listagemView(req,res){
+        let animal = new AnimalModel()
+        let listaAnimais = await animal.listarAnimais()
+
+        res.render('listar/animais')
+    }
+
 }
 
 module.exports = AnimalController;
