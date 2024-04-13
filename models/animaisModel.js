@@ -151,7 +151,7 @@ class AnimaisModel {
             let sql = "insert into tb_animais (ani_nome, ani_nascimento, ani_raça, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, createdAt, updatedAt) values (?,?,?,?,?,?,?,?,?,?)";
     
             let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raça, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#createdAt, this.#updatedAt];
-    
+            
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
     
             return result;

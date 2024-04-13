@@ -1,5 +1,5 @@
 const { DateTime } = require("luxon");
-const AnimalModel = require("../models/animaisModel");
+const AnimaisModel = require("../models/animaisModel");
 
 class AnimalController {
 
@@ -9,11 +9,9 @@ class AnimalController {
 
     async cadastrar(req, res){
         const dataHoje = DateTime.now()
-        const toISOdtNasc = req.body.campoData
-        console.log(toISOdtNasc)
         
         if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0') {
-            let animal = new AnimalModel(0, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, dataHoje.toISODate(), dataHoje.toISODate());
+            let animal = new AnimaisModel(0, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, dataHoje.toISODate(), dataHoje.toISODate());
 
             let result = await animal.cadastrar();
 
@@ -40,34 +38,36 @@ class AnimalController {
     }
 
     async listagemView(req,res){
-        let animal = new AnimalModel()
+        let animal = new AnimaisModel()
         let listaAnimais = await animal.listarAnimais()
 
         res.render('listar/animais', {lista: listaAnimais})
     }
 
     async alterarView(req,res){
-        let animais = new AnimalModel();
+        let animais = new AnimaisModel();
         animais = await animais.obterAnimId(req.params.id);
         res.render('alterar/animais', { animais: animais });
     }
 
     async alterar(req, res) {
+        const dataHoje = DateTime.now()
+        console.log(req.body.ani_id)
         if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0') {
-            let usuario = new AnimalModel(req.body.id, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, req.body.createdAt, dataHoje.toISODate());
+            let usuario = new AnimaisModel(req.body.id, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, req.body.createdAt, dataHoje.toISODate());
 
             let result = await usuario.cadastrar();
 
             if(result) {
                 res.send({
                     ok: true,
-                    msg: "Usuário alterado com sucesso!"
+                    msg: "Animal alterado com sucesso!"
                 });
             }   
             else{
                 res.send({
                     ok: false,
-                    msg: "Erro ao alterar usuário!"
+                    msg: "Erro ao alterar animal!"
                 });
             }
         }

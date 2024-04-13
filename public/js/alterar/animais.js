@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
+    document.getElementById("btnAlterar").addEventListener("click", cadastrar);
 
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
