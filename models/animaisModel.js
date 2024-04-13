@@ -36,9 +36,9 @@ class AnimaisModel {
 
     get ani_estado() { return this.#ani_estado }
 
-    get ani_dataCria() { return this.#createdAt }
+    get createdAt() { return this.#createdAt }
 
-    get ani_dataAtualiza() { return this.#updatedAt }
+    get updatedAt() { return this.#updatedAt }
 
     // Setters
     set ani_id(ani_id) {
@@ -125,8 +125,8 @@ class AnimaisModel {
 
     async obterAnimId(id) {
         let sql = "SELECT * FROM tb_animais WHERE ani_id = ?";
-        let val = [id];
-        let rows = await banco.ExecutaComando(sql, val);
+        let valores = [id];
+        let rows = await banco.ExecutaComando(sql, valores);
 
         if (rows.length > 0) {
             let row = rows[0];

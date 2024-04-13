@@ -1,8 +1,7 @@
-<script src="/js/listar/animais.js"></script>
+<script src="/public/js/listar/animais.js"></script>
 
 <h1>Animais cadastrados</h1>
 <a class="btn btn-secondary" style="max-width: 200px;" href="cadastrar/animais">Novo Usuário</a>
-
 <hr>
     <div>
         <table class="table table-striped">
@@ -25,8 +24,14 @@
                         <td><%= lista[i].ani_id %></td>
                         <td><%= lista[i].ani_nome %></td>
                         <td><%= lista[i].ani_nascimento %></td>
-                        <td><%= lista[i].perfilId %></td>
-                        <td><%= lista[i].usuarioAtivo %></td>
+                        <td><%= lista[i].ani_raça %></td>
+                        <td><%= lista[i].ani_sexo %></td>
+                        <td><%= lista[i].ani_especie %></td>
+                        <td><%= lista[i].ani_pelagem %></td>
+                        <td><%= lista[i].ani_ester %></td>
+                        <td><%= lista[i].ani_estado %></td>
+                        <td><%= lista[i].createdAt %></td>
+                        <td><%= lista[i].updatedAt %></td>
                         <td>
                             <a href="/usuarios/alterar/<%= lista[i].usuarioId %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
                             <button data-codigoexclusao="<%= lista[i].usuarioId %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
