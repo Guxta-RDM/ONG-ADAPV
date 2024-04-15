@@ -80,6 +80,22 @@ class AnimalController {
         }
     }
 
+    async excluir(req, res){
+        if(req.body.id != null) {
+            let animal = new AnimaisModel();
+            let ok = await animal.excluir(req.body.id);
+            if(ok) {
+                res.send({ok: true});
+            }
+            else{
+                res.send({ok: false, msg: "Erro ao excluir animal"})
+            }
+        }
+        else{
+            res.send({ok: false, msg: "O id para exclusão não foi enviado"})
+        }
+    }
+
 }
 
 module.exports = AnimalController;

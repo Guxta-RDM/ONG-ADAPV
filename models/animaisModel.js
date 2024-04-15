@@ -187,6 +187,16 @@ class AnimaisModel {
             return result;
         }
     }
+
+    async excluir(id) {
+        let sql = "delete from tb_animais where ani_id = ?";
+
+        let valores = [id];
+        
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
     
 }
 
