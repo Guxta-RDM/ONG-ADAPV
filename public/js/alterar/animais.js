@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById("btnAlterar").addEventListener("click", cadastrar);
+    document.getElementById("btnAlterar").addEventListener("click", alterar);
 
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
@@ -13,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("pelagem").style["border-color"] = "#ced4da";
     }
 
-    function cadastrar() {
+    function alterar() {
         limparValidacao();
+        let id = document.querySelector("#id").value
         let nome = document.querySelector("#nome").value;
         let sexo = document.querySelector("#sexo").value;
         let ester = document.querySelector("#ester").value;
@@ -55,6 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
             //enviar ao backend com fetch
 
             let obj = {
+                id: id,
                 nome: nome,
                 sexo: sexo,
                 ester: ester,
@@ -66,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
             };
             
 
-            fetch("/animais/cadastrar", {
+            fetch("/animais/alterar", {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {

@@ -165,6 +165,28 @@ class AnimaisModel {
             return result;
         }
     }
+
+    // CRIEI UMA OUTRA FUNÇÃO ALTERAR PARA CASO EXISTA UMA IMPLEMETAÇÃO QUE O FÚLVIO QUEIRA FAZER ESTÁ SEPARADO E FICA MAIS FÁCIL DE ENTENDER. MAS INICIALMENTE AS DUAS TEM A MESMA FUNÇÃO
+
+    async alterar(){
+        if(this.#ani_id == 0) {
+            let sql = "insert into tb_animais (ani_nome, ani_nascimento, ani_raça, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, createdAt, updatedAt) values (?,?,?,?,?,?,?,?,?,?)";
+    
+            let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raça, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#createdAt, this.#updatedAt];
+            
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+    
+            return result;
+        }
+        else{
+            let sql = "update tb_animais set ani_nome = ?, ani_nascimento = ?, ani_raça = ?, ani_sexo = ?, ani_especie = ?, ani_pelagem = ?, ani_ester = ?, ani_estado = ?, createdAt = ?, updatedAt = ? where ani_id = ?";
+    
+            let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raça, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#createdAt, this.#updatedAt, this.#ani_id];
+    
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+            return result;
+        }
+    }
     
 }
 

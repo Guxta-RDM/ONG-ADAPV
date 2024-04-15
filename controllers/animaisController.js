@@ -52,11 +52,11 @@ class AnimalController {
 
     async alterar(req, res) {
         const dataHoje = DateTime.now()
-        console.log(req.body.ani_id)
+        console.log(req.body)
         if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0') {
             let usuario = new AnimaisModel(req.body.id, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, req.body.createdAt, dataHoje.toISODate());
 
-            let result = await usuario.cadastrar();
+            let result = await usuario.alterar();
 
             if(result) {
                 res.send({
