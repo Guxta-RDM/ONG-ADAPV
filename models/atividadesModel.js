@@ -10,8 +10,8 @@ class AtividadeModel {
     #atv_data;
     #vol_id;
     #emp_id;
-    #atv_dataCria;
-    #atv_dataAtualiza;
+    #createdAt;
+    #updatedAt;
 
     // Métodos getters
     getAtvId() {
@@ -36,9 +36,9 @@ class AtividadeModel {
 
     getEmpId() { return this.#emp_id }
 
-    getDataCria() { return this.#atv_dataCria }
+    getDataCria() { return this.#createdAt }
 
-    getDataAtualiza() { return this.#atv_dataAtualiza }
+    getDataAtualiza() { return this.#updatedAt }
 
     // Métodos setters
     setAtvId(value) {
@@ -66,22 +66,22 @@ class AtividadeModel {
     }
 
     setDataCria(value) {
-        this.#atv_dataCria = value;
+        this.#createdAt = value;
     }
 
     setDataAtualiza(value) {
-        this.#atv_dataAtualiza = value;
+        this.#updatedAt = value;
     }
 
-    constructor(atv_id, atv_nome, atv_desc, atv_data, vol_id, emp_id, atv_dataCria, atv_dataAtualiza) {
+    constructor(atv_id, atv_nome, atv_desc, atv_data, vol_id, emp_id, createdAt, updatedAt) {
         this.#atv_id = atv_id;
         this.#atv_nome = atv_nome;
         this.#atv_desc = atv_desc;
         this.#atv_data = atv_data;
         this.#vol_id = vol_id;
         this.#emp_id = emp_id;
-        this.#atv_dataCria = atv_dataCria;
-        this.#atv_dataAtualiza = atv_dataAtualiza;
+        this.#createdAt = createdAt;
+        this.#updatedAt = updatedAt;
     }
 
     async listarAtividades() {
@@ -98,8 +98,8 @@ class AtividadeModel {
                 rows[i]["atv_data"],
                 rows[i]["vol_id"],
                 rows[i]["emp_id"],
-                rows[i]["atv_dataCria"],
-                rows[i]["atv_dataAtualiza"]
+                rows[i]["createdAt"],
+                rows[i]["updatedAt"]
             ));
         }
 
@@ -121,10 +121,39 @@ class AtividadeModel {
                 row["atv_data"],
                 row["vol_id"],
                 row["emp_id"],
-                row["atv_dataCria"],
-                row["atv_dataAtualiza"]
+                row["createdAt"],
+                row["updatedAt"]
             );
         }
+    }
+
+    async criarAtividade() {
+        if (atv_id == 0) {
+            let sql = "INSERT INTO tb_atividades (atv_nome, atv_nome, atv_desc, atv_data, vol_id, emp_id, createdAt, updatedAt) VALUES (?,?,?,?,?,?,?)";
+
+            let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#createdAt, this.#updatedAt];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+        }
+        else {
+            let sql = "UPDATE tb_atividades SET atv_nome = ?, atv_desc = ?, atv_data = ?, vol_id = ?, emp_id = ?, createdAt = ?, updatedAt = ? WHERE atv_id = ?";
+
+            let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#createdAt, this.#updatedAt, this.#atv_id];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+        }
+    }
+
+    async excluirAtiv(id) {
+        let sql = "DELETE FROM tb_atividades WHERE atv_id = ?";
+
+        let valores = [id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 }
 
