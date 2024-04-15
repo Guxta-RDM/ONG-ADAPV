@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function alterar() {
         limparValidacao();
-        let id = document.querySelector("#id").value
+        let id = document.querySelector("#id").value;
         let nome = document.querySelector("#nome").value;
         let sexo = document.querySelector("#sexo").value;
         let ester = document.querySelector("#ester").value;
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let estado = document.querySelector("#estado").value;
         let raca = document.querySelector("#raca").value;
         let pelagem = document.querySelector("#pelagem").value;
+        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
         if(nome === "") {
@@ -64,7 +65,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 especie: especie,
                 estado: estado,
                 raca: raca,
-                pelagem: pelagem
+                pelagem: pelagem,
+                // createdAt: createdAt //!CORRIGIR EXIBICAO DA DATA
             };
             
 
@@ -80,7 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(r=> {
                 if(r.ok) {
-                    window.location.href="/";
+                    alert(r.msg);
+                    window.location.href="/animais/listar";
                 }   
                 else {
                     alert(r.msg);
