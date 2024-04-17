@@ -1,0 +1,31 @@
+<script src="/js/cadastrar/adocao.js"></script>
+<div class="container">
+
+    <div class="container-fluid">
+        
+        <h1 class="h3 mb-4 text-gray-800">Registrar Adoção</h1>
+        <% if (typeof msg != "undefined") {%>
+            <span><%= msg %></span>
+        <% } %>
+
+        <div class="col-md-6">
+            <label for="IdAdotante" class="form-label">Id do Adotante<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="IdAdotante" name="IdAdotante" placeholder="Digite o ID do adotante">
+        </div>
+
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Id do Animal<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="IdAnimal" name="IdAnimal" placeholder="Digite o ID do animal">
+        </div>
+
+        <br>
+        <br>
+        
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>

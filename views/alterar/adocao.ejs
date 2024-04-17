@@ -1,0 +1,34 @@
+<script src="/js/alterar/adocao.js"></script>
+<div class="container">
+
+    <div class="container-fluid">
+        
+        <h1 class="h3 mb-4 text-gray-800">Alterar Adocao</h1>
+        <% if (typeof msg != "undefined") {%>
+            <span><%= msg %></span>
+        <% } %>
+
+        <input id="id" hidden value="<%= adocao.ado_id %>">
+        <input id="createdAt" hidden value="<%= adocao.createdAt %>">
+
+        <div class="col-md-6">
+            <label for="IdAdotante" class="form-label">Id do Adotante<span class="text-danger">*</span></label>
+            <input type="text" value="<%= adocao.pess_id %>" class="form-control" id="IdAdotante" name="IdAdotante" placeholder="Digite o ID do adotante">
+        </div>
+
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Id do Animal<span class="text-danger">*</span></label>
+            <input type="text" value="<%= adocao.ani_id %>" class="form-control" id="IdAnimal" name="IdAnimal" placeholder="Digite o ID do animal">
+        </div>
+
+        <br>
+        <br>
+        
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnAlterar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" href="/">Cancelar</button>
+        </div>
+
+    </div>
+
+</div>

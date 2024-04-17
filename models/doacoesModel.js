@@ -11,8 +11,8 @@ class DoacoesModel {
     #doa_rg;
     #doa_data;
     #doa_desc;
-    #doa_dataCria;
-    #doa_dataAtualiza;
+    #createdAt;
+    #updatedAt;
 
     // Getters
     getDoaId() {
@@ -44,11 +44,11 @@ class DoacoesModel {
     }
 
     getDataCria() {
-        return this.#doa_dataCria;
+        return this.#createdAt;
     }
 
     getDataAtualiza() {
-        return this.#doa_dataAtualiza;
+        return this.#updatedAt;
     }
 
     // Setters
@@ -81,33 +81,11 @@ class DoacoesModel {
     }
 
     setDataCria(value) {
-        this.#doa_dataCria = value;
+        this.#createdAt = value;
     }
 
     setDataAtualiza(value) {
-        this.#doa_dataAtualiza = value;
-    }
-
-    async listarDoacoes() {
-        let sql = "SELECT * FROM tb_doacao";
-        let rows = await banco.ExecutaComando(sql);
-        let lista = [];
-
-        for (let i = 0; i < rows.length; i++) {
-            let doacao = new DoacoesModel();
-            doacao.#doa_id = rows[i]["doa_id"];
-            doacao.#doa_tipo = rows[i]["doa_tipo"];
-            doacao.#doa_doador = rows[i]["doa_doador"];
-            doacao.#doa_cpf_cnpj = rows[i]["doa_cpf_cnpj"];
-            doacao.#doa_rg = rows[i]["doa_rg"];
-            doacao.#doa_data = rows[i]["doa_data"];
-            doacao.#doa_desc = rows[i]["doa_desc"];
-            doacao.#doa_dataCria = rows[i]["doa_dataCria"];
-            doacao.#doa_dataAtualiza = rows[i]["doa_dataAtualiza"];
-            lista.push(doacao);
-        }
-
-        return lista;
+        this.#updatedAt = value;
     }
 
     async listarDoacoes() {
@@ -125,13 +103,68 @@ class DoacoesModel {
             doacao.#doa_rg = row["doa_rg"];
             doacao.#doa_data = row["doa_data"];
             doacao.#doa_desc = row["doa_desc"];
-            doacao.#doa_dataCria = row["doa_dataCria"];
-            doacao.#doa_dataAtualiza = row["doa_dataAtualiza"];
+            doacao.#createdAt = row["createdAt"];
+            doacao.#updatedAt = row["updatedAt"];
             lista.push(doacao);
         }
 
         return lista;
     }
+
+    async obterDoaId(id) {
+        let sql = "SELECT * FROM tb_doacao WHERE doa_id = ?";
+
+        let valores = [id];
+
+        let rows = await banco.ExecutaComando(sql, valores);
+
+        if (rows.length > 0) {
+            let row = rows[0];
+            return new DoacoesModel(
+                row["doa_id"],
+                row["doa_tipo"],
+                row["doa_doador"],
+                row["doa_cpf_cnpj"],
+                row["doa_rg"],
+                row["doa_data"],
+                row["doa_desc"],
+                row["createdAt"],
+                row["updatedAt"]
+            );
+        }
+    }
+
+    async cadastrarDoacao() {
+        if (this.#doa_id == 0) {
+            let sql = "INSERT INTO tb_doacao (doa_tipo, doa_doador, doa_cpf_cnpj, doa_rg, doa_data, doa_desc, createdAt, updatedAt) VALUES (?,?,?,?,?,?,?,?)";
+
+            let valores = [this.#doa_tipo, this.#doa_doador, this.#doa_cpf_cnpj, this.#doa_rg, this.#doa_data, this.#doa_desc, this.#createdAt, this.#updatedAt];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+        }
+        else {
+            let sql = "UPDATE tb_doacao SET doa_tipo = ?, doa_doador = ?, doa_cpf_cnpj = ?, doa_rg = ?, doa_data = ?, doa_desc = ?, createdAt = ?, updatedAt = ? where doa_id = ?";
+
+            let valores = [this.#doa_tipo, this.#doa_doador, this.#doa_cpf_cnpj, this.#doa_rg, this.#doa_data, this.#doa_desc, this.#createdAt, this.#updatedAt, this.#doa_id];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+        }
+    }
+
+    async excluir(id) {
+        let sql = "DELETE FROM tb_doacao WHERE doa_id = ?";
+
+        let valores = [id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
+
 }
 
 module.exports = DoacoesModel;

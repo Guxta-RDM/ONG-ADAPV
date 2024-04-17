@@ -13,8 +13,8 @@ class PessoaModel {
     #pess_genero;
     #pess_tel;
     #end_id;
-    #pess_dataCria;
-    #pess_dataAtualiza;
+    #createdAt;
+    #updatedAt;
 
     getPess_id() {
         return this.#pess_id;
@@ -88,23 +88,23 @@ class PessoaModel {
         this.#end_id = value;
     }
 
-    getPess_dataCria() {
-        return this.#pess_dataCria;
+    getcreatedAt() {
+        return this.#createdAt;
     }
 
-    setPess_dataCria(value) {
-        this.#pess_dataCria = value;
+    setcreatedAt(value) {
+        this.#createdAt = value;
     }
 
-    getPess_dataAtualiza() {
-        return this.#pess_dataAtualiza;
+    getupdatedAt() {
+        return this.#updatedAt;
     }
 
-    setPess_dataAtualiza(value) {
-        this.#pess_dataAtualiza = value;
+    setupdatedAt(value) {
+        this.#updatedAt = value;
     }
 
-    constructor(pess_id, pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacio, pess_genero, pess_tel, end_id, pess_dataCria, pess_dataAtualiza) {
+    constructor(pess_id, pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacio, pess_genero, pess_tel, end_id, createdAt, updatedAt) {
         this.#pess_id = pess_id;
         this.#pess_nome = pess_nome;
         this.#pess_cpf = pess_cpf;
@@ -114,8 +114,8 @@ class PessoaModel {
         this.#pess_genero = pess_genero;
         this.#pess_tel = pess_tel;
         this.#end_id = end_id;
-        this.#pess_dataCria = pess_dataCria;
-        this.#pess_dataAtualiza = pess_dataAtualiza;
+        this.#createdAt = createdAt;
+        this.#updatedAt = updatedAt;
     }
 
     async listarPessoa() {
@@ -135,8 +135,8 @@ class PessoaModel {
                 rows[i]["pess_genero"],
                 rows[i]["pess_tel"],
                 rows[i]["end_id"],
-                rows[i]["pess_dataCria"],
-                rows[i]["pess_dataAtualiza"]
+                rows[i]["createdAt"],
+                rows[i]["updatedAt"]
             ));
         }
 
@@ -162,11 +162,12 @@ class PessoaModel {
                 row["pess_genero"],
                 row["pess_tel"],
                 row["end_id"],
-                row["pess_dataCria"],
-                row["pess_dataAtualiza"]
+                row["createdAt"],
+                row["updatedAt"]
             );
         }
     }
+
 }
 
 module.exports = PessoaModel;

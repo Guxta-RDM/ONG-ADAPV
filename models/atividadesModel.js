@@ -135,15 +135,16 @@ class AtividadeModel {
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
         }
-        else {
-            let sql = "UPDATE tb_atividades SET atv_nome = ?, atv_desc = ?, atv_data = ?, vol_id = ?, emp_id = ?, createdAt = ?, updatedAt = ? WHERE atv_id = ?";
+    }
 
-            let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#createdAt, this.#updatedAt, this.#atv_id];
+    async alterarAtividade() {
+        let sql = "UPDATE tb_atividades SET atv_nome = ?, atv_desc = ?, atv_data = ?, vol_id = ?, emp_id = ?, createdAt = ?, updatedAt = ? WHERE atv_id = ?";
 
-            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+        let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#createdAt, this.#updatedAt, this.#atv_id];
 
-            return result;
-        }
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
     async excluirAtiv(id) {

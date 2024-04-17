@@ -12,27 +12,27 @@ class AdocaoModel {
 
     // Getters
 
-    get_AdoId() { return this.#ado_id }
+    get AdoId() { return this.#ado_id }
 
-    get_PessId() { return this.#pess_id }
+    get PessId() { return this.#pess_id }
 
-    get_AniId() { return this.#ani_id }
+    get AniId() { return this.#ani_id }
 
-    get_DataCria() { return this.#createdAt }
+    get createdAt() { return this.#createdAt }
 
-    get_DataAtualiza() { return this.#updatedAt }
+    get updatedAt() { return this.#updatedAt }
 
     // Setters
 
-    set_AdoId(newAdoId) { this.#ado_id = newAdoId }
+    set AdoId(newAdoId) { this.#ado_id = newAdoId }
 
-    set_DataCria(newDataCria) { this.#createdAt = newDataCria }
+    set createdAt(newcreatedAt) { this.#createdAt = newcreatedAt }
 
-    set_DataAtualiza(newDataAtualiza) { this.#updatedAt = newDataAtualiza }
+    set updatedAt(newupdatedAt) { this.#updatedAt = newupdatedAt }
 
-    set_PessId(newId) { this.#pess_id = newId }
+    set PessId(newId) { this.#pess_id = newId }
 
-    set_AniId(newId) { this.#ani_id = newId }
+    set AniId(newId) { this.#ani_id = newId }
 
     constructor(ado_id, pess_id, ani_id, createdAt, updatedAt) {
 
@@ -48,13 +48,19 @@ class AdocaoModel {
 
     async listarAdocao() {
 
-        let sql = "select * from tb_adocao";
+        let sql = "SELECT * FROM tb_adocao";
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
 
         for (let i = 0; i < rows.length; i++) {
-            lista.push(new AdocaoModel(rows[i]["ado_id"], rows[i]["pess_id"], rows[i]["ani_id"], rows[i]["createdAt"], rows[i]["updatedAt"]));
+            lista.push(new AdocaoModel(
+                rows[i]["ado_id"],
+                rows[i]["pess_id"],
+                rows[i]["ani_id"],
+                rows[i]["createdAt"],
+                rows[i]["updatedAt"]
+            ));
         }
 
         return lista;
@@ -63,7 +69,7 @@ class AdocaoModel {
 
     async obterAdoId(id) {
 
-        let sql = "select * from tb_adocao where ado_id = ?";
+        let sql = "SELECT * FROM tb_adocao WHERE ado_id = ?";
 
         let val = [id];
 
@@ -94,15 +100,16 @@ class AdocaoModel {
 
             return result;
         }
-        else {
-            let sql = "UPDATE tb_adocao SET pess_id = ?, ani_id = ?, createdAt = ?, updatedAt = ? WHERE ado_id = ?"
+    }
 
-            let valores = [this.#pess_id, this.#ani_id, this.#createdAt, this.#updatedAt, this.#ado_id];
+    async editarAdocao() {
+        let sql = "UPDATE tb_adocao SET pess_id = ?, ani_id = ?, createdAt = ?, updatedAt = ? WHERE ado_id = ?"
 
-            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+        let valores = [this.#pess_id, this.#ani_id, this.#createdAt, this.#updatedAt, this.#ado_id];
 
-            return result;
-        }
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
     async excluirAdocao(id) {
