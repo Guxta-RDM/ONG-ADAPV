@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function() {
         let estado = document.querySelector("#estado").value;
         let raca = document.querySelector("#raca").value;
         let pelagem = document.querySelector("#pelagem").value;
-        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
         if(nome === "") {

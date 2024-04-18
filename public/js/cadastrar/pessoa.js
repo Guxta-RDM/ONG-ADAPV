@@ -19,11 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
         let nome = document.querySelector("#nome").value;
         let cpf = document.querySelector("#cpf").value;
         let rg = document.querySelector("#rg").value;
-        let dataNascimento = document.querySelector("#dataNasc").value;
-        let nacionalidade = document.querySelector("#nacio").value;
-        let genero = document.querySelectorAll("#gene").value;
-        let telefone = document.querySelector("#telefone").value;
-        let idEndereco = document.querySelector("#endId").value;
+        let nasc = document.querySelector("#dataNasc").value;
+        let nacio = document.querySelector("#nacio").value;
+        let gene = document.querySelectorAll("#gene").value;
+        let tel = document.querySelector("#telefone").value;
+        let endId = document.querySelector("#endId").value;
 
         let listaErros = [];
 
@@ -36,21 +36,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (rg === "") {
             listaErros.push("rg");
         }
-        if (dataNascimento === "") {
-            listaErros.push("dataNascimento");
+        if (nasc === "") {
+            listaErros.push("dataNasc");
         }
-        if (nacionalidade === "") {
-            listaErros.push("nacionalidade");
+        if (nacio === "") {
+            listaErros.push("nacio");
         }
-        if (genero === "") {
-            listaErros.push("genero");
+        if (gene === "") {
+            listaErros.push("gene");
         }
-        if (telefone === "") {
+        if (tel === "") {
             listaErros.push("telefone");
         }
-        if (idEndereco === "") {
-            listaErros.push("idEndereco");
-        }
+        // if (endId === "") {
+        //     listaErros.push("endId");
+        // }
 
         if (listaErros.length == 0) {
 
@@ -58,11 +58,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 nome: nome,
                 cpf: cpf,
                 rg: rg,
-                dataNascimento: dataNascimento,
-                nacionalidade: nacionalidade,
-                genero: genero,
-                telefone: telefone,
-                idEndereco: idEndereco
+                nasc: nasc,
+                nacio: nacio,
+                gene: gene,
+                tel: tel,
+                // endId: endId
             };
 
             fetch("/pessoa/cadastrar", {
@@ -72,17 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 }
             })
-                .then(r => {
-                    return r.json();
-                })
-                .then(r => {
-                    if (r.ok) {
-                        window.location.href = "/";
-                    }
-                    else {
-                        alert(r.msg);
-                    }
-                })
+            .then(r => {
+                return r.json();
+            })
+            .then(r => {
+                if (r.ok) {
+                    window.location.href = "/";
+                }
+                else {
+                    alert(r.msg);
+                }
+            })
 
         }
         else {

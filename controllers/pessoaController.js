@@ -10,9 +10,10 @@ class PessoaController {
 
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
+        console.log(req.body)
 
-        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.genero != "" && req.body.tel != "" && req.body.endId != "") {
-            let pessoa = new PessoaModel(0, req.body.nome, req.body.cpf, req.body.rg, req.body.nasc, req.body.nacio, req.body.genero, req.body.tel, req.body.endId, dataHoje.toISODate(), dataHoje.toISODate());
+        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.gene != "" && req.body.tel != "" && req.body.endId != "") {
+            let pessoa = new PessoaModel(0, req.body.nome, req.body.cpf, req.body.rg, req.body.nasc, req.body.nacio, req.body.gene, req.body.tel, req.body.endId, dataHoje.toISODate(), dataHoje.toISODate());
 
             let result = await pessoa.cadastrarPessoa();
 
@@ -39,9 +40,7 @@ class PessoaController {
 
     async listagemView(req, res) {
         let pessoa = new PessoaModel();
-
-        let listaPessoas = await pessoa.listarPessoa();
-
+        let listaPessoas = await pessoa.listarPessoa()
         res.render('listar/pessoa', { lista: listaPessoas })
     }
 

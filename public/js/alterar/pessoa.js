@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let genero = document.querySelectorAll("#gene").value;
         let telefone = document.querySelector("#telefone").value;
         let idEndereco = document.querySelector("#endId").value;
-        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
 
@@ -39,19 +38,19 @@ document.addEventListener("DOMContentLoaded", function () {
             listaErros.push("rg");
         }
         if (dataNascimento === "") {
-            listaErros.push("dataNascimento");
+            listaErros.push("dataNasc");
         }
         if (nacionalidade === "") {
-            listaErros.push("nacionalidade");
+            listaErros.push("nacio");
         }
         if (genero === "") {
-            listaErros.push("genero");
+            listaErros.push("gene");
         }
         if (telefone === "") {
             listaErros.push("telefone");
         }
         if (idEndereco === "") {
-            listaErros.push("idEndereco");
+            listaErros.push("endId");
         }
 
         if (listaErros.length == 0) {

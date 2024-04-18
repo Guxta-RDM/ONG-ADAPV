@@ -28,6 +28,7 @@ app.use(expressEjsLayout);
 
 // Rotas ---
 app.use('/', HomeRoute)
+app.use("/pessoa", PessoaRoute)
 app.use("/adocao", AdocaoRoute);
 app.use("/animais", AnimaisRoute);
 app.use("/atividades", AtividadesRoute);
