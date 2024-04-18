@@ -1,0 +1,55 @@
+<script src="/js/alterar/pessoa.js"></script>
+<div class="container">
+    <div class="container-fluid">
+
+     <h1 class="h3 mb-4 text-gray-800">Alterar Pessoa</h1>
+        <div>
+            <% if (typeof msg != "undefined") { %>             
+                <span  ><%= msg %></span>
+            <% } %>
+            <input id="id" hidden value="<%= pessoa.pess_id %>">
+            <input id="createdAt" hidden value="<%= pessoa.createdAt %>">
+        </div>   
+
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_nome %>" class="form-control" id="nome" name="nome" placeholder="Digite o nome da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="cpf" class="form-label">CPF<span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_cpf %>" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="rg" class="form-label">RG<span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_rg %>" class="form-control" id="rg" name="rg" placeholder="Digite o RG da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="dataNasc" class="form-label">Data de Nascimento<span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_nasc %>" class="form-control" id="dataNasc" name="dataNasc" placeholder="Digite a data de nascimento da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="nacio" class="form-label">Nacionalidade<span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_nacio %>" class="form-control" id="nacio" name="nacio" placeholder="Digite a nacionalidade da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="gene" class="form-label"><span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_genero %>" class="form-control" id="gene" name="gene" placeholder="Digite o gênero da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="telefone" class="form-label">Telefone<span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.pess_tel %>" class="form-control" id="telefone" name="telefone" placeholder="Digite o número de telefone da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="endId" class="form-label"><span class="text-danger">*</span></label>
+            <input type="text" value="<%= pessoa.end_id %>" class="form-control" id="endId" name="endId" placeholder="Digite o Id do endereço da pessoa">
+        </div>
+        
+        <br>
+        <br>
+
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnAlterar">Alterar</button>
+            <a class="btn btn-secondary px-3 py-3" href="/">Cancelar</a>
+        </div>
+    </div>
+</div>

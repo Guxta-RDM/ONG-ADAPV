@@ -16,91 +16,91 @@ class PessoaModel {
     #createdAt;
     #updatedAt;
 
-    getPess_id() {
+    get Pess_id() {
         return this.#pess_id;
     }
 
-    setPess_id(value) {
+    set Pess_id(value) {
         this.#pess_id = value;
     }
 
-    getPess_nome() {
+    get Pess_nome() {
         return this.#pess_nome;
     }
 
-    setPess_nome(value) {
+    set Pess_nome(value) {
         this.#pess_nome = value;
     }
 
-    getPess_cpf() {
+    get Pess_cpf() {
         return this.#pess_cpf;
     }
 
-    setPess_cpf(value) {
+    set Pess_cpf(value) {
         this.#pess_cpf = value;
     }
 
-    getPess_rg() {
+    get Pess_rg() {
         return this.#pess_rg;
     }
 
-    setPess_rg(value) {
+    set Pess_rg(value) {
         this.#pess_rg = value;
     }
 
-    getPess_nasc() {
+    get Pess_nasc() {
         return this.#pess_nasc;
     }
 
-    setPess_nasc(value) {
+    set Pess_nasc(value) {
         this.#pess_nasc = value;
     }
 
-    getPess_nacio() {
+    get Pess_nacio() {
         return this.#pess_nacio;
     }
 
-    setPess_nacio(value) {
+    set Pess_nacio(value) {
         this.#pess_nacio = value;
     }
 
-    getPess_genero() {
+    get Pess_genero() {
         return this.#pess_genero;
     }
 
-    setPess_genero(value) {
+    set Pess_genero(value) {
         this.#pess_genero = value;
     }
 
-    getPess_tel() {
+    get Pess_tel() {
         return this.#pess_tel;
     }
 
-    setPess_tel(value) {
+    set Pess_tel(value) {
         this.#pess_tel = value;
     }
 
-    getEnd_id() {
+    get End_id() {
         return this.#end_id;
     }
 
-    setEnd_id(value) {
+    set End_id(value) {
         this.#end_id = value;
     }
 
-    getcreatedAt() {
+    get CreatedAt() {
         return this.#createdAt;
     }
 
-    setcreatedAt(value) {
+    set CreatedAt(value) {
         this.#createdAt = value;
     }
 
-    getupdatedAt() {
+    get UpdatedAt() {
         return this.#updatedAt;
     }
 
-    setupdatedAt(value) {
+    set UpdatedAt(value) {
         this.#updatedAt = value;
     }
 
@@ -119,7 +119,7 @@ class PessoaModel {
     }
 
     async listarPessoa() {
-        let sql = "SELECT * FROM tb_pessoas";
+        let sql = "SELECT * FROM tb_pessoa";
 
         let rows = await banco.ExecutaComando(sql);
         let lista = [];
@@ -166,6 +166,38 @@ class PessoaModel {
                 row["updatedAt"]
             );
         }
+    }
+
+    async cadastrarPessoa() {
+        if (this.#pess_id == 0) {
+            let sql = "INSERT INTO tb_pessoa (pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacio, pess_genero, pess_tel, end_id, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+
+            let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#end_id, this.#createdAt, this.#updatedAt];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+        }
+    }
+
+    async editarPessoa() {
+        let sql = "UPDATE tb_pessoa SET pess_nome = ?, pess_cpf = ?, pess_rg = ?, pess_nasc = ?, pess_nacio = ?, pess_genero = ?, pess_tel = ?, end_id = ?, createdAt = ?, updatedAt = ? WHERE pess_id = ?"
+
+        let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#end_id, this.#createdAt, this.#updatedAt, this.#pess_id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
+
+    async excluir(id) {
+        let sql = "DELETE FROM tb_pessoa WHERE pess_id = ?";
+
+        let valores = [id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
 }

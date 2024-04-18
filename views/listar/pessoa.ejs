@@ -1,0 +1,46 @@
+<script src="/js/listar/pessoa.js"></script>
+
+<h1>Pessoas Cadastradas</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/pessoa/cadastrar">Nova Pessoa</a>
+<hr>
+    <div>
+
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>RG</th>
+                <th>Data de Nascimento</th>
+                <th>Nacionalidade</th>
+                <th>Gênero</th>
+                <th>Telefone</th>
+                <th>Id do Endereço</th>
+                <th>Registro criado</th>
+                <th>Registro atualizado</th>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < lista.length; i++) {%>
+                    <tr>
+                        <td><%= lista[i].pess_id %></td>
+                        <td><%= lista[i].pess_nome %></td>
+                        <td><%= lista[i].pess_cpf %></td>
+                        <td><%= lista[i].pess_rg %></td>
+                        <td><%= lista[i].pess_nasc %></td>
+                        <td><%= lista[i].pess_nacio %></td>
+                        <td><%= lista[i].pess_genero %></td>
+                        <td><%= lista[i].pess_tel %></td>
+                        <td><%= lista[i].end_id %></td>
+                        <td><%= lista[i].createdAt %></td>
+                        <td><%= lista[i].updatedAt %></td>
+                        <td>
+                            <a href="/pessoa/alterar/<%= lista[i].pess_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button data-codigoexclusao="<%= lista[i].pess_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                        </td>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    </div>

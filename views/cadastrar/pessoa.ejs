@@ -1,0 +1,53 @@
+<script src="/js/cadastrar/pessoa.js"></script>
+<div class="container">
+    <div class="container-fluid">
+
+     <h1 class="h3 mb-4 text-gray-800">Cadastrar Pessoa</h1>
+        <div>
+            <% if (typeof msg != "undefined") { %>             
+                <span  ><%= msg %></span>
+            <% } %>
+        </div>   
+
+        <div class="col-md-6">
+            <label for="nome" class="form-label">Nome<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="cpf" class="form-label">CPF<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="rg" class="form-label">RG<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="rg" name="rg" placeholder="Digite o RG da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="dataNasc" class="form-label">Data de Nascimento<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="dataNasc" name="dataNasc" placeholder="Digite a data de nascimento da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="nacio" class="form-label">Nacionalidade<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="nacio" name="nacio" placeholder="Digite a nacionalidade da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="gene" class="form-label">Gênero<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="gene" name="gene" placeholder="Digite o gênero da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="telefone" class="form-label">Telefone<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o número de telefone da pessoa">
+        </div>
+        <div class="col-md-6">
+            <label for="endId" class="form-label">Id do Endereço<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="endId" name="endId" placeholder="Digite o Id do endereço da pessoa">
+        </div>
+        
+        <br>
+        <br>
+
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
+        </div>
+    </div>
+</div>
