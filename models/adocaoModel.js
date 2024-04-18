@@ -12,11 +12,11 @@ class AdocaoModel {
 
     // Getters
 
-    get AdoId() { return this.#ado_id }
+    get ado_id() { return this.#ado_id }
 
-    get PessId() { return this.#pess_id }
+    get pess_id() { return this.#pess_id }
 
-    get AniId() { return this.#ani_id }
+    get ani_id() { return this.#ani_id }
 
     get createdAt() { return this.#createdAt }
 
@@ -24,15 +24,15 @@ class AdocaoModel {
 
     // Setters
 
-    set AdoId(newAdoId) { this.#ado_id = newAdoId }
+    set ado_id(newAdoId) { this.#ado_id = newAdoId }
 
     set createdAt(newcreatedAt) { this.#createdAt = newcreatedAt }
 
     set updatedAt(newupdatedAt) { this.#updatedAt = newupdatedAt }
 
-    set PessId(newId) { this.#pess_id = newId }
+    set pess_id(pess_id) { this.#pess_id = pess_id }
 
-    set AniId(newId) { this.#ani_id = newId }
+    set ani_id(ani_id) { this.#ani_id = ani_id }
 
     constructor(ado_id, pess_id, ani_id, createdAt, updatedAt) {
 

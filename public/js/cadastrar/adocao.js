@@ -12,10 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let adotante = document.querySelector("#IdAdotante").value;
         let animal = document.querySelector("#IdAnimal").value;
-
-        console.log(adotante.value);
-        console.log(animal.value);
-
         let listaErros = [];
 
         if (adotante == 0) {
@@ -32,8 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 adotante: adotante,
                 animal: animal
             };
-
-            console.log(obj.adotante + " - " + obj.animal);
 
             fetch("/adocao/cadastrar", {
                 method: 'POST',

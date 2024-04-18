@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("nacio").style["border-color"] = "#ced4da";
         document.getElementById("gene").style["border-color"] = "#ced4da";
         document.getElementById("telefone").style["border-color"] = "#ced4da";
-        document.getElementById("endId").style["border-color"] = "#ced4da";
+        // document.getElementById("endId").style["border-color"] = "#ced4da";
     }
 
     function alterar() {
@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (telefone === "") {
             listaErros.push("telefone");
         }
-        if (idEndereco === "") {
-            listaErros.push("endId");
-        }
+        // if (idEndereco === "") {
+        //     listaErros.push("endId");
+        // }
 
         if (listaErros.length == 0) {
 

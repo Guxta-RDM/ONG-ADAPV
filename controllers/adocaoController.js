@@ -12,8 +12,8 @@ class AdocaoController {
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
 
-        if (req.body.IdAdotante != '0' && req.body.IdAnimal != '0') {
-            let adocao = new AdocaoModel(0, req.body.IdAdotante, req.body.IdAnimal, dataHoje.toISODate(), dataHoje.toISODate());
+        if (req.body.adotante != '0' && req.body.animal != '0') {
+            let adocao = new AdocaoModel(0, req.body.adotante, req.body.animal, dataHoje.toISODate(), dataHoje.toISODate());
 
             let result = await adocao.criarAdocao();
 
@@ -57,15 +57,15 @@ class AdocaoController {
     async alterar(req, res) {
         const dataHoje = DateTime.now()
 
-        if (req.body.pessId != 0 && req.body.aniId != 0) {
-            let usuario = new AdocaoModel(0, req.body.pessId, req.body.aniId, req.body.createdAt, dataHoje.toISODate());
+        if (req.body.adotante != "0" && req.body.animal != "0") {
+            let usuario = new AdocaoModel(req.body.id, req.body.adotante, req.body.animal, req.body.createdAt, dataHoje.toISODate());
 
             let result = await usuario.editarAdocao();
-
+            console.log(req.body, "\n\n", usuario)
             if (result) {
                 res.send({
                     ok: true,
-                    msg: "Doação registrada com sucesso!"
+                    msg: "Adoção alterada com sucesso!"
                 });
             }
             else {

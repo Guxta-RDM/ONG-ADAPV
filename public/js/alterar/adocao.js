@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("IdAnimal").style["border-color"] = "#ced4da";
     }
 
-    function cadastrar() {
+    function alterar() {
         limparValidacao();
-
+        let id = document.querySelector("#id").value;
         let adotante = document.querySelector("#IdAdotante").value;
         let animal = document.querySelector("#IdAnimal").value;
 
@@ -26,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (listaErros.length == 0) {
 
             let obj = {
+                id: id,
                 adotante: adotante,
                 animal: animal
             };
