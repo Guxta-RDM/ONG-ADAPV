@@ -38,7 +38,15 @@
         <div class="col-md-6">
             <label for="telefone" class="form-label">Telefone<span class="text-danger">*</span></label>
             <input type="text" value="<%= pessoa.pess_tel %>" class="form-control" id="telefone" name="telefone" placeholder="Digite o número de telefone da pessoa">
-        </div>        
+        </div>
+        <div class="col-md-6">
+            <label for="tipo" class="form-label">Tipo<span class="text-danger">*</span></label>
+            <select id="tipo" class="form-select" name="tipo">
+                <option value="" <%= pessoa.pess_tipo === "" ? "selected" : "" %>>Selecione...</option>
+                <option value="ADM" <%= pessoa.pess_tipo === "ADM" ? "selected" : "" %>>ADM</option>
+                <option value="Normal" <%= pessoa.pess_tipo === "Normal" ? "selected" : "" %>>Normal</option>
+            </select>
+        </div>
         <br><br>
         <div class="col-12">
             <button type="button" class="btn btn-success px-4 py-3" id="btnAlterar">Alterar</button>

@@ -37,6 +37,15 @@
             <label for="telefone" class="form-label">Telefone<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="telefone" name="telefone" placeholder="Digite o número de telefone da pessoa">
         </div>
+        <div class="col-md-6">
+            <label for="tipo" class="form-label">Tipo<span class="text-danger">*</span></label>
+            <select id="tipo" class="form-select" name="tipo">
+                <option value="" selected>Selecione...</option>
+                <option value="ADM">ADM</option>
+                <option value="Normal">Normal</option>
+            </select>
+        </div>
+
         <br><br>
         <div class="col-12">
             <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("nacio").style["border-color"] = "#ced4da";
         document.getElementById("gene").style["border-color"] = "#ced4da";
         document.getElementById("telefone").style["border-color"] = "#ced4da";
-        // document.getElementById("endId").style["border-color"] = "#ced4da";
+        document.getElementById("tipo").style["border-color"] = "#ced4da";
     }
 
     function alterar() {
@@ -24,7 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let nacionalidade = document.querySelector("#nacio").value;
         let genero = document.querySelector("#gene").value;
         let telefone = document.querySelector("#telefone").value;
-        let idEndereco = document.querySelector("#endId").value;
+        let tipo = document.querySelector("#tipo").value;
+        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
 
@@ -49,9 +50,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (telefone === "") {
             listaErros.push("telefone");
         }
-        // if (idEndereco === "") {
-        //     listaErros.push("endId");
-        // }
+        if (tipo === "") {
+            listaErros.push("tipo");
+        }
 
         if (listaErros.length == 0) {
 
@@ -61,12 +62,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 nome: nome,
                 cpf: cpf,
                 rg: rg,
-                dataNascimento: dataNascimento,
-                nacionalidade: nacionalidade,
+                nasc: dataNascimento,
+                nacio: nacionalidade,
                 genero: genero,
-                telefone: telefone,
-                idEndereco: idEndereco
-
+                tel: telefone,
+                tipo: tipo,
+                createdAt: createdAt
             }
 
             fetch("/pessoa/alterar", {

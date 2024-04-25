@@ -12,6 +12,7 @@ class PessoaModel {
     #pess_nacio;
     #pess_genero;
     #pess_tel;
+    #pess_tipo
     #createdAt;
     #updatedAt;
 
@@ -79,6 +80,14 @@ class PessoaModel {
         this.#pess_tel = value;
     }
 
+    get pess_tipo() {
+        return this.#pess_tipo;
+    }
+
+    set pess_tipo(value) {
+        this.#pess_tipo = value;
+    }
+
     get createdAt() {
         return this.#createdAt;
     }
@@ -95,7 +104,7 @@ class PessoaModel {
         this.#updatedAt = value;
     }
 
-    constructor(pess_id, pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacio, pess_genero, pess_tel, createdAt, updatedAt) {
+    constructor(pess_id, pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacio, pess_genero, pess_tel, pess_tipo, createdAt, updatedAt) {
         this.#pess_id = pess_id;
         this.#pess_nome = pess_nome;
         this.#pess_cpf = pess_cpf;
@@ -104,6 +113,7 @@ class PessoaModel {
         this.#pess_nacio = pess_nacio;
         this.#pess_genero = pess_genero;
         this.#pess_tel = pess_tel;
+        this.#pess_tipo = pess_tipo;
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
     }
@@ -123,6 +133,7 @@ class PessoaModel {
                 rows[i]["pess_nacion"],
                 rows[i]["pess_genero"],
                 rows[i]["pess_tel"],
+                rows[i]["pess_tipo"],
                 rows[i]["createdAt"],
                 rows[i]["updatedAt"]
             ));
@@ -145,9 +156,10 @@ class PessoaModel {
                 row["pess_cpf"],
                 row["pess_rg"],
                 row["pess_nasc"],
-                row["pess_nacio"],
+                row["pess_nacion"],
                 row["pess_genero"],
                 row["pess_tel"],
+                row["pess_tipo"],
                 row["createdAt"],
                 row["updatedAt"]
             );
@@ -156,9 +168,9 @@ class PessoaModel {
 
     async cadastrarPessoa() {
         if (this.#pess_id == 0) {
-            let sql = "INSERT INTO tb_pessoa (pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacion, pess_genero, pess_tel, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+            let sql = "INSERT INTO tb_pessoa (pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacion, pess_genero, pess_tel, pess_tipo, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
-            let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#createdAt, this.#updatedAt];
+            let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#pess_tipo, this.#createdAt, this.#updatedAt];
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
@@ -167,9 +179,9 @@ class PessoaModel {
     }
 
     async editarPessoa() {
-        let sql = "UPDATE tb_pessoa SET pess_nome = ?, pess_cpf = ?, pess_rg = ?, pess_nasc = ?, pess_nacion = ?, pess_genero = ?, pess_tel = ?, createdAt = ?, updatedAt = ? WHERE pess_id = ?"
+        let sql = "UPDATE tb_pessoa SET pess_nome = ?, pess_cpf = ?, pess_rg = ?, pess_nasc = ?, pess_nacion = ?, pess_genero = ?, pess_tel = ?, pess_tipo = ?, createdAt = ?, updatedAt = ? WHERE pess_id = ?"
 
-        let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#createdAt, this.#updatedAt, this.#pess_id];
+        let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#pess_tipo, this.#createdAt, this.#updatedAt, this.#pess_id];
 
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 

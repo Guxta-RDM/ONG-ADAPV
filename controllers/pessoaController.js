@@ -10,9 +10,8 @@ class PessoaController {
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
         console.log(req.body)
-
-        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.gene != "" && req.body.tel != "") {
-            let pessoa = new PessoaModel(0, req.body.nome, req.body.cpf, req.body.rg, req.body.nasc, req.body.nacio, req.body.gene, req.body.tel, dataHoje.toISODate(), dataHoje.toISODate());
+        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.gene != "" && req.body.tel != "" && req.body.tipo != "") {
+            let pessoa = new PessoaModel(0, req.body.nome, req.body.cpf, req.body.rg, req.body.nasc, req.body.nacio, req.body.gene, req.body.tel, req.body.tipo, dataHoje.toISODate(), dataHoje.toISODate());
 
             let result = await pessoa.cadastrarPessoa();
 
@@ -45,17 +44,18 @@ class PessoaController {
 
     async alterarView(req, res) {
         let pessoa = new PessoaModel();
-
         pessoa = await pessoa.obterPessId(req.params.id);
-
         res.render('alterar/pessoa', { pessoa: pessoa });
     }
 
     async alterar(req, res) {
-        const dataHoje = DateTime.now();
-
-        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.genero != "" && req.body.tel != "") {
-            let pessoa = new PessoaModel(req.body.id, req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.genero != "" && req.body.tel != "", req.body.createdAt, dataHoje.toISODate());
+        const dataHoje = DateTime.now()
+        const dataTratar = new Date(Date.parse(req.body.createdAt))
+        const dataTratar2 = DateTime.fromJSDate(dataTratar)
+        const dataCriacao = dataTratar2.toISODate()
+        console.log(req.body)
+        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.genero != "" && req.body.tel != "" && req.body.tipo != "") {
+            let pessoa = new PessoaModel(req.body.id, req.body.nome, req.body.cpf, req.body.rg, req.body.nasc, req.body.nacio, req.body.genero, req.body.tel, req.body.tipo, dataCriacao, dataHoje.toISODate());
 
             let result = await pessoa.editarPessoa();
 
