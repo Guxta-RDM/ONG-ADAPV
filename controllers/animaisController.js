@@ -10,8 +10,8 @@ class AnimalController {
     async cadastrar(req, res){
         const dataHoje = DateTime.now()
         
-        if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0') {
-            let animal = new AnimaisModel(0, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, dataHoje.toISODate(), dataHoje.toISODate());
+        if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0' && req.body.desc != '' && req.body.disp != '') {
+            let animal = new AnimaisModel(0, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, req.body.disp, req.body.desc, dataHoje.toISODate(), dataHoje.toISODate());
 
             let result = await animal.cadastrar();
 
@@ -51,11 +51,14 @@ class AnimalController {
 
     async alterar(req, res) {
         const dataHoje = DateTime.now()
+        const dataTratar = new Date(Date.parse(req.body.createdAt))
+        const dataTratar2 = DateTime.fromJSDate(dataTratar)
+        const dataCriacao = dataTratar2.toISODate()
         console.log(req.body)
-        if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0') {
-            let usuario = new AnimaisModel(req.body.id, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, req.body.createdAt, dataHoje.toISODate());
+        if(req.body.nome != "" && req.body.sexo != "0" && req.body.ester != "0" && req.body.campoData != '' && req.body.especie != '0' && req.body.estado != '0' && req.body.raca != '0' && req.body.pelagem != '0' && req.body.desc != '' && req.body.disp != '') {
+            let animal = new AnimaisModel(req.body.id, req.body.nome, req.body.campoData, req.body.raca, req.body.sexo, req.body.especie, req.body.pelagem, req.body.ester, req.body.estado, req.body.disp, req.body.desc, dataCriacao, dataHoje.toISODate());
 
-            let result = await usuario.alterar();
+            let result = await animal.alterar();
 
             if(result) {
                 res.send({

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let rg = document.querySelector("#rg").value;
         let dataNascimento = document.querySelector("#dataNasc").value;
         let nacionalidade = document.querySelector("#nacio").value;
-        let genero = document.querySelectorAll("#gene").value;
+        let genero = document.querySelector("#gene").value;
         let telefone = document.querySelector("#telefone").value;
         let idEndereco = document.querySelector("#endId").value;
 

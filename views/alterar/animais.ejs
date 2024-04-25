@@ -60,7 +60,7 @@
             <label for="raca" class="form-label">Raça<span class="text-danger">*</span></label>
             <select id="raca" class="form-select" name="raca">
                 <option style="color: gray;" disabled>=====Canino=====</option>
-                <option value="" <%= animais.ani_raça === "" ? "selected" : "" %>>Selecione...</option>
+                <option value="" <%= animais.ani_raca === "" ? "selected" : "" %>>Selecione...</option>
                 <%
                 var racasCaninas = [
                 "Akita", "Beagle", "Bichon Frise", "Bulldog", "Chihuahua", "Cocker Spaniel", "Dachshund", "Golden Retriever", 
@@ -72,7 +72,7 @@
                 for (var i = 0; i < racasCaninas.length; i++) {
                     var raca = racasCaninas[i];
                 %>
-                <option value="<%= raca %>" <%= animais.ani_raça === raca ? "selected" : "" %>><%= raca %></option>
+                <option value="<%= raca %>" <%= animais.ani_raca === raca ? "selected" : "" %>><%= raca %></option>
                 <%
                 }
                 %>
@@ -92,7 +92,7 @@
                 for (var j = 0; j < racasFelinas.length; j++) {
                     var racaFelina = racasFelinas[j];
                 %>
-                <option value="<%= racaFelina %>" <%= animais.ani_raça === racaFelina ? "selected" : "" %>><%= racaFelina %></option>
+                <option value="<%= racaFelina %>" <%= animais.ani_raca === racaFelina ? "selected" : "" %>><%= racaFelina %></option>
                 <%
                 }
                 %>
@@ -114,6 +114,18 @@
                 %>
 
             </select>
+        </div>
+        <div class="col-md-4">
+            <label for="disp" class="form-label">Disponível para qualquer atividade?<span class="text-danger">*</span></label>
+            <select id="disp" class="form-select" name="disp">
+                <option value="" <%= animais.ani_disponivel === "" ? "selected" : "" %>>Selecione...</option>
+                <option value="Sim" <%= animais.ani_disponivel === "Sim" ? "selected" : "" %>>Sim</option>
+                <option value="Nao" <%= animais.ani_disponivel === "Nao" ? "selected" : "" %>>Não</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label for="desc" class="form-label">Descrição<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" value="<%= animais.ani_descricao%>" id="desc" name="desc" placeholder="Digite uma descrição">
         </div>
         <br><br>
         <div class="col-12">

@@ -36,6 +36,7 @@ app.use("/doacoes", DoacoesRoute);
 app.use("/empresas", EmpresasRoute);
 app.use("/projetos", ProjetosRoute);
 app.use("/voluntarios", VoluntariosRoute);
+app.use("/endereco", EnderecoRoute);
 
 
 // ---

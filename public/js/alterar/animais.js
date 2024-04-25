@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("estado").style["border-color"] = "#ced4da";
         document.getElementById("raca").style["border-color"] = "#ced4da";
         document.getElementById("pelagem").style["border-color"] = "#ced4da";
+        document.getElementById("desc").style["border-color"] = "#ced4da";
+        document.getElementById("disp").style["border-color"] = "#ced4da";
     }
 
     function alterar() {
@@ -24,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
         let estado = document.querySelector("#estado").value;
         let raca = document.querySelector("#raca").value;
         let pelagem = document.querySelector("#pelagem").value;
+        let desc = document.querySelector("#desc").value;
+        let disp = document.querySelector("#disp").value;
+        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
         if(nome === "") {
@@ -50,6 +55,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if(pelagem === "") {
             listaErros.push("pelagem");
         }
+        if(desc === "") {
+            listaErros.push("desc");
+        }
+        if(disp === "") {
+            listaErros.push("disp");
+        }
         
 
         if(listaErros.length == 0) {
@@ -65,7 +76,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 estado: estado,
                 raca: raca,
                 pelagem: pelagem,
-                // createdAt: createdAt //!CORRIGIR EXIBICAO DA DATA
+                desc: desc,
+                disp: disp,
+                createdAt: createdAt
             };
             
 

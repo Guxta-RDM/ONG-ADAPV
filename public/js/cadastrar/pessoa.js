@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("nacio").style["border-color"] = "#ced4da";
         document.getElementById("gene").style["border-color"] = "#ced4da";
         document.getElementById("telefone").style["border-color"] = "#ced4da";
-        document.getElementById("endId").style["border-color"] = "#ced4da";
     }
 
     function cadastrar() {
@@ -21,9 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let rg = document.querySelector("#rg").value;
         let nasc = document.querySelector("#dataNasc").value;
         let nacio = document.querySelector("#nacio").value;
-        let gene = document.querySelectorAll("#gene").value;
+        let gene = document.querySelector("#gene").value;
         let tel = document.querySelector("#telefone").value;
-        let endId = document.querySelector("#endId").value;
 
         let listaErros = [];
 
@@ -48,9 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (tel === "") {
             listaErros.push("telefone");
         }
-        // if (endId === "") {
-        //     listaErros.push("endId");
-        // }
 
         if (listaErros.length == 0) {
 
@@ -62,7 +57,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 nacio: nacio,
                 gene: gene,
                 tel: tel,
-                // endId: endId
             };
 
             fetch("/pessoa/cadastrar", {

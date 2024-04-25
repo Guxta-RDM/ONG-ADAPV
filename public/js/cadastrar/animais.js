@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("estado").style["border-color"] = "#ced4da";
         document.getElementById("raca").style["border-color"] = "#ced4da";
         document.getElementById("pelagem").style["border-color"] = "#ced4da";
+        document.getElementById("disp").style["border-color"] = "#ced4da";
+        document.getElementById("desc").style["border-color"] = "#ced4da";
     }
 
     function cadastrar() {
@@ -23,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
         let estado = document.querySelector("#estado").value;
         let raca = document.querySelector("#raca").value;
         let pelagem = document.querySelector("#pelagem").value;
+        let descricao = document.querySelector("#desc").value;
+        let disponivel = document.querySelector("#disp").value;
 
         let listaErros = [];
         if(nome === "") {
@@ -49,6 +53,12 @@ document.addEventListener("DOMContentLoaded", function() {
         if(pelagem === "") {
             listaErros.push("pelagem");
         }
+        if(descricao === "") {
+            listaErros.push("desc");
+        }
+        if(disponivel === "") {
+            listaErros.push("disp");
+        }
         
 
         if(listaErros.length == 0) {
@@ -62,7 +72,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 especie: especie,
                 estado: estado,
                 raca: raca,
-                pelagem: pelagem
+                pelagem: pelagem,
+                desc: descricao,
+                disp: disponivel
             };
             
 

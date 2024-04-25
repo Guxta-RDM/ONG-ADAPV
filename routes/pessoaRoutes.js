@@ -5,11 +5,11 @@ let ctrl = new PessoaController();
 
 let router = express.Router();
 
-router.get('/listar', ctrl.listagemView) //NF = Não funciona
+router.get('/listar', ctrl.listagemView) 
 router.get('/cadastrar', ctrl.cadastroView)
 router.post('/cadastrar', ctrl.cadastrar)
-router.get('/alterar/:id', ctrl.alterarView) //NF
-router.post('/alterar', ctrl.alterar) //NF
-router.post('/excluir', ctrl.excluir) //NF
+router.get('/alterar/:id', ctrl.alterarView)
+router.post('/alterar', ctrl.alterar) 
+router.post('/excluir', ctrl.excluir) 
 
 module.exports = router;
