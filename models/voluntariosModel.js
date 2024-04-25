@@ -6,40 +6,33 @@ class VoluntariosModel {
 
     #vol_id;
     #pess_id;
-    #vol_dataCria;
-    #vol_dataAtualiza;
+    #createdAt;
+    #updatedAt;
 
-    getVol_Id() {
-        return this.#vol_id;
-    }
-    setVol_Id(value) {
-        this.#vol_id = value;
-    }
-    getPess_Id() {
-        return this.#vol_id;
-    }
-    setPess_Id(value) {
-        this.#pess_id = value;
-    }
-    getVol_DataCria() {
-        return this.#vol_dataCria;
-    }
-    setVol_DataCria(value) {
-        this.#vol_dataCria = value;
-    }
-    getVol_DataAtualiza() {
-        return this.#vol_dataAtualiza;
-    }
-    setVol_DataAtualiza(value) {
-        this.#vol_dataAtualiza = value;
-    }
+    // Getters
 
-    constructor(vol_id, pess_id, vol_dataCria, vol_dataAtualiza) {
+    get vol_id() { return this.#vol_id }
+    get pess_id() { return this.#pess_id }
+    get createdAt() { return this.#createdAt }
+    get updatedAt() { return this.#updatedAt }
+
+    // Setters
+
+    set vol_id(value) { this.#vol_id = value }
+    set pess_id(value) { this.#pess_id = value }
+    set createdAt(value) { this.#createdAt = value }
+    set updatedAt(value) { this.#updatedAt = value }
+
+    // Constructor
+
+    constructor(vol_id, pess_id, createdAt, updatedAt) {
         this.#vol_id = vol_id;
         this.#pess_id = pess_id;
-        this.#vol_dataCria = vol_dataCria;
-        this.#vol_dataAtualiza = vol_dataAtualiza;
+        this.#createdAt = createdAt;
+        this.#updatedAt = updatedAt;
     }
+
+    // Métodos
 
     async listarVoluntarios() {
         let sql = "SELECT * FROM tb_voluntarios";
@@ -75,6 +68,47 @@ class VoluntariosModel {
                 row["vol_dataAtualiza"]
             );
         }
+    }
+
+    async cadastrarVoluntario() {
+        if (this.#vol_id === 0) {
+            let sql = "INSERT INTO tb_voluntario (pess_id, createdAt, updatedAt) VALUES (?, ?, ?)";
+
+            let valores = [
+                this.#pess_id,
+                this.#createdAt,
+                this.#updatedAt
+            ];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+        }
+    }
+
+    async editarVoluntario() {
+        let sql = "UPDATE tb_voluntario SET pess_id = ?, createdAt = ?, updatedAt = ? WHERE vol_id = ?";
+
+        let valores = [
+            this.#pess_id,
+            this.#createdAt,
+            this.#updatedAt,
+            this.#vol_id
+        ];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
+
+    async excluirVoluntario() {
+        let sql = "DELETE FROM tb_voluntario WHERE vol_id = ?";
+
+        let valores = [this.#vol_id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
 }

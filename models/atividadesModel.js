@@ -13,65 +13,28 @@ class AtividadeModel {
     #createdAt;
     #updatedAt;
 
-    // Métodos getters
-    getAtvId() {
-        return this.#atv_id;
-    }
+    // Getters
+    get atv_id() { return this.#atv_id; }
+    get atv_nome() { return this.#atv_nome; }
+    get atv_desc() { return this.#atv_desc; }
+    get atv_data() { return this.#atv_data; }
+    get vol_id() { return this.#vol_id; }
+    get emp_id() { return this.#emp_id; }
+    get createdAt() { return this.#createdAt; }
+    get updatedAt() { return this.#updatedAt; }
 
-    getAtvNome() {
-        return this.#atv_nome;
-    }
+    // Setters
 
-    getAtvDesc() {
-        return this.#atv_desc;
-    }
+    set atv_id(value) { this.#atv_id = value; }
+    set atv_nome(value) { this.#atv_nome = value; }
+    set atv_desc(value) { this.#atv_desc = value; }
+    set atv_data(value) { this.#atv_data = value; }
+    set vol_id(value) { this.#vol_id = value; }
+    set emp_id(value) { this.#emp_id = value; }
+    set createdAt(value) { this.#createdAt = value; }
+    set updatedAt(value) { this.#updatedAt = value; }
 
-    getAtvData() {
-        return this.#atv_data;
-    }
-
-    getVolId() {
-        return this.#vol_id;
-    }
-
-    getEmpId() { return this.#emp_id }
-
-    getDataCria() { return this.#createdAt }
-
-    getDataAtualiza() { return this.#updatedAt }
-
-    // Métodos setters
-    setAtvId(value) {
-        this.#atv_id = value;
-    }
-
-    setAtvNome(value) {
-        this.#atv_nome = value;
-    }
-
-    setAtvDesc(value) {
-        this.#atv_desc = value;
-    }
-
-    setAtvData(value) {
-        this.#atv_data = value;
-    }
-
-    setVolId(value) {
-        this.#vol_id = value;
-    }
-
-    setEmpId(value) {
-        this.#emp_id = value;
-    }
-
-    setDataCria(value) {
-        this.#createdAt = value;
-    }
-
-    setDataAtualiza(value) {
-        this.#updatedAt = value;
-    }
+    // Constructor
 
     constructor(atv_id, atv_nome, atv_desc, atv_data, vol_id, emp_id, createdAt, updatedAt) {
         this.#atv_id = atv_id;
@@ -83,6 +46,8 @@ class AtividadeModel {
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
     }
+
+    // Métodos
 
     async listarAtividades() {
         let sql = "SELECT * FROM tb_atividades";

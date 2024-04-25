@@ -19,34 +19,38 @@ class EmpresasModel {
     #updatedAt;
 
     // Getters
-    getEmpId() { return this.#emp_id; }
-    getEmpNome() { return this.#emp_nome; }
-    getEmpCnpj() { return this.#emp_cnpj; }
-    getEmpCep() { return this.#emp_cep; }
-    getEmpNum() { return this.#emp_num; }
-    getEmpCidade() { return this.#emp_cidade; }
-    getEmpEstado() { return this.#emp_estado; }
-    getEmpRua() { return this.#emp_rua; }
-    getEmpBairro() { return this.#emp_bairro; }
-    getEmpComplemento() { return this.#emp_complemento; }
-    getEmpTelefone() { return this.#emp_telefone; }
-    getEmpDataCria() { return this.#createdAt; }
-    getEmpDataAtualiza() { return this.#updatedAt; }
+
+    get emp_id() { return this.#emp_id }
+    get emp_nome() { return this.#emp_nome }
+    get emp_cnpj() { return this.#emp_cnpj }
+    get emp_cep() { return this.#emp_cep }
+    get emp_num() { return this.#emp_num }
+    get emp_cidade() { return this.#emp_cidade }
+    get emp_estado() { return this.#emp_estado }
+    get emp_rua() { return this.#emp_rua }
+    get emp_bairro() { return this.#emp_bairro }
+    get emp_complemento() { return this.#emp_complemento }
+    get emp_telefone() { return this.#emp_telefone }
+    get createdAt() { return this.#createdAt }
+    get updatedAt() { return this.#updatedAt }
 
     // Setters
-    setEmpId(value) { this.#emp_id = value; }
-    setEmpNome(value) { this.#emp_nome = value; }
-    setEmpCnpj(value) { this.#emp_cnpj = value; }
-    setEmpCep(value) { this.#emp_cep = value; }
-    setEmpNum(value) { this.#emp_num = value; }
-    setEmpCidade(value) { this.#emp_cidade = value; }
-    setEmpEstado(value) { this.#emp_estado = value; }
-    setEmpRua(value) { this.#emp_rua = value; }
-    setEmpBairro(value) { this.#emp_bairro = value; }
-    setEmpComplemento(value) { this.#emp_complemento = value; }
-    setEmpTelefone(value) { this.#emp_telefone = value; }
-    setEmpDataCria(value) { this.#createdAt = value; }
-    setEmpDataAtualiza(value) { this.#updatedAt = value; }
+
+    set emp_id(value) { this.#emp_id = value }
+    set emp_nome(value) { this.#emp_nome = value }
+    set emp_cnpj(value) { this.#emp_cnpj = value }
+    set emp_cep(value) { this.#emp_cep = value }
+    set emp_num(value) { this.#emp_num = value }
+    set emp_cidade(value) { this.#emp_cidade = value }
+    set emp_estado(value) { this.#emp_estado = value }
+    set emp_rua(value) { this.#emp_rua = value }
+    set emp_bairro(value) { this.#emp_bairro = value }
+    set emp_complemento(value) { this.#emp_complemento = value }
+    set emp_telefone(value) { this.#emp_telefone = value }
+    set createdAt(value) { this.#createdAt = value }
+    set updatedAt(value) { this.#updatedAt = value }
+
+    // Constructor
 
     constructor(empId, empNome, empCnpj, empCep, empNum, empCidade, empEstado, empRua, empBairro, empComplemento, empTelefone, empDataCria, empDataAtualiza) {
         this.#emp_id = empId;
@@ -63,6 +67,8 @@ class EmpresasModel {
         this.#createdAt = empDataCria;
         this.#updatedAt = empDataAtualiza;
     }
+
+    // Métodos
 
     async listarEmpresas() {
         let sql = "SELECT * FROM tb_empresas";
@@ -128,15 +134,17 @@ class EmpresasModel {
 
             return result;
         }
-        else {
-            let sql = "UPDATE tb_empresas SET emp_nome = ?, emp_cnpj = ?, emp_cep = ?, emp_num = ?, emp_cidade = ?, emp_estado = ?, emp_rua = ?, emp_bairro = ?, emp_complemento = ?, emp_telefone = ?, createdAt = ?, updatedAt = ? WHERE emp_id = ?";
 
-            let valores = [this.#emp_nome, this.#emp_cnpj, this.#emp_cep, this.#emp_num, this.#emp_cidade, this.#emp_estado, this.#emp_rua, this.#emp_bairro, this.#emp_complemento, this.#emp_telefone, this.#createdAt, this.#updatedAt, this.#emp_id];
+    }
 
-            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+    async editarEmpresa() {
+        let sql = "UPDATE tb_empresas SET emp_nome = ?, emp_cnpj = ?, emp_cep = ?, emp_num = ?, emp_cidade = ?, emp_estado = ?, emp_rua = ?, emp_bairro = ?, emp_complemento = ?, emp_telefone = ?, createdAt = ?, updatedAt = ? WHERE emp_id = ?";
 
-            return result
-        }
+        let valores = [this.#emp_nome, this.#emp_cnpj, this.#emp_cep, this.#emp_num, this.#emp_cidade, this.#emp_estado, this.#emp_rua, this.#emp_bairro, this.#emp_complemento, this.#emp_telefone, this.#createdAt, this.#updatedAt, this.#emp_id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
     async excluir(id) {

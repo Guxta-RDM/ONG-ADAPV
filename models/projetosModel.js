@@ -10,77 +10,45 @@ class ProjetosModel {
     #pro_desc;
     #ativ_id;
     #emp_id;
-    #pro_dataCria;
-    #pro_dataAtualiza;
+    #createdAt;
+    #updatedAt;
 
     // Getters
-    getPro_id() {
-        return this.#pro_id;
-    }
 
-    getPro_nome() {
-        return this.#pro_nome;
-    }
-
-    getPro_data() {
-        return this.#pro_data;
-    }
-
-    getPro_desc() {
-        return this.#pro_desc;
-    }
-
-    getAtiv_id() {
-        return this.#ativ_id;
-    }
-
-    getPro_dataCria() {
-        return this.#pro_dataCria;
-    }
-
-    getPro_dataAtualiza() {
-        return this.#pro_dataAtualiza;
-    }
+    get pro_id() { return this.#pro_id }
+    get pro_nome() { return this.#pro_nome }
+    get pro_data() { return this.#pro_data }
+    get pro_desc() { return this.#pro_desc }
+    get ativ_id() { return this.#ativ_id }
+    get createdAt() { return this.#createdAt }
+    get updatedAt() { return this.#updatedAt }
 
     // Setters
-    setPro_id(pro_id) {
-        this.#pro_id = pro_id;
-    }
 
-    setPro_nome(pro_nome) {
-        this.#pro_nome = pro_nome;
-    }
+    set pro_id(value) { this.#pro_id = value }
+    set pro_nome(value) { this.#pro_nome = value }
+    set pro_data(value) { this.#pro_data = value }
+    set pro_desc(value) { this.#pro_desc = value }
+    set ativ_id(value) { this.#ativ_id = value }
+    set createdAt(value) { this.#createdAt = value }
+    set updatedAt(value) { this.#updatedAt = value }
 
-    setPro_data(pro_data) {
-        this.#pro_data = pro_data;
-    }
+    // Constructor
 
-    setPro_desc(pro_desc) {
-        this.#pro_desc = pro_desc;
-    }
+    constructor(pro_id, pro_nome, pro_data, pro_desc, ativ_id, emp_id, createdAt, updatedAt) {
 
-    setAtiv_id(ativ_id) {
-        this.#ativ_id = ativ_id;
-    }
-
-    setPro_dataCria(pro_dataCria) {
-        this.#pro_dataCria = pro_dataCria;
-    }
-
-    setPro_dataAtualiza(pro_dataAtualiza) {
-        this.#pro_dataAtualiza = pro_dataAtualiza;
-    }
-
-    constructor(pro_id, pro_nome, pro_data, pro_desc, ativ_id, emp_id, pro_dataCria, pro_dataAtualiza) {
         this.#pro_id = pro_id;
         this.#pro_nome = pro_nome;
         this.#pro_data = pro_data;
         this.#pro_desc = pro_desc;
         this.#ativ_id = ativ_id;
         this.#emp_id = emp_id;
-        this.#pro_dataCria = pro_dataCria;
-        this.#pro_dataAtualiza = pro_dataAtualiza;
+        this.#createdAt = createdAt;
+        this.#updatedAt = updatedAt;
+
     }
+
+    // Métodos
 
     async listarProjetos() {
         let sql = "SELECT * FROM tb_projetos";
@@ -124,6 +92,56 @@ class ProjetosModel {
             );
         }
     }
+
+    async cadastrarProjeto() {
+        if (this.#pro_id === 0) {
+            let sql = "INSERT INTO tb_projeto (pro_nome, pro_data, pro_desc, ativ_id, emp_id, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            let valores = [
+                this.#pro_nome,
+                this.#pro_data,
+                this.#pro_desc,
+                this.#ativ_id,
+                this.#emp_id,
+                this.#createdAt,
+                this.#updatedAt
+            ];
+
+            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result;
+        }
+    }
+
+    async editarProjeto() {
+        let sql = "UPDATE tb_projeto SET pro_nome = ?, pro_data = ?, pro_desc = ?, ativ_id = ?, emp_id = ?, createdAt = ?, updatedAt = ? WHERE pro_id = ?";
+
+        let valores = [
+            this.#pro_nome,
+            this.#pro_data,
+            this.#pro_desc,
+            this.#ativ_id,
+            this.#emp_id,
+            this.#createdAt,
+            this.#updatedAt,
+            this.#pro_id
+        ];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
+
+    async excluirProjeto(id) {
+        let sql = "DELETE FROM tb_projeto WHERE pro_id = ?";
+
+        let valores = [id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
+    }
+
 }
 
 module.exports = ProjetosModel;

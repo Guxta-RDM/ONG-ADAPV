@@ -16,93 +16,35 @@ class PessoaModel {
     #createdAt;
     #updatedAt;
 
-    get pess_id() {
-        return this.#pess_id;
-    }
+    // Getters
 
-    set pess_id(value) {
-        this.#pess_id = value;
-    }
+    get pess_id() { return this.#pess_id }
+    get pess_nome() { return this.#pess_nome }
+    get pess_cpf() { return this.#pess_cpf }
+    get pess_rg() { return this.#pess_rg }
+    get pess_nasc() { return this.#pess_nasc }
+    get pess_nacio() { return this.#pess_nacio }
+    get pess_genero() { return this.#pess_genero }
+    get pess_tel() { return this.#pess_tel }
+    get pess_tipo() { return this.#pess_tipo }
+    get createdAt() { return this.#createdAt }
+    get updatedAt() { return this.#updatedAt }
 
-    get pess_nome() {
-        return this.#pess_nome;
-    }
+    // Setters
 
-    set pess_nome(value) {
-        this.#pess_nome = value;
-    }
+    set pess_id(value) { this.#pess_id = value }
+    set pess_nome(value) { this.#pess_nome = value }
+    set pess_cpf(value) { this.#pess_cpf = value }
+    set pess_rg(value) { this.#pess_rg = value }
+    set pess_nasc(value) { this.#pess_nasc = value }
+    set pess_nacio(value) { this.#pess_nacio = value }
+    set pess_genero(value) { this.#pess_genero = value }
+    set pess_tel(value) { this.#pess_tel = value }
+    set pess_tipo(value) { this.#pess_tipo = value }
+    set createdAt(value) { this.#createdAt = value }
+    set updatedAt(value) { this.#updatedAt = value }
 
-    get pess_cpf() {
-        return this.#pess_cpf;
-    }
-
-    set pess_cpf(value) {
-        this.#pess_cpf = value;
-    }
-
-    get pess_rg() {
-        return this.#pess_rg;
-    }
-
-    set pess_rg(value) {
-        this.#pess_rg = value;
-    }
-
-    get pess_nasc() {
-        return this.#pess_nasc;
-    }
-
-    set pess_nasc(value) {
-        this.#pess_nasc = value;
-    }
-
-    get pess_nacio() {
-        return this.#pess_nacio;
-    }
-
-    set pess_nacio(value) {
-        this.#pess_nacio = value;
-    }
-
-    get pess_genero() {
-        return this.#pess_genero;
-    }
-
-    set pess_genero(value) {
-        this.#pess_genero = value;
-    }
-
-    get pess_tel() {
-        return this.#pess_tel;
-    }
-
-    set pess_tel(value) {
-        this.#pess_tel = value;
-    }
-
-    get pess_tipo() {
-        return this.#pess_tipo;
-    }
-
-    set pess_tipo(value) {
-        this.#pess_tipo = value;
-    }
-
-    get createdAt() {
-        return this.#createdAt;
-    }
-
-    set createdAt(value) {
-        this.#createdAt = value;
-    }
-
-    get updatedAt() {
-        return this.#updatedAt;
-    }
-
-    set updatedAt(value) {
-        this.#updatedAt = value;
-    }
+    // Constructor
 
     constructor(pess_id, pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacio, pess_genero, pess_tel, pess_tipo, createdAt, updatedAt) {
         this.#pess_id = pess_id;
@@ -117,6 +59,8 @@ class PessoaModel {
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
     }
+
+    // Métodos
 
     async listarPessoa() {
         let sql = "SELECT * FROM tb_pessoa";
@@ -167,7 +111,7 @@ class PessoaModel {
     }
 
     async cadastrarPessoa() {
-        if (this.#pess_id == 0) {
+        if (this.#pess_id === 0) {
             let sql = "INSERT INTO tb_pessoa (pess_nome, pess_cpf, pess_rg, pess_nasc, pess_nacion, pess_genero, pess_tel, pess_tipo, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
 
             let valores = [this.#pess_nome, this.#pess_cpf, this.#pess_rg, this.#pess_nasc, this.#pess_nacio, this.#pess_genero, this.#pess_tel, this.#pess_tipo, this.#createdAt, this.#updatedAt];

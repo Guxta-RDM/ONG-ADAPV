@@ -16,88 +16,30 @@ class EnderecoModel {
     #updatedAt;
 
     // Getters
-
-    getEndId() {
-        return this.end_id;
-    }
-
-    getEndCep() {
-        return this.end_cep;
-    }
-
-    getEndRua() {
-        return this.end_rua;
-    }
-
-    getEndBairro() {
-        return this.end_bairro;
-    }
-
-    getEndNumero() {
-        return this.end_numero;
-    }
-
-    getEndCidade() {
-        return this.end_cidade;
-    }
-
-    getEndEstado() {
-        return this.end_estado;
-    }
-
-    getEndComplemento() {
-        return this.end_complemento;
-    }
-
-    getEndDataCria() {
-        return this.createdAt;
-    }
-
-    getEndDataAtualiza() {
-        return this.updatedAt;
-    }
+    get end_id() { return this.end_id }
+    get end_cep() { return this.end_cep }
+    get end_rua() { return this.end_rua }
+    get end_bairro() { return this.end_bairro }
+    get end_numero() { return this.end_numero }
+    get end_cidade() { return this.end_cidade }
+    get end_estado() { return this.end_estado }
+    get end_complemento() { return this.end_complemento }
+    get createdAt() { return this.createdAt }
+    get updatedAt() { return this.updatedAt }
 
     // Setters
+    set end_id(value) { this.end_id = value }
+    set end_cep(value) { this.end_cep = value }
+    set end_rua(value) { this.end_rua = value }
+    set end_bairro(value) { this.end_bairro = value }
+    set end_numero(value) { this.end_numero = value }
+    set end_cidade(value) { this.end_cidade = value }
+    set end_estado(value) { this.end_estado = value }
+    set end_complemento(value) { this.end_complemento = value }
+    set createdAt(value) { this.createdAt = value }
+    set updatedAt(value) { this.updatedAt = value }
 
-    setEndId(end_id) {
-        this.end_id = end_id;
-    }
-
-    setEndCep(end_cep) {
-        this.end_cep = end_cep;
-    }
-
-    setEndRua(end_rua) {
-        this.end_rua = end_rua;
-    }
-
-    setEndBairro(end_bairro) {
-        this.end_bairro = end_bairro;
-    }
-
-    setEndNumero(end_numero) {
-        this.end_numero = end_numero;
-    }
-
-    setEndCidade(end_cidade) {
-        this.end_cidade = end_cidade;
-    }
-
-    setEndEstado(end_estado) {
-        this.end_estado = end_estado;
-    }
-
-    setEndComplemento(end_complemento) {
-        this.end_complemento = end_complemento;
-    }
-
-    setEndDataCria(createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    setEndDataAtualiza(updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+    // Constructor
 
     constructor(end_id, end_cep, end_rua, end_bairro, end_numero, end_cidade, end_estado, end_complemento, createdAt, updatedAt) {
 
@@ -114,7 +56,7 @@ class EnderecoModel {
 
     }
 
-    // Funções
+    // Métodos
 
     async listarEndereco() {
 
@@ -166,16 +108,17 @@ class EnderecoModel {
 
             return result;
         }
-        else {
-            let sql = "UPDATE tb_endereco SET end_cep = ?, end_rua = ?, end_bairro = ?, end_numero = ?, end_cidade = ?, end_estado = ?, end_complemento = ?, createdAt = ?, updatedAt = ? WHERE end_id = ?";
 
-            let valores = [this.#end_cep, this.#end_rua, this.#end_bairro, this.#end_numero, this.#end_cidade, this.#end_estado, this.#end_complemento, this.#createdAt, this.#updatedAt, this.#end_id];
+    }
 
-            let result = await banco.ExecutaComandoNonQuery(sql, valores);
+    async editarEndereco() {
+        let sql = "UPDATE tb_endereco SET end_cep = ?, end_rua = ?, end_bairro = ?, end_numero = ?, end_cidade = ?, end_estado = ?, end_complemento = ?, createdAt = ?, updatedAt = ? WHERE end_id = ?";
 
-            return result;
-        }
+        let valores = [this.#end_cep, this.#end_rua, this.#end_bairro, this.#end_numero, this.#end_cidade, this.#end_estado, this.#end_complemento, this.#createdAt, this.#updatedAt, this.#end_id];
 
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
     async excluir(id) {

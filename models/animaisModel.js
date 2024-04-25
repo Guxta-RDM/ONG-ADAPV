@@ -18,86 +18,39 @@ class AnimaisModel {
     #createdAt;
     #updatedAt;
 
-
     // Getters
+
     get ani_id() { return this.#ani_id }
-
     get ani_nome() { return this.#ani_nome }
-
     get ani_nascimento() { return this.#ani_nascimento }
-
     get ani_raca() { return this.#ani_raca }
-
     get ani_sexo() { return this.#ani_sexo }
-
     get ani_especie() { return this.#ani_especie }
-
     get ani_pelagem() { return this.#ani_pelagem }
-
-    get ani_ester() { return this.#ani_ester}
-
+    get ani_ester() { return this.#ani_ester }
     get ani_estado() { return this.#ani_estado }
-
     get ani_disponivel() { return this.#ani_disponivel }
-
     get ani_descricao() { return this.#ani_descricao }
-
     get createdAt() { return this.#createdAt }
-
     get updatedAt() { return this.#updatedAt }
 
     // Setters
-    set ani_id(ani_id) {
-        this.#ani_id = ani_id;
-    }
 
-    set ani_nome(ani_nome) {
-        this.#ani_nome = ani_nome;
-    }
+    set ani_id(value) { this.#ani_id = value }
+    set ani_nome(value) { this.#ani_nome = value }
+    set ani_nascimento(value) { this.#ani_nascimento = value }
+    set ani_raca(value) { this.#ani_raca = value }
+    set ani_sexo(value) { this.#ani_sexo = value }
+    set ani_especie(value) { this.#ani_especie = value }
+    set ani_pelagem(value) { this.#ani_pelagem = value }
+    set ani_ester(value) { this.#ani_ester = value }
+    set ani_estado(value) { this.#ani_estado = value }
+    set ani_disponivel(value) { this.#ani_disponivel = value }
+    set ani_descricao(value) { this.#ani_descricao = value }
+    set createdAt(value) { this.#createdAt = value }
+    set updatedAt(value) { this.#updatedAt = value }
 
-    set ani_nascimento(ani_nascimento) {
-        this.#ani_nascimento = ani_nascimento;
-    }
-
-    set ani_raca(ani_raca) {
-        this.#ani_raca = ani_raca;
-    }
-
-    set ani_sexo(ani_sexo) {
-        this.#ani_sexo = ani_sexo;
-    }
-
-    set ani_especie(ani_especie) {
-        this.#ani_especie = ani_especie;
-    }
-
-    set ani_pelagem(ani_pelagem) {
-        this.#ani_pelagem = ani_pelagem;
-    }
-
-    set ani_ester(ani_ester){
-        this.#ani_ester = ani_ester
-    }
-
-    set ani_estado(ani_estado) {
-        this.#ani_estado = ani_estado;
-    }
-
-    set ani_disponivel(ani_disponivel) {
-        this.#ani_disponivel = ani_disponivel;
-    }
-
-    set ani_descricao(ani_descricao) {
-        this.#ani_descricao = ani_descricao;
-    }
-
-    set createdAt(createdAt) {
-        this.#createdAt = createdAt;
-    }
-
-    set updatedAt(updatedAt) {
-        this.#updatedAt = updatedAt;
-    }
+    // Constructor
 
     constructor(ani_id, ani_nome, ani_nascimento, ani_raca, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, ani_disponivel, ani_descricao, createdAt, updatedAt) {
         this.#ani_id = ani_id;
@@ -114,6 +67,8 @@ class AnimaisModel {
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
     }
+
+    // Métodos
 
     async listarAnimais() {
         let sql = "SELECT * FROM tb_animais";
@@ -166,21 +121,21 @@ class AnimaisModel {
         }
     }
 
-    async cadastrar(){
-        if(this.#ani_id == 0) {
+    async cadastrar() {
+        if (this.#ani_id == 0) {
             let sql = "insert into tb_animais (ani_nome, ani_nascimento, ani_raca, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, ani_disponivel, ani_descricao, createdAt, updatedAt) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-    
+
             let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raca, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#ani_disponivel, this.#ani_descricao, this.#createdAt, this.#updatedAt];
-            
+
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
-    
+
             return result;
         }
-        else{
+        else {
             let sql = "update tb_animais set ani_nome = ?, ani_nascimento = ?, ani_raca = ?, ani_sexo = ?, ani_especie = ?, ani_pelagem = ?, ani_ester = ?, ani_estado = ?, ani_disponivel = ?, ani_descricao = ?, createdAt = ?, updatedAt = ? where ani_id = ?";
-    
+
             let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raca, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#ani_disponivel, this.#ani_descricao, this.#createdAt, this.#updatedAt, this.#ani_id];
-    
+
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
             return result;
         }
@@ -188,21 +143,21 @@ class AnimaisModel {
 
     // CRIEI UMA OUTRA FUNÇÃO ALTERAR PARA CASO EXISTA UMA IMPLEMETAÇÃO QUE O FÚLVIO QUEIRA FAZER ESTÁ SEPARADO E FICA MAIS FÁCIL DE ENTENDER. MAS INICIALMENTE AS DUAS TEM A MESMA FUNÇÃO
 
-    async alterar(){
-        if(this.#ani_id == 0) {
+    async alterar() {
+        if (this.#ani_id == 0) {
             let sql = "insert into tb_animais (ani_nome, ani_nascimento, ani_raca, ani_sexo, ani_especie, ani_pelagem, ani_ester, ani_estado, ani_disponivel, ani_descricao, createdAt, updatedAt) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-    
+
             let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raca, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#ani_disponivel, this.#ani_descricao, this.#createdAt, this.#updatedAt];
-            
+
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
-    
+
             return result;
         }
-        else{
+        else {
             let sql = "update tb_animais set ani_nome = ?, ani_nascimento = ?, ani_raca = ?, ani_sexo = ?, ani_especie = ?, ani_pelagem = ?, ani_ester = ?, ani_estado = ?, ani_disponivel = ?, ani_descricao = ?, createdAt = ?, updatedAt = ? where ani_id = ?";
-    
+
             let valores = [this.#ani_nome, this.#ani_nascimento, this.#ani_raca, this.#ani_sexo, this.#ani_especie, this.#ani_pelagem, this.#ani_ester, this.#ani_estado, this.#ani_disponivel, this.#ani_descricao, this.#createdAt, this.#updatedAt, this.#ani_id];
-    
+
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
             return result;
         }
@@ -212,12 +167,12 @@ class AnimaisModel {
         let sql = "delete from tb_animais where ani_id = ?";
 
         let valores = [id];
-        
+
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
         return result;
     }
-    
+
 }
 
 module.exports = AnimaisModel;
