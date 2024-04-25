@@ -3,23 +3,23 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
     function limparValidacao() {
-        document.getElementById("IdAdotante").style["border-color"] = "#ced4da";
-        document.getElementById("IdAnimal").style["border-color"] = "#ced4da";
+        document.getElementById("idAdo").style["border-color"] = "#ced4da";
+        document.getElementById("idAni").style["border-color"] = "#ced4da";
     }
 
     function cadastrar() {
         limparValidacao();
 
-        let adotante = document.querySelector("#IdAdotante").value;
-        let animal = document.querySelector("#IdAnimal").value;
+        let adotante = document.querySelector("#idAdo").value;
+        let animal = document.querySelector("#idAni").value;
         let listaErros = [];
 
-        if (adotante == 0) {
-            listaErros.push("IdAdotante");
+        if (adotante === "") {
+            listaErros.push("idAdo");
         }
 
-        if (animal == 0) {
-            listaErros.push("IdAnimal");
+        if (animal === "") {
+            listaErros.push("idAni");
         }
 
         if (listaErros.length == 0) {

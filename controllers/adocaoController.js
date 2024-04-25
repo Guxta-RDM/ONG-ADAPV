@@ -38,11 +38,23 @@ class AdocaoController {
         }
     }
 
+    async listagemPessoaCadView(req, res) {
+        let pessoa = new PessoaModel();
+        let listaPessoas = await pessoa.listarPessoa()
+        let animal = new AnimalModel();
+        let listaAnimal = await animal.listarAnimais()
+        res.render('cadastrar/adocao', { listaPessoa: listaPessoas, listaAnimal: listaAnimal })
+    }
+
+    async listagemAnimalCadView(req, res) {
+        let animal = new AnimalModel();
+        let listaAnimal = await animal.listarAnimais()
+        res.render('cadastrar/adocao', { listaAnimais: listaAnimal })
+    }
+
     async listagemView(req, res) {
         let adocao = new AdocaoModel()
-
         let listaAdocao = await adocao.listarAdocao();
-
         res.render('listar/adocao', { listaAdocao: listaAdocao });
     }
 

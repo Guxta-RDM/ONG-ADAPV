@@ -9,18 +9,25 @@
         <% } %>
 
         <div class="col-md-6">
-            <label for="IdAdotante" class="form-label">Id do Adotante<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="IdAdotante" name="IdAdotante" placeholder="Digite o ID do adotante">
+            <label for="idAdo" class="form-label">Nome do adotante<span class="text-danger">*</span></label>
+            <select name="idAdo" id="idAdo">
+                <option value="" selected>Selecione...</option>
+                <% listaPessoa.forEach(function(pessoa) { %>
+                    <option value="<%= pessoa.pess_id %>">NOME: <%= pessoa.pess_nome %> - CPF: <%= pessoa.pess_cpf%></option>
+                <% }); %>
+            </select>
         </div>
 
         <div class="col-md-6">
-            <label for="nome" class="form-label">Id do Animal<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="IdAnimal" name="IdAnimal" placeholder="Digite o ID do animal">
+            <label for="idAni" class="form-label">Nome do animal<span class="text-danger">*</span></label>
+            <select name="idAni" id="idAni">
+                <option value="" selected>Selecione...</option>
+                <% listaAnimal.forEach(function(animal) { %>
+                    <option value="<%= animal.ani_id %>">NOME: <%= animal.ani_nome %> - RAÇA: <%= animal.ani_raca%></option>
+                <% }); %>
+            </select>
         </div>
-
-        <br>
-        <br>
-        
+        <br><br>
         <div class="col-12">
             <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>
             <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
