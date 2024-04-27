@@ -1,0 +1,70 @@
+<script src="/js/cadastrar/endereco.js"></script>
+<div class="container">
+    <div class="container-fluid">
+
+     <h1 class="h3 mb-4 text-gray-800">Cadastrar Pessoa</h1>
+        <div>
+            <% if (typeof msg != "undefined") { %>             
+                <span  ><%= msg %></span>
+            <% } %>
+        </div>   
+
+        <div class="col-md-4">
+            <label for="end_cep" class="form-label">CEP<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="end_cep" name="end_cep" placeholder="Digite o CEP">
+        </div>
+
+
+        <div class="col-md-8">
+            <label for="end_rua" class="form-label">Rua<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="end_rua" name="end_rua" placeholder="Digite o nome da rua">
+        </div>
+
+
+        <div class="col-md-6">
+            <label for="end_bairro" class="form-label">Bairro<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="end_bairro" name="end_bairro" placeholder="Digite o bairro">
+        </div>
+
+
+        <div class="col-md-2">
+            <label for="end_numero" class="form-label">Número<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="end_numero" name="end_numero" placeholder="Digite o número">
+        </div>
+
+
+        <div class="col-md-6">
+            <label for="end_cidade" class="form-label">Cidade<span class="text-danger">*</span></label>
+            <select id="end_cidade" class="form-select" name="end_cidade">
+                <option value="" selected>Selecione...</option>
+                <option value="Sorocaba">Sorocaba</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-4">
+            <label for="end_estado" class="form-label">Estado<span class="text-danger">*</span></label>
+            <select id="end_estado" class="form-select" name="end_estado">
+                <option value="" selected>Selecione...</option>
+                <option value="SP">São Paulo</option>
+            </select>
+        </div>
+
+
+        <div class="col-md-12">
+            <label for="end_complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="end_complemento" name="end_complemento" placeholder="Digite o complemento">
+        </div>
+
+        <div class="col-md-6">
+            <label for="pess_id" class="form-label">ID da Pessoa<span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="pess_id" name="pess_id" placeholder="Digite o ID da pessoa">
+        </div>
+
+        <br><br>
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
+        </div>
+    </div>
+</div>
