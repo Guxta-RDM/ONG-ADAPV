@@ -87,7 +87,8 @@ class EnderecoModel {
         if (rows.length > 0) {
             let row = rows[0];
 
-            return new EnderecoModel(row["end_id"],
+            return new EnderecoModel(
+                row["end_id"],
                 row["end_cep"],
                 row["end_rua"],
                 row["end_bairro"],

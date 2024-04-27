@@ -53,21 +53,21 @@ class EnderecoController {
         const dataTratar2 = DateTime.fromJSDate(dataTratar)
         const dataCriacao = dataTratar2.toISODate()
         console.log(req.body)
-        if (req.body.nome != "" && req.body.cpf != "" && req.body.rg != "" && req.body.nasc != "" && req.body.nacio != "" && req.body.genero != "" && req.body.tel != "" && req.body.tipo != "") {
-            let pessoa = new EnderecoModel(req.body.id, req.body.nome, req.body.cpf, req.body.rg, req.body.nasc, req.body.nacio, req.body.genero, req.body.tel, req.body.tipo, dataCriacao, dataHoje.toISODate());
+        if (req.body.cep != "" && req.body.rua != "" && req.body.num != "" && req.body.bairro != "" && req.body.cidade != "" && req.body.estado != "" && req.body.complem != "" && req.body.pess_id != "") {
+            let endereco = new EnderecoModel(req.body.id, req.body.cep, req.body.rua, req.body.bairro, req.body.num, req.body.cidade, req.body.estado, req.body.complem, req.body.pess_id, dataCriacao, dataHoje.toISODate());
 
-            let result = await pessoa.editarPessoa();
+            let result = await endereco.editarEndereco();
 
             if (result) {
                 res.send({
                     ok: true,
-                    msg: "Pessoa alterada com sucesso!"
+                    msg: "Endereco alterado com sucesso!"
                 });
             }
             else {
                 res.send({
                     ok: false,
-                    msg: "Erro ao alterar pessoa!"
+                    msg: "Erro ao alterar endereco!"
                 });
             }
         }
@@ -81,14 +81,14 @@ class EnderecoController {
 
     async excluir(req, res) {
         if (req.body.id != null) {
-            let pessoa = new EnderecoModel();
-            let ok = await pessoa.excluir(req.body.id);
+            let endereco = new EnderecoModel();
+            let ok = await endereco.excluir(req.body.id);
 
             if (ok) {
                 res.send({ ok: true });
             }
             else {
-                res.send({ ok: false, msg: "Erro ao excluir pessoa" })
+                res.send({ ok: false, msg: "Erro ao excluir endereco" })
             }
         }
         else {

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         limparValidacao();
 
         let id = document.querySelector("#end_id").value;
-        let cep = document.querySelector("#end_cep").value;
+        let cep = document.querySelector("#end_cep").value;   
         let rua = document.querySelector("#end_rua").value;
         let numero = document.querySelector("#end_numero").value;
         let bairro = document.querySelector("#end_bairro").value;
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let estado = document.querySelector("#end_estado").value;
         let complemento = document.querySelector("#end_complemento").value;
         let pess_id = document.querySelector("#pess_id").value;
+        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
 
@@ -64,10 +65,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 cidade: cidade,
                 estado: estado,
                 complem: complemento,
-                pess_id: pess_id
+                pess_id: pess_id,
+                createdAt: createdAt
             };
 
-            fetch("/endereco/cadastrar", {
+            fetch("/endereco/alterar", {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {
