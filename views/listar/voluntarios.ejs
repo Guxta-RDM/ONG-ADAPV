@@ -1,0 +1,29 @@
+<script src="/js/listar/voluntarios.js"></script>
+
+<h1>Voluntarios Registrados</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/voluntarios/cadastrar">Novo Voluntário</a>
+<hr>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Id da Pessoa</th>
+                <th>Data de Registro</th>
+                <th>Data de Atualização</th>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < listaVolun.length; i++)  { %>
+                    <tr>
+                        <td><%= listaVolun[i].vol_id %></td>
+                        <td><%= listaVolun[i].pess_id %></td>
+                        <td><%= listaVolun[i].createdAt %></td> 
+                        <td><%= listaVolun[i].updatedAt %></td>
+                        <td>
+                            <a href="/voluntarios/alterar/<%= listaVolun[i].vol_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button data-codigoexclusao="<%= listaVolun[i].vol_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>

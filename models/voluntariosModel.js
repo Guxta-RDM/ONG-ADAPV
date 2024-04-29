@@ -44,8 +44,8 @@ class VoluntariosModel {
             lista.push(new VoluntariosModel(
                 rows[i]["vol_id"],
                 rows[i]["pess_id"],
-                rows[i]["vol_dataCria"],
-                rows[i]["vol_dataAtualiza"]
+                rows[i]["createdAt"],
+                rows[i]["updatedAt"]
             ));
         }
 
@@ -64,15 +64,15 @@ class VoluntariosModel {
             return new VoluntariosModel(
                 row["vol_id"],
                 row["pess_id"],
-                row["vol_dataCria"],
-                row["vol_dataAtualiza"]
+                row["createdAt"],
+                row["updatedAt"]
             );
         }
     }
 
     async cadastrarVoluntario() {
         if (this.#vol_id === 0) {
-            let sql = "INSERT INTO tb_voluntario (pess_id, createdAt, updatedAt) VALUES (?, ?, ?)";
+            let sql = "INSERT INTO tb_voluntarios (pess_id, createdAt, updatedAt) VALUES (?, ?, ?)";
 
             let valores = [
                 this.#pess_id,
@@ -87,7 +87,7 @@ class VoluntariosModel {
     }
 
     async editarVoluntario() {
-        let sql = "UPDATE tb_voluntario SET pess_id = ?, createdAt = ?, updatedAt = ? WHERE vol_id = ?";
+        let sql = "UPDATE tb_voluntarios SET pess_id = ?, createdAt = ?, updatedAt = ? WHERE vol_id = ?";
 
         let valores = [
             this.#pess_id,
@@ -101,10 +101,10 @@ class VoluntariosModel {
         return result;
     }
 
-    async excluirVoluntario() {
-        let sql = "DELETE FROM tb_voluntario WHERE vol_id = ?";
+    async excluirVoluntario(id) {
+        let sql = "DELETE FROM tb_voluntarios WHERE vol_id = ?";
 
-        let valores = [this.#vol_id];
+        let valores = [id];
 
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
