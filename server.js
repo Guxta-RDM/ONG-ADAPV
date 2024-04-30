@@ -34,7 +34,7 @@ app.use("/animais", AnimaisRoute);
 app.use("/atividades", AtividadesRoute);
 app.use("/doacoes", DoacoesRoute);
 app.use("/empresas", EmpresasRoute);
-app.use("/projetos", ProjetosRoute);
+app.use("/projeto", ProjetosRoute);
 app.use("/voluntarios", VoluntariosRoute);
 app.use("/endereco", EnderecoRoute);
 

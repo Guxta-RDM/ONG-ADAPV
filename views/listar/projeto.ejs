@@ -1,0 +1,33 @@
+<script src="/js/listar/projeto.js"></script>
+
+<h1>Projetos Registrados</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/projeto/cadastrar">Novo Projeto</a>
+<hr>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Data</th>
+            <th>Desc</th>
+            <th>Registro criado</th>
+            <th>Registro atualizado</th>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < listaPro.length; i++) {%>
+                <tr>
+                    <td><%= listaPro[i].pro_id %></td>
+                    <td><%= listaPro[i].pro_nome %></td>
+                    <td><%= listaPro[i].pro_data %></td>
+                    <td><%= listaPro[i].pro_desc %></td>
+                    <td><%= listaPro[i].createdAt %></td>
+                    <td><%= listaPro[i].updatedAt %></td>
+                    <td>
+                        <a href="/projeto/alterar/<%= listaPro.pro_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button data-codigoexclusao="<%= listaPro.pro_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

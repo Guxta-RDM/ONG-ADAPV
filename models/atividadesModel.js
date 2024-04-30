@@ -56,7 +56,7 @@ class AtividadeModel {
         let lista = [];
 
         for (let i = 0; i < rows.length; i++) {
-            lista.push(new Atividade(
+            lista.push(new AtividadeModel(
                 rows[i]["atv_id"],
                 rows[i]["atv_nome"],
                 rows[i]["atv_desc"],
@@ -79,7 +79,7 @@ class AtividadeModel {
 
         if (rows.length > 0) {
             let row = rows[0];
-            return new Atividade(
+            return new AtividadeModel(
                 row["atv_id"],
                 row["atv_nome"],
                 row["atv_desc"],
