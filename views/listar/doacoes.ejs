@@ -1,0 +1,46 @@
+<script src="/js/listar/doacoes.js"></script>
+
+<h1>Doações Cadastradas</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/doacoes/cadastrar">Nova doação</a>
+<hr>
+    <div>
+
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Tipo</th>
+                <th>Descrição</th>
+                <th>Quantidade</th>
+                <th>Doador</th>
+                <th>CPF/CNPJ</th>
+                <th>RG</th>
+                <th>Data de doação</th>
+                <th>Id doador</th>
+                <th>createdAt</th>
+                <th>updatedAt</th>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < listaDoacoes.length; i++) { %>
+                    <tr>
+                        <td><%= listaDoacoes[i].doa_id %></td>
+                        <td><%= listaDoacoes[i].doa_tipo %></td>
+                        <td><%= listaDoacoes[i].doa_desc %></td>
+                        <td><%= listaDoacoes[i].doa_qnt %></td>
+                        <td><%= listaDoacoes[i].doa_doador %></td>
+                        <td><%= listaDoacoes[i].doa_cpf_cnpj %></td>
+                        <td><%= listaDoacoes[i].doa_rg %></td>
+                        <td><%= listaDoacoes[i].doa_data %></td>
+                        <td><%= listaDoacoes[i].pess_id %></td>
+                        <td><%= listaDoacoes[i].createdAt %></td>
+                        <td><%= listaDoacoes[i].updatedAt %></td>
+                        <td>
+                            <a href="/doacoes/alterar/<%= listaDoacoes[i].doa_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button data-codigoexclusao="<%= listaDoacoes[i].doa_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                        </td>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    </div>
