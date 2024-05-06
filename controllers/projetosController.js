@@ -62,9 +62,14 @@ class ProjetosController {
 
     async alterar(req, res){
         const dataHoje = DateTime.now();
+        const dataTratar = new Date(Date.parse(req.body.createdAt))
+        const dataTratar2 = DateTime.fromJSDate(dataTratar)
+        const dataCriacao = dataTratar2.toISODate()
+
+        console.log(req.body)
 
         if (req.body.nome != "" && req.body.data !="" && req.body.desc !=""){
-            let projeto = new ProjetosModel(0, req.body.nome, req.body.data, req.body.desc, req.body.createdAt, dataHoje.toISODate());
+            let projeto = new ProjetosModel(req.body.id, req.body.nome, req.body.data, req.body.desc, dataCriacao, dataHoje.toISODate());
 
             let result = await projeto.editarProjeto();
 

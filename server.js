@@ -28,15 +28,15 @@ app.use(expressEjsLayout);
 
 // Rotas ---
 app.use('/', HomeRoute)
-app.use("/pessoa", PessoaRoute)
-app.use("/adocao", AdocaoRoute);
-app.use("/animais", AnimaisRoute);
-app.use("/atividades", AtividadesRoute);
-app.use("/doacoes", DoacoesRoute);
-app.use("/empresas", EmpresasRoute);
-app.use("/projeto", ProjetosRoute);
-app.use("/voluntarios", VoluntariosRoute);
-app.use("/endereco", EnderecoRoute);
+app.use('/pessoa', PessoaRoute)
+app.use('/adocao', AdocaoRoute);
+app.use('/animais', AnimaisRoute);
+app.use('/atividades', AtividadesRoute);
+app.use('/doacoes', DoacoesRoute);
+app.use('/empresas', EmpresasRoute);
+app.use('/projeto', ProjetosRoute);
+app.use('/voluntarios', VoluntariosRoute);
+app.use('/endereco', EnderecoRoute);
 
 
 // ---

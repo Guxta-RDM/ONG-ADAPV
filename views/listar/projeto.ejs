@@ -14,7 +14,7 @@
             <th>Registro atualizado</th>
         </thead>
         <tbody>
-            <% for (let i = 0; i < listaPro.length; i++) {%>
+            <% for (let i = 0; i < listaPro.length; i++) { %>
                 <tr>
                     <td><%= listaPro[i].pro_id %></td>
                     <td><%= listaPro[i].pro_nome %></td>
@@ -23,8 +23,8 @@
                     <td><%= listaPro[i].createdAt %></td>
                     <td><%= listaPro[i].updatedAt %></td>
                     <td>
-                        <a href="/projeto/alterar/<%= listaPro.pro_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                            <button data-codigoexclusao="<%= listaPro.pro_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                        <a href="/projeto/alterar/<%= listaPro[i].pro_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                        <button data-codigoexclusao="<%= listaPro[i].pro_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
                     </td>
                 </tr>
             <% } %>
