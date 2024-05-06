@@ -1,0 +1,58 @@
+<script src="/js/cadastrar/empresas.js"></script>
+<div class="container">
+    <div class="container-fluid">
+
+     <h1 class="h3 mb-4 text-gray-800">Cadastrar Empresa</h1>
+        <div>
+            <% if (typeof msg != "undefined") { %>             
+                <span  ><%= msg %></span>
+            <% } %>
+        </div>   
+        <div class="col-md-4">
+            <label for="emp_nome" class="form-label">Nome da empresa<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_nome" name="emp_nome" placeholder="Digite o nome da empresa">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_cnpj" class="form-label">CNPJ<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_cnpj" name="emp_cnpj" placeholder="Digite o CNPJ">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_cep" class="form-label">CEP<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_cep" name="emp_cep" placeholder="Digite o CEP">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_num" class="form-label">Número<span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="emp_num" name="emp_num" placeholder="Digite o número">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_cidade" class="form-label">Cidade<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_cidade" name="emp_cidade" placeholder="Digite a cidade">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_estado" class="form-label">Estado<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_estado" name="emp_estado" placeholder="Digite o estado">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_rua" class="form-label">Rua<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_rua" name="emp_rua" placeholder="Digite a rua">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_bairro" class="form-label">Bairro<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_bairro" name="emp_bairro" placeholder="Digite o bairro">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_complemento" class="form-label">Complemento</label>
+            <input type="text" class="form-control" id="emp_complemento" name="emp_complemento" placeholder="Digite o complemento">
+        </div>
+        <div class="col-md-4">
+            <label for="emp_telefone" class="form-label">Telefone<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_telefone" name="emp_telefone" placeholder="Digite o telefone">
+        </div>
+
+        <br><br>
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
+        </div>
+    </div>
+</div>

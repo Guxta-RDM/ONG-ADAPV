@@ -124,7 +124,7 @@ class EmpresasModel {
         }
     }
 
-    async cadastrarEmpresa() {
+    async cadastrarEmpresas() {
         if (this.#emp_id == 0) {
             let sql = "INSERT INTO tb_empresas (emp_nome, emp_cnpj, emp_cep, emp_num, emp_cidade, emp_estado, emp_rua, emp_bairro, emp_complemento, emp_telefone, createdAt, updatedAt) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -137,7 +137,7 @@ class EmpresasModel {
 
     }
 
-    async editarEmpresa() {
+    async editarEmpresas() {
         let sql = "UPDATE tb_empresas SET emp_nome = ?, emp_cnpj = ?, emp_cep = ?, emp_num = ?, emp_cidade = ?, emp_estado = ?, emp_rua = ?, emp_bairro = ?, emp_complemento = ?, emp_telefone = ?, createdAt = ?, updatedAt = ? WHERE emp_id = ?";
 
         let valores = [this.#emp_nome, this.#emp_cnpj, this.#emp_cep, this.#emp_num, this.#emp_cidade, this.#emp_estado, this.#emp_rua, this.#emp_bairro, this.#emp_complemento, this.#emp_telefone, this.#createdAt, this.#updatedAt, this.#emp_id];
