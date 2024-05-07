@@ -1,0 +1,50 @@
+<script src="/js/alterar/atividades.js"></script>
+<div class="container">
+    <div class="container-fluid">
+
+     <h1 class="h3 mb-4 text-gray-800">Alterar Atividade</h1>
+        <div>
+            <% if (typeof msg != "undefined") { %>             
+                <span  ><%= msg %></span>
+            <% } %>
+        </div>   
+
+        <input id="id" hidden value="<%= atividade.atv_id %>">
+        <input id="createdAt" hidden value="<%= atividade.createdAt %>">
+        <div class="col-md-4">
+            <label for="atv_nome" class="form-label">Nome da atividade<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="atv_nome" name="atv_nome" placeholder="Digite o nome da atividade" value="<%= atividade.atv_nome %>">
+        </div>
+        
+        <div class="col-md-8">
+            <label for="atv_desc" class="form-label">Descrição<span class="text-danger">*</span></label>
+            <input class="form-control" id="atv_desc" name="atv_desc" placeholder="Digite a descrição da atividade" value="<%= atividade.atv_desc %>">
+        </div>
+        
+        <div class="col-md-4">
+            <label for="atv_data" class="form-label">Data<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="atv_data" name="atv_data" value="<%= atividade.atv_data %>">
+        </div>
+        
+        <div class="col-md-4">
+            <label for="vol_id" class="form-label">Voluntário<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="vol_id" name="vol_id" value="<%= atividade.vol_id %>">
+        </div>
+        
+        <div class="col-md-4">
+            <label for="emp_id" class="form-label">Empresa<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="emp_id" name="emp_id" value="<%= atividade.emp_id %>">
+        </div>
+        
+        <div class="col-md-4">
+            <label for="pro_id" class="form-label">Projeto<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="pro_id" name="pro_id" value="<%= atividade.pro_id %>">
+        </div>
+
+        <br><br>
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnAlterar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
+        </div>
+    </div>
+</div>

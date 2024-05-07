@@ -1,4 +1,5 @@
 const Database = require("../utils/database");
+const PessoaModel = require("./pessoaModel");
 
 const banco = new Database();
 
@@ -52,6 +53,31 @@ class VoluntariosModel {
         return lista;
     }
 
+    async listarPessoasVoluntarios() {
+        let sql = "SELECT tb_pessoa.pess_id, tb_pessoa.pess_nome, tb_pessoa.pess_cpf FROM tb_pessoa INNER JOIN tb_voluntarios ON tb_pessoa.pess_id = tb_voluntarios.pess_id";
+    
+        let rows = await banco.ExecutaComando(sql);
+        let lista = [];
+    
+        for (let i = 0; i < rows.length; i++) {
+            lista.push(new PessoaModel(
+                rows[i]["pess_id"],
+                rows[i]["pess_nome"],
+                rows[i]["pess_cpf"],
+                rows[i]["pess_rg"],
+                rows[i]["pess_nasc"],
+                rows[i]["pess_nacion"],
+                rows[i]["pess_genero"],
+                rows[i]["pess_tel"],
+                rows[i]["pess_tipo"],
+                rows[i]["createdAt"],
+                rows[i]["updatedAt"]
+            ));
+        }
+    
+        return lista;
+    }
+    
     async obterVolId(id) {
         let sql = "SELECT * FROM tb_voluntarios WHERE vol_id = ?";
         let val = [id];

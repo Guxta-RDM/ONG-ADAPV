@@ -10,6 +10,7 @@ class AtividadeModel {
     #atv_data;
     #vol_id;
     #emp_id;
+    #pro_id;
     #createdAt;
     #updatedAt;
 
@@ -20,6 +21,7 @@ class AtividadeModel {
     get atv_data() { return this.#atv_data; }
     get vol_id() { return this.#vol_id; }
     get emp_id() { return this.#emp_id; }
+    get pro_id() { return this.#pro_id; }
     get createdAt() { return this.#createdAt; }
     get updatedAt() { return this.#updatedAt; }
 
@@ -31,18 +33,20 @@ class AtividadeModel {
     set atv_data(value) { this.#atv_data = value; }
     set vol_id(value) { this.#vol_id = value; }
     set emp_id(value) { this.#emp_id = value; }
+    set pro_id(value) { this.#pro_id = value; }
     set createdAt(value) { this.#createdAt = value; }
     set updatedAt(value) { this.#updatedAt = value; }
 
     // Constructor
 
-    constructor(atv_id, atv_nome, atv_desc, atv_data, vol_id, emp_id, createdAt, updatedAt) {
+    constructor(atv_id, atv_nome, atv_desc, atv_data, vol_id, emp_id, pro_id, createdAt, updatedAt) {
         this.#atv_id = atv_id;
         this.#atv_nome = atv_nome;
         this.#atv_desc = atv_desc;
         this.#atv_data = atv_data;
         this.#vol_id = vol_id;
         this.#emp_id = emp_id;
+        this.#pro_id = pro_id;
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
     }
@@ -63,6 +67,7 @@ class AtividadeModel {
                 rows[i]["atv_data"],
                 rows[i]["vol_id"],
                 rows[i]["emp_id"],
+                rows[i]["pro_id"],
                 rows[i]["createdAt"],
                 rows[i]["updatedAt"]
             ));
@@ -71,7 +76,7 @@ class AtividadeModel {
         return lista;
     }
 
-    async obterAtividadeId(id) {
+    async obterAtvId(id) {
         let sql = "SELECT * FROM tb_atividades WHERE atv_id = ?";
         let val = [id];
 
@@ -86,33 +91,36 @@ class AtividadeModel {
                 row["atv_data"],
                 row["vol_id"],
                 row["emp_id"],
+                row["pro_id"],
                 row["createdAt"],
                 row["updatedAt"]
             );
         }
     }
 
-    async criarAtividade() {
-        if (atv_id == 0) {
-            let sql = "INSERT INTO tb_atividades (atv_nome, atv_nome, atv_desc, atv_data, vol_id, emp_id, createdAt, updatedAt) VALUES (?,?,?,?,?,?,?)";
+    async cadastrarAtividades() {
+        if (this.#atv_id == 0) {
+            let sql = "INSERT INTO tb_atividades (atv_nome, atv_desc, atv_data, vol_id, emp_id, pro_id, createdAt, updatedAt) VALUES (?,?,?,?,?,?,?,?)";
 
-            let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#createdAt, this.#updatedAt];
+            let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#pro_id, this.#createdAt, this.#updatedAt];
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+            return result
         }
     }
 
-    async alterarAtividade() {
-        let sql = "UPDATE tb_atividades SET atv_nome = ?, atv_desc = ?, atv_data = ?, vol_id = ?, emp_id = ?, createdAt = ?, updatedAt = ? WHERE atv_id = ?";
+    async alterarAtividades() {
+        let sql = "UPDATE tb_atividades SET atv_nome = ?, atv_desc = ?, atv_data = ?, vol_id = ?, emp_id = ?, pro_id = ?, createdAt = ?, updatedAt = ? WHERE atv_id = ?";
 
-        let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#createdAt, this.#updatedAt, this.#atv_id];
+        let valores = [this.#atv_nome, this.#atv_desc, this.#atv_data, this.#vol_id, this.#emp_id, this.#pro_id, this.#createdAt, this.#updatedAt, this.#atv_id];
 
         let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
         return result;
     }
 
-    async excluirAtiv(id) {
+    async excluirAtividades(id) {
         let sql = "DELETE FROM tb_atividades WHERE atv_id = ?";
 
         let valores = [id];

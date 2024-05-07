@@ -1,0 +1,42 @@
+<script src="/js/listar/atividades.js"></script>
+
+<h1>Atividades Cadastradas</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/atividades/cadastrar">Nova atividade</a>
+<hr>
+    <div>
+
+        <table class="table table-striped">
+            <thead>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Id de voluntário</th>
+                <th>Id de empresa</th>
+                <th>Id de projeto</th>
+                <th>createdAt</th>
+                <th>updatedAt</th>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < listaAtividade.length; i++) { %>
+                    <tr>
+                        <td><%= listaAtividade[i].atv_id %></td>
+                        <td><%= listaAtividade[i].atv_nome %></td>
+                        <td><%= listaAtividade[i].atv_desc %></td>
+                        <td><%= listaAtividade[i].atv_data %></td>
+                        <td><%= listaAtividade[i].vol_id %></td>
+                        <td><%= listaAtividade[i].emp_id %></td>
+                        <td><%= listaAtividade[i].pro_id %></td>
+                        <td><%= listaAtividade[i].createdAt %></td>
+                        <td><%= listaAtividade[i].updatedAt %></td>
+                        <td>
+                            <a href="/atividades/alterar/<%= listaAtividade[i].atv_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button data-codigoexclusao="<%= listaAtividade[i].atv_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                        </td>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+
+    </div>
