@@ -1,0 +1,35 @@
+<script src="/js/listar/produtos.js"></script>
+
+<h1>Projetos Registrados</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/produtos/cadastrar">Novo Produto</a>
+<hr>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Tipo</th>
+            <th>Descrição</th>
+            <th>Quantidade</th>
+            <th>Registro criado</th>
+            <th>Registro atualizado</th>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < listaProd.length; i++) { %>
+                <tr>
+                    <td><%= listaProd[i].prod_id %></td>
+                    <td><%= listaProd[i].prod_nome %></td>
+                    <td><%= listaProd[i].prod_tipo %></td>
+                    <td><%= listaProd[i].prod_desc %></td>
+                    <td><%= listaProd[i].prod_qnt %></td>
+                    <td><%= listaProd[i].createdAt %></td>
+                    <td><%= listaProd[i].updatedAt %></td>
+                    <td>
+                        <a href="/produtos/alterar/<%= listaProd[i].prod_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                        <button data-codigoexclusao="<%= listaProd[i].prod_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
