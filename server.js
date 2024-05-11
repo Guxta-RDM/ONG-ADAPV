@@ -11,6 +11,7 @@ let PessoaRoute = require("./routes/pessoaRoutes");
 let ProjetosRoute = require("./routes/projetosRoutes");
 let VoluntariosRoute = require("./routes/voluntariosRoutes");
 let HomeRoute = require("./routes/homeRoute")
+let EventosRoute = require("./routes/eventosRoutes")
 
 const app = express();
 
@@ -37,6 +38,7 @@ app.use('/empresas', EmpresasRoute);
 app.use('/projeto', ProjetosRoute);
 app.use('/voluntarios', VoluntariosRoute);
 app.use('/endereco', EnderecoRoute);
+app.use('/eventos', EventosRoute)
 
 
 // ---

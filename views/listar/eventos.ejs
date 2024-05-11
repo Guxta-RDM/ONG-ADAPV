@@ -1,0 +1,37 @@
+<script src="/js/listar/eventos.js"></script>
+
+<h1>Eventos Registrados</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/eventos/cadastrar">Novo Evento</a>
+<hr>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Local</th>
+            <th>Data de Inicio</th>
+            <th>Data de Término</th>
+            <th>Data de Registro</th>
+            <th>Data de Atualização</th>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < listaEve.length; i++) {%>
+                <tr>
+                    <td><%= listaEve[i].even_id %></td>
+                    <td><%= listaEve[i].even_nome %></td>
+                    <td><%= listaEve[i].even_descricao %></td>
+                    <td><%= listaEve[i].even_local %></td>
+                    <td><%= listaEve[i].even_dataInicio %></td>
+                    <td><%= listaEve[i].even_dataFinal %></td>
+                    <td><%= listaEve[i].createdAt %></td>
+                    <td><%= listaEve[i].updatedAt %></td>
+                    <td>
+                        <a href="/eventos/alterar/<%= listaEve[i].even_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                        <button data-codigoexclusao="<%= listaEve[i].even_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
