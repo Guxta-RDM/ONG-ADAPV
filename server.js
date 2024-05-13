@@ -14,6 +14,7 @@ let HomeRoute = require("./routes/homeRoute")
 let EventosRoute = require("./routes/eventosRoutes")
 let PatrimonioRoute = require("./routes/patrimonioRoutes")
 let ProdutosRoute = require("./routes/produtosRoutes")
+let EstoqueRoute = require("./routes/estoqueRoutes")
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use('/endereco', EnderecoRoute);
 app.use('/eventos', EventosRoute)
 app.use('/patrimonio', PatrimonioRoute)
 app.use('/produtos', ProdutosRoute)
+app.use('/estoque', EstoqueRoute)
 
 
 // ---

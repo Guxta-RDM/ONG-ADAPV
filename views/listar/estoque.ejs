@@ -1,0 +1,32 @@
+<script src="/js/listar/estoque.js"></script>
+
+<h1>Estoque</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/estoque/cadastrar">Novo Estoque</a>
+<hr>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <th>Id</th>
+            <th>Id do Produto</th>
+            <th>Id do Doador</th>
+            <th>Registro Criado</th>
+            <th>Registro Atualizado</th>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < listaEstoq.length; i++) {%>
+                <tr>
+                    <td><%= listaEstoq[i].estoq_id %></td>
+                    <td><%= listaEstoq[i].prod_id %></td>
+                    <td><%= listaEstoq[i].doa_id %></td>
+                    <td><%= listaEstoq[i].createdAt %></td>
+                    <td><%= listaEstoq[i].updatedAt %></td>
+
+                    <td>
+                        <a href="/estoque/alterar/<%= listaEstoq[i].estoq_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                        <button data-codigoexclusao="<%= listaEstoq[i].estoq_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
