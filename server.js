@@ -15,6 +15,7 @@ let EventosRoute = require("./routes/eventosRoutes")
 let PatrimonioRoute = require("./routes/patrimonioRoutes")
 let ProdutosRoute = require("./routes/produtosRoutes")
 let EstoqueRoute = require("./routes/estoqueRoutes")
+let CtrlSaidaEventoRoutes = require("./routes/ctrlSaidaEventoRoutes")
 
 const app = express();
 
@@ -45,6 +46,8 @@ app.use('/eventos', EventosRoute)
 app.use('/patrimonio', PatrimonioRoute)
 app.use('/produtos', ProdutosRoute)
 app.use('/estoque', EstoqueRoute)
+app.use('/ctrlSaidaEvento', CtrlSaidaEventoRoutes)
+
 
 
 // ---

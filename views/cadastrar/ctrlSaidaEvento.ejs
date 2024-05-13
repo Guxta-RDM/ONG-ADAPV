@@ -1,0 +1,68 @@
+<script src="/js/cadastrar/ctrlSaidaEvento.js"></script>
+<div class="container">
+    <div class="container-fluid">
+
+        <h1 class="h3 mb-4 text-gray-800">Registrar Controle de saída de evento</h1>
+        <% if (typeof msg != "undefined") { %>
+            <span><%= msg %></span>
+        <% } %>
+
+        <div class="col-md-6">
+            <label for="ctrlEven_desc" class="form-label">Descrição sobre o controle<span class="text-danger">*</span></label>
+            <input type="text" name="ctrlEven_desc" class="form-control" id="ctrlEven_desc" placeholder="Digite a descrição do evento">
+        </div>
+
+        <div class="col-md-6">
+            <label for="ctrlEven_estado" class="form-label">Estado dos produtos<span class="text-danger">*</span></label>
+            <input type="text" name="ctrlEven_estado" class="form-control" id="ctrlEven_estado" placeholder="Digite o estado do evento">
+        </div>
+
+        <div class="col-md-6">
+            <label for="prodSaida_id" class="form-label">Produto de Saída<span class="text-danger">*</span></label>
+            <select name="prodSaida_id" id="prodSaida_id" class="form-control">
+                <option value="" selected>Selecione...</option>
+                <% listaProduto.forEach(function(produto) { %>
+                    <option value="<%= produto.prod_id %>">NOME: <%= produto.prod_nome %> - TIPO: <%= produto.prod_tipo%></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="prodSaida_qnt" class="form-label">Quantidade de Saída<span class="text-danger">*</span></label>
+            <input type="number" name="prodSaida_qnt" class="form-control" id="prodSaida_qnt" placeholder="Digite a quantidade de saída">
+        </div>
+
+        <div class="col-md-6">
+            <label for="prodEntrada_id" class="form-label">Produto de Entrada<span class="text-danger">*</span></label>
+            <select name="prodEntrada_id" class="form-control" id="prodEntrada_id">
+                <option value="" selected>Selecione...</option>
+                <% listaProduto.forEach(function(produto) { %>
+                    <option value="<%= produto.prod_id %>">NOME: <%= produto.prod_nome %> - TIPO: <%= produto.prod_tipo%></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="prodEntrada_qnt" class="form-label">Quantidade de Entrada<span class="text-danger">*</span></label>
+            <input type="number" name="prodEntrada_qnt" class="form-control" id="prodEntrada_qnt" placeholder="Digite a quantidade de entrada">
+        </div>
+
+        <div class="col-md-6">
+            <label for="even_id" class="form-label">Evento<span class="text-danger">*</span></label>
+            <select name="even_id" class="form-control" id="even_id">
+                <option value="" selected>Selecione...</option>
+                <% listaEvento.forEach(function(evento) { %>
+                    <option value="<%= evento.even_id %>">NOME: <%= evento.even_nome %> - Data de início: <%= evento.even_dataInicio%></option>
+                <% }); %>
+            </select>
+        </div>
+        <br>
+        <br>
+
+        <div class="col-12">
+            <button type="button" class="btn btn-success px-4 py-3" id="btnCadastrar">Salvar</button>
+            <button type="button" class="btn btn-secondary px-3 py-3" id="cancelar">Cancelar</button>
+        </div>
+
+    </div>
+</div>
