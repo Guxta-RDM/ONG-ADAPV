@@ -2,17 +2,18 @@ const { DateTime } = require("luxon");
 const CtrlSaidaEventoModel = require("../models/ctrlSaidaEventoModel");
 const ProdutosModel = require("../models/produtosModel");
 const EventoModel = require("../models/eventosModel");
+const AnimaisModel = require("../models/animaisModel");
 
 class CtrlSaidaEventoController {
 
-    cadastroView(req, res) {
+    async cadastroView(req, res) {
         res.render('cadastrar/ctrlSaidaEvento');
     }
 
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
-        if (req.body.desc != '' && req.body.estado != '' && req.body.prodSaida_id != '' && req.body.prodSaida_qnt != '' && req.body.prodEntrada_id != '' && req.body.prodEntrada_qnt != '' && req.body.even_id != '') {
-            let ctrlEven = new CtrlSaidaEventoModel(0, req.body.desc, req.body.estado, dataHoje.toISODate(), dataHoje.toISODate(), req.body.prodSaida_id, req.body.prodSaida_qnt, req.body.prodEntrada_id, req.body.prodEntrada_qnt, req.body.even_id);
+        if (req.body.desc != '' && req.body.estado != '' && req.body.prod_id != '' || req.body.prod_qnt != '' || req.body.even_id != '' || req.body.patrim_valor != '' || req.body.ani_id != '') {
+            let ctrlEven = new CtrlSaidaEventoModel(0, req.body.desc === '' ? null : req.body.desc, req.body.estado === '' ? null : req.body.estado, dataHoje.toISODate(), dataHoje.toISODate(), req.body.prod_id === '' ? null : req.body.prod_id, req.body.prod_qnt === '' ? null : req.body.prod_qnt, req.body.even_id, req.body.patrim_valor === '' ? null : patrim_valor, req.body.ani_id === '' ? null : req.body.ani_id);
 
             let result = await ctrlEven.cadastrar();
 
@@ -42,19 +43,41 @@ class CtrlSaidaEventoController {
         let listaProduto = await produto.listar()
         let evento = new EventoModel()
         let listaEvento = await evento.listarEvento()
-        res.render('cadastrar/ctrlSaidaEvento', { listaProduto: listaProduto, listaEvento: listaEvento})
+        let animal = new AnimaisModel()
+        let listaAnimal = await animal.listarAnimais()
+        res.render('cadastrar/ctrlSaidaEvento', { listaProduto: listaProduto, listaEvento: listaEvento, listaAnimal: listaAnimal})
     }
 
     async listagemView(req, res) {
         let ctrlEven = new CtrlSaidaEventoModel()
         let listaCtrlEven = await ctrlEven.listar();
-        res.render('listar/ctrlSaidaEvento', { listaCtrlEven: listaCtrlEven });
+        let lista = []
+        for(let i=0; i<listaCtrlEven.length; i++){
+            lista.push(await ctrlEven.verificarEstadoEntrada(listaCtrlEven[i].even_id))
+        }
+        res.render('listar/ctrlSaidaEvento', { listaCtrlEven: listaCtrlEven, listaEntrada: lista });
     }
 
     async alterarView(req, res) {
         let ctrlEven = new CtrlSaidaEventoModel();
         ctrlEven = await ctrlEven.obterId(req.params.id);
         res.render('alterar/ctrlSaidaEvento', { ctrlEven: ctrlEven});
+    }
+
+    async cadastrarEntradaView(req, res) {
+        res.render('cadastrar/ctrlSaidaEventoEntrada')
+    }
+
+    async listagemCadEntradaView(req, res) {
+        let produto = new ProdutosModel()
+        let listaProduto = await produto.listar()
+        let evento = new EventoModel()
+        let listaEvento = await evento.listarEvento()
+        let animal = new AnimaisModel()
+        let listaAnimal = await animal.listarAnimais()
+        let ctrlEven = new CtrlSaidaEventoModel()
+        ctrlEven = await ctrlEven.obterId(req.params.id)
+        res.render('cadastrar/ctrlSaidaEventoEntrada', { listaProduto: listaProduto, listaEvento: listaEvento, listaAnimal: listaAnimal, ctrlEven: ctrlEven})
     }
 
     async alterar(req, res) {

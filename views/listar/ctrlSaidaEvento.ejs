@@ -1,20 +1,20 @@
 <script src="/js/listar/ctrlSaidaEvento.js"></script>
 
-<h1>Controles de eventos Registrados</h1>
-<a class="btn btn-secondary" style="max-width: 200px;" href="/ctrlSaidaEvento/cadastrar">Novo Voluntário</a>
+<h1>Registro de controles de eventos</h1>
+<a class="btn btn-secondary" style="max-width: 200px;" href="/ctrlSaidaEvento/cadastrar">Novo registro</a>
 <hr>
     <div>
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Evento</th>
                     <th>Descrição</th>
                     <th>Estado</th>
-                    <th>Id de Saída do Produto</th>
-                    <th>Quantidade de Saída do Produto</th>
-                    <th>Id de Entrada do Produto</th>
-                    <th>Quantidade de Entrada do Produto</th>
-                    <th>Id do Evento</th>
+                    <th>Produto</th>
+                    <th>Total da quantidade de produto</th>
+                    <th>Valor de patrimônio</th>
+                    <th>Animais</th>
                     <th>Data de Registro</th>
                     <th>Data de Atualização</th>
                 </tr>
@@ -24,13 +24,18 @@
                 <% for (let i = 0; i < listaCtrlEven.length; i++)  { %>
                     <tr>
                         <td><%= listaCtrlEven[i].ctrlEven_id %></td>
-                        <td><%= listaCtrlEven[i].ctrlEven_desc %></td>
-                        <td><%= listaCtrlEven[i].ctrlEven_estado %></td>
-                        <td><%= listaCtrlEven[i].prodSaida_id %></td>
-                        <td><%= listaCtrlEven[i].prodSaida_qnt %></td>
-                        <td><%= listaCtrlEven[i].prodEntrada_id %></td>
-                        <td><%= listaCtrlEven[i].prodEntrada_qnt %></td>
                         <td><%= listaCtrlEven[i].even_id %></td>
+                        <td><%= listaCtrlEven[i].ctrlEven_desc %></td>
+                        <td>
+                            <%= listaCtrlEven[i].ctrlEven_estado %>
+                            <% if (listaEntrada[i] === false) { %>
+                                <a class="btn btn-outline-danger" href="/ctrlSaidaEvento/cadastrar/<%= listaCtrlEven[i].ctrlEven_id %>">Fechar Controle</a>
+                            <% } %>
+                        </td>
+                        <td><%= listaCtrlEven[i].prod_id %></td>
+                        <td><%= listaCtrlEven[i].prod_qnt %></td>
+                        <td><%= listaCtrlEven[i].patrim_valor %></td>
+                        <td><%= listaCtrlEven[i].ani_id %></td>
                         <td><%= listaCtrlEven[i].createdAt %></td>
                         <td><%= listaCtrlEven[i].updatedAt %></td>
                         <td>
