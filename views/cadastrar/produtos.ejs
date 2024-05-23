@@ -14,7 +14,18 @@
 
         <div class="col-md-6">
             <label for="prod_tipo" class="form-label">Tipo do Produto<span class="text-danger">*</span></label>
-            <input type="text" name="prod_tipo" class="form-control" id="prod_tipo" placeholder="Digite o tipo do produto">
+            <select name="prod_tipo" id="prod_tipo" class="form-control">
+                <option value="" selected>Selecione...</option>
+                <option value="Alimento">Alimento</option>
+                <option value="Bebida">Bebida</option>
+                <option value="Medicamento">Medicamento</option>
+                <option value="Produto de higiene">Produto de higiene</option>
+                <option value="Produto de limpeza">Produto de limpeza</option>
+                <option value="Acessório">Acessório</option>
+                <option value="Ferramenta">Ferramenta</option>
+                <option value="Medicamento">Vestuário</option>
+                <option value="Outro">Outro</option>
+            </select>
         </div>
 
         <div class="col-md-6">
@@ -27,6 +38,18 @@
             <input type="number" name="prod_qnt" class="form-control" id="prod_qnt" placeholder="Digite a quantidade do produto">
         </div>
 
+        <div class="col-md-6">
+            <label for="prod_situa" class="form-label">Produto estará a venda?<span class="text-danger">*</span></label>
+            <select name="prod_situa" id="prod_situa" class="form-control">
+                <option value="" selected>Selecione...</option>
+                <option value="Venda">Venda</option>
+                <option value="Armazenar">Armazenar</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="prod_valor" class="form-label">Valor do produto(Venda)</label>
+            <input type="number" name="prod_valor" class="form-control" id="prod_valor" placeholder="Digite o valor do produto caso esteja a venda">
+        </div>
         <br>
         <br>
 

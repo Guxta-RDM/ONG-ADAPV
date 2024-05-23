@@ -45,7 +45,9 @@ class CtrlSaidaEventoController {
         let listaEvento = await evento.listarEvento()
         let animal = new AnimaisModel()
         let listaAnimal = await animal.listarAnimais()
-        res.render('cadastrar/ctrlSaidaEvento', { listaProduto: listaProduto, listaEvento: listaEvento, listaAnimal: listaAnimal})
+        let ctrlEven = new CtrlSaidaEventoModel()
+        let listaCtrlEven = await ctrlEven.listar();
+        res.render('cadastrar/ctrlSaidaEvento', { listaProduto: listaProduto, listaEvento: listaEvento, listaAnimal: listaAnimal, listaCtrlEven: listaCtrlEven})
     }
 
     async listagemView(req, res) {

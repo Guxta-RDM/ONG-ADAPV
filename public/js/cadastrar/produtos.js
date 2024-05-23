@@ -16,6 +16,8 @@ document.addEventListener("DOMContentLoaded", function () {
         let tipo = document.querySelector("#prod_tipo").value;
         let desc = document.querySelector("#prod_desc").value;
         let qnt = document.querySelector("#prod_qnt").value;
+        let situa = document.querySelector("#prod_situa").value;
+        let valor = document.querySelector("#prod_valor").value;
         
         let listaErros = [];
 
@@ -39,7 +41,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 nome: nome,
                 tipo: tipo,
                 desc: desc,
-                qnt: qnt
+                qnt: qnt,
+                situa: situa,
+                valor: valor
             }
 
             fetch("/produtos/cadastrar", {

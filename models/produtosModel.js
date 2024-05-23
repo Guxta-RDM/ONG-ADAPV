@@ -12,6 +12,8 @@ class ProdutosModel {
     #prod_qnt;
     #createdAt;
     #updatedAt;
+    #prod_situa;
+    #prod_valor;
 
     // Getters
 
@@ -22,6 +24,8 @@ class ProdutosModel {
     get prod_qnt() { return this.#prod_qnt }
     get createdAt() { return this.#createdAt }
     get updatedAt() { return this.#updatedAt }
+    get prod_situa() { return this.#prod_situa }
+    get prod_valor() { return this.#prod_valor }
 
     // Setters
 
@@ -32,10 +36,12 @@ class ProdutosModel {
     set prod_qnt(value) { this.#prod_qnt = value }
     set createdAt(value) { this.#createdAt = value }
     set updatedAt(value) { this.#updatedAt = value }
+    set prod_situa(value) { this.#prod_situa = value }
+    set prod_valor(value) { this.#prod_valor = value }
 
     // Constructor
 
-    constructor(prod_id, prod_nome, prod_tipo, prod_desc, prod_qnt, createdAt, updatedAt) {
+    constructor(prod_id, prod_nome, prod_tipo, prod_desc, prod_qnt, createdAt, updatedAt, prod_situa, prod_valor) {
         this.#prod_id = prod_id;
         this.#prod_nome = prod_nome;
         this.#prod_tipo = prod_tipo;
@@ -43,6 +49,8 @@ class ProdutosModel {
         this.#prod_qnt = prod_qnt;
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
+        this.#prod_situa = prod_situa;
+        this.#prod_valor = prod_valor;
     }
 
     // Métodos
@@ -61,7 +69,9 @@ class ProdutosModel {
                 rows[i]["prod_desc"],
                 rows[i]["prod_qnt"],
                 rows[i]["createdAt"],
-                rows[i]["updatedAt"]
+                rows[i]["updatedAt"],
+                rows[i]["prod_situa"],
+                rows[i]["prod_valor"]
             ));
         }
 
@@ -84,14 +94,16 @@ class ProdutosModel {
                 row["prod_desc"],
                 row["prod_qnt"],
                 row["createdAt"],
-                row["updatedAt"]
+                row["updatedAt"],
+                row["prod_situa"],
+                row["prod_valor"]
             );
         }
     }
 
     async cadastrar() {
         if (this.#prod_id === 0) {
-            let sql = "INSERT INTO tb_produtos (prod_id, prod_nome, prod_tipo, prod_desc, prod_qnt, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            let sql = "INSERT INTO tb_produtos (prod_id, prod_nome, prod_tipo, prod_desc, prod_qnt, createdAt, updatedAt, prod_situa, prod_valor) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             let valores = [
                 this.#prod_id,
@@ -100,7 +112,9 @@ class ProdutosModel {
                 this.#prod_desc,
                 this.#prod_qnt,
                 this.#createdAt,
-                this.#updatedAt
+                this.#updatedAt,
+                this.#prod_situa,
+                this.#prod_valor
             ];
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
@@ -110,7 +124,7 @@ class ProdutosModel {
     }
 
     async editar() {
-        let sql = "UPDATE tb_produtos SET prod_nome = ?, prod_tipo = ?, prod_desc = ?, prod_qnt = ?, createdAt = ?, updatedAt = ? WHERE prod_id = ?";
+        let sql = "UPDATE tb_produtos SET prod_nome = ?, prod_tipo = ?, prod_desc = ?, prod_qnt = ?, createdAt = ?, updatedAt = ?, prod_situa = ?, prod_valor = ? WHERE prod_id = ?";
 
         let valores = [
             this.#prod_nome,
@@ -119,6 +133,8 @@ class ProdutosModel {
             this.#prod_qnt,
             this.#createdAt,
             this.#updatedAt,
+            this.#prod_situa,
+            this.#prod_valor,
             this.#prod_id
         ];
 

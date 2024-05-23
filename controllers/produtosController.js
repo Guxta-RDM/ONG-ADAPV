@@ -10,7 +10,7 @@ class ProdutosController {
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
         if (req.body.nome != "" && req.body.tipo != "" && req.body.desc != "" && req.body.qnt != "") {
-            let produtos = new ProdutosModel(0, req.body.nome, req.body.tipo, req.body.desc, req.body.qnt, dataHoje.toISODate(), dataHoje.toISODate());
+            let produtos = new ProdutosModel(0, req.body.nome, req.body.tipo, req.body.desc, req.body.qnt, dataHoje.toISODate(), dataHoje.toISODate(), req.body.situa === '' ? null : req.body.situa, req.body.valor === '' ? null : req.body.valor);
 
             let result = await produtos.cadastrar();
 
