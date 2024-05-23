@@ -7,42 +7,66 @@
             <span><%= msg %></span>
         <% } %>
 
-        <input id="id" hidden value="<%= ctrlEven.ctrlEven_id %>">
-        <input id="createdAt" hidden value="<%= ctrlEven.createdAt %>">
-        <div class="col-md-6">
-            <label for="ctrlEven_desc" class="form-label">Descrição sobre o controle<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.ctrlEven_desc %>" type="text" name="ctrlEven_desc" class="form-control" id="ctrlEven_desc" placeholder="Digite a descrição do evento">
-        </div>
-
-        <div class="col-md-6">
-            <label for="ctrlEven_estado" class="form-label">Estado dos produtos<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.ctrlEven_estado %>" type="text" name="ctrlEven_estado" class="form-control" id="ctrlEven_estado" placeholder="Digite o estado do evento">
-        </div>
-
-        <div class="col-md-6">
-            <label for="prodSaida_id" class="form-label">Produto de Saída<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.prodSaida_id %>" type="text" name="prodSaida_id" class="form-control" id="prodSaida_id" placeholder="Digite o produto de saída">
-        </div>
-
-        <div class="col-md-6">
-            <label for="prodSaida_qnt" class="form-label">Quantidade de Saída<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.prodSaida_qnt %>" type="number" name="prodSaida_qnt" class="form-control" id="prodSaida_qnt" placeholder="Digite a quantidade de saída">
-        </div>
-
-        <div class="col-md-6">
-            <label for="prodEntrada_id" class="form-label">Produto de Entrada<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.prodEntrada_id %>" type="text" name="prodEntrada_id" class="form-control" id="prodEntrada_id" placeholder="Digite o produto de entrada">
-        </div>
-
-        <div class="col-md-6">
-            <label for="prodEntrada_qnt" class="form-label">Quantidade de Entrada<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.prodEntrada_qnt %>" type="number" name="prodEntrada_qnt" class="form-control" id="prodEntrada_qnt" placeholder="Digite a quantidade de entrada">
-        </div>
+        <input id="id" hidden value="<%= ctrlEvento.ctrlEven_id %>">
+        <input id="createdAt" hidden value="<%= ctrlEvento.createdAt %>">
 
         <div class="col-md-6">
             <label for="even_id" class="form-label">Evento<span class="text-danger">*</span></label>
-            <input value="<%= ctrlEven.even_id %>" type="text" name="even_id" class="form-control" id="even_id" placeholder="Digite o evento">
+            <select name="even_id" class="form-control" id="even_id">
+                <option value="" selected>Selecione...</option>
+                <% listaEvento.forEach(function(evento) { %>
+                    <% var isEvento = listaCtrlEven.find(ctrlEven => ctrlEven.even_id === evento.even_id) %>
+                    <option value="<%= evento.even_id %>" <%= isEvento ? "selected" : "" %> >NOME: <%= evento.even_nome %> - DATA DE INÍCIO: <%= evento.even_dataInicio.toLocaleDateString('pt-BR')%></option>
+                <% }); %>
+            </select>
         </div>
+
+        <div class="col-md-6">
+            <label for="ctrlEven_desc" class="form-label">Descrição sobre o controle<span class="text-danger">*</span></label>
+            <input value="<%= ctrlEvento.ctrlEven_desc %>" type="text" name="ctrlEven_desc" class="form-control" id="ctrlEven_desc" placeholder="Digite a descrição do evento">
+        </div>
+
+        <div class="col-md-6">
+            <label for="ctrlEven_estado" class="form-label">Registro de saída ou entrada?<span class="text-danger">*</span></label>
+            <select name="ctrlEven_estado" id="ctrlEven_estado" class="form-control">
+                <option value="" <%= ctrlEvento.ctrlEven_estado === '' ? "selected" : "disabled" %>>Selecione...</option>
+                <option value="Saida" <%= ctrlEvento.ctrlEven_estado === 'Saida' ? "selected" : "disabled" %>>Saída</option>
+                <option value="Entrada" <%= ctrlEvento.ctrlEven_estado === 'Entrada' ? "selected" : "disabled" %> >Entrada</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="prod_id" class="form-label">Produto Entrada/Saída<span class="text-danger">*</span></label>
+            <select name="prod_id" id="prod_id" class="form-control">
+                <option value="" selected>Selecione...</option>
+                <% listaProduto.forEach(function(produto) { %>
+                    <% var isProduto = listaCtrlEven.find(ctrlEven => ctrlEven.prod_id === produto.prod_id) %>
+                    <option value="<%= produto.prod_id %>" <%= isProduto ? "selected" : "" %> >NOME: <%= produto.prod_nome %> - TIPO: <%= produto.prod_tipo%></option>
+                <% }); %>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="prod_qnt" class="form-label">Quantidade de produtos<span class="text-danger">*</span></label>
+            <input value="<%= ctrlEvento.prod_qnt %>" type="number" name="prod_qnt" class="form-control" id="prod_qnt" placeholder="Digite a quantidade de saída">
+        </div>
+
+        <div class="col-md-6">
+            <label for="patrim_valor" class="form-label">Valor em dinheiro<span class="text-danger">*</span></label>
+            <input value="<%= ctrlEvento.patrim_valor %>" type="text" name="patrim_valor" class="form-control" id="patrim_valor" placeholder="Digite o valor em dinheiro">
+        </div>
+
+        <div class="col-md-6">
+            <label for="ani_id" class="form-label">Nome do animal<span class="text-danger">*</span></label>
+            <select name="ani_id" id="ani_id" class="form-control">
+                <option value="" selected>Selecione...</option>
+                <% listaAnimal.forEach(function(animal) { %>
+                    <% var isAnimal = listaCtrlEven.find(ctrlEven => ctrlEven.ani_id === animal.ani_id) %>
+                    <option value="<%= animal.ani_id %>" <%= isAnimal ? "selected" : "" %> >NOME: <%= animal.ani_nome %> - RAÇA: <%= animal.ani_raca%></option>
+                <% }); %>
+            </select>
+        </div>
+
         <br>
         <br>
 
