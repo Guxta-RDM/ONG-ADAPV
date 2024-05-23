@@ -3,31 +3,27 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
     function limparValidacao() {
-        document.getElementById("patrim_saldo").style["border-color"] = "#ced4da";
-        document.getElementById("doa_id").style["border-color"] = "#ced4da";
+        document.getElementById("patrim_valor").style["border-color"] = "#ced4da";
     }
 
     function cadastrar(){
         limparValidacao();
 
-        let patrim_saldo = document.querySelector("#patrim_saldo").value;
+        let patrim_valor = document.querySelector("#patrim_valor").value;
         let doa_id = document.querySelector("#doa_id").value;
         
 
         let listaErros = [];
-        if(patrim_saldo === "" && doa_id === ""){
-            if(patrim_saldo === ""){
-                listaErros.push("patrim_saldo");
-            }
-            if(doa_id === ""){
-                listaErros.push("doa_id");
+        if(patrim_valor === "" && doa_id === ""){
+            if(patrim_valor === ""){
+                listaErros.push("patrim_valor");
             }
         }
 
         if (listaErros.length == 0){
 
             let obj = {
-                saldo: patrim_saldo,
+                valor: patrim_valor,
                 doa_id: doa_id
             }
 

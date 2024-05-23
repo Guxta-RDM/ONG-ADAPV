@@ -9,6 +9,7 @@ class PatrimonioModel {
     #doa_id;
     #createdAt;
     #updatedAt;
+    #patrim_valor
 
     // Getters
 
@@ -17,6 +18,7 @@ class PatrimonioModel {
     get doa_id() { return this.#doa_id }
     get createdAt() { return this.#createdAt }
     get updatedAt() { return this.#updatedAt }
+    get patrim_valor() { return this.#patrim_valor }
 
     // Setters
 
@@ -25,17 +27,18 @@ class PatrimonioModel {
     set doa_id(value) { this.#doa_id = value }
     set createdAt(value) { this.#createdAt = value }
     set updatedAt(value) { this.#updatedAt = value }
+    set patrim_valor(value) { this.#patrim_valor = value }
 
     // Constructor
 
-    constructor(patrim_id, patrim_saldo, doa_id, createdAt, updatedAt) {
+    constructor(patrim_id, patrim_saldo, doa_id, createdAt, updatedAt, patrim_valor) {
 
         this.#patrim_id = patrim_id;
         this.#patrim_saldo = patrim_saldo;
         this.#doa_id = doa_id;
         this.#createdAt = createdAt;
         this.#updatedAt = updatedAt;
-
+        this.#patrim_valor = patrim_valor;
     }
 
     // Métodos
@@ -53,11 +56,29 @@ class PatrimonioModel {
                 rows[i]["doa_id"],
                 rows[i]["createdAt"],
                 rows[i]["updatedAt"],
+                rows[i]["patrim_valor"]
             ));
         }
 
         return lista;
     }
+
+    async getSaldo() {
+        let sql = "SELECT patrim_saldo FROM tb_patrimonio ORDER BY patrim_id DESC LIMIT 1";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        return rows[0]["patrim_saldo"];
+    }
+
+    async getPenultSaldo(id) {
+        let sql = "SELECT patrim_saldo FROM tb_patrimonio WHERE patrim_id = (SELECT patrim_id - 1 FROM tb_patrimonio WHERE patrim_id = ?);";
+        let val = [id];
+        let rows = await banco.ExecutaComando(sql, val);
+    
+        return rows[0]["patrim_saldo"];
+    }
+    
 
     async obterId(id) {
         let sql = "SELECT * FROM tb_patrimonio WHERE patrim_id = ?";
@@ -73,20 +94,22 @@ class PatrimonioModel {
                 row["patrim_saldo"],
                 row["doa_id"],
                 row["createdAt"],
-                row["updatedAt"]
+                row["updatedAt"],
+                row["patrim_valor"]
             );
         }
     }
 
     async cadastrar() {
         if (this.#patrim_id === 0) {
-            let sql = "INSERT INTO tb_patrimonio (patrim_saldo, doa_id, createdAt, updatedAt) VALUES (?, ?, ?, ?)";
+            let sql = "INSERT INTO tb_patrimonio (patrim_saldo, doa_id, createdAt, updatedAt, patrim_valor) VALUES (?, ?, ?, ?, ?)";
 
             let valores = [
                 this.#patrim_saldo,
                 this.#doa_id,
                 this.#createdAt,
-                this.#updatedAt
+                this.#updatedAt,
+                this.#patrim_valor
             ];
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
@@ -96,13 +119,14 @@ class PatrimonioModel {
     }
 
     async editar() {
-        let sql = "UPDATE tb_patrimonio SET patrim_saldo = ?, doa_id = ?, createdAt = ?, updatedAt = ? WHERE patrim_id = ?";
+        let sql = "UPDATE tb_patrimonio SET patrim_saldo = ?, doa_id = ?, createdAt = ?, updatedAt = ?, patrim_valor = ? WHERE patrim_id = ?";
 
         let valores = [
             this.#patrim_saldo,
             this.#doa_id,
             this.#createdAt,
             this.#updatedAt,
+            this.#patrim_valor,
             this.#patrim_id
         ];
 

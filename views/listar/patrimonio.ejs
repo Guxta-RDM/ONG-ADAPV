@@ -1,13 +1,19 @@
 <script src="/js/listar/patrimonio.js"></script>
 
 <h1>Patrimonios Registrados</h1>
-<a class="btn btn-secondary" style="max-width: 200px;" href="/patrimonio/cadastrar">Novo Patrimonio</a>
+<div style="display:flex; flex-direction: row; justify-content: space-between;align-items: center; width: 100%;">
+    <a class="btn btn-secondary" style="max-width: 200px;" href="/patrimonio/cadastrar">Novo Patrimonio</a>
+    <div style="background-color: #5C636A; border-radius: 8px; width: 150px; height: 50px; align-items: center; justify-content: center; display: flex;" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
+        <span style="font-size: large; color: white;" ><span style="font-weight: 500;">Patrimônio: <span style="font-weight: 600;">$<%= saldo %></span></span></span>
+    </div>
+</div>
 <hr>
 <div>
     <table class="table table-striped">
         <thead>
             <th>Id</th>
             <th>Valor adicionado</th>
+            <th>Registro de Saldo</th>
             <th>Doador</th>
             <th>Registro criado</th>
             <th>Registro atualizado</th>
@@ -16,6 +22,7 @@
             <% for (let i = 0; i < listaPatrim.length; i++) { %>
                 <tr>
                     <td><%= listaPatrim[i].patrim_id %></td>
+                    <td><%= listaPatrim[i].patrim_valor %></td>
                     <td><%= listaPatrim[i].patrim_saldo %></td>
                     <td><%= listaPatrim[i].doa_id %></td>
                     <td><%= listaPatrim[i].createdAt %></td>

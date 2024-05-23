@@ -10,9 +10,10 @@ class PatrimonioController {
 
     async cadastrar(req, res){
         const dataHoje = DateTime.now();
-
-        if (req.body.saldo != "" || req.body.doa_id !=""){
-            let patrimonio = new PatrimonioModel(0, req.body.saldo, req.body.doa_id, dataHoje.toISODate(), dataHoje.toISODate());
+        const patrimonio = new PatrimonioModel();
+        const saldo = await patrimonio.getSaldo() + Number(req.body.valor);
+        if (req.body.valor != ""){
+            let patrimonio = new PatrimonioModel(0, saldo, req.body.doa_id === '' ? null : req.body.doa_id, dataHoje.toISODate(), dataHoje.toISODate(), req.body.valor);
 
             let result = await patrimonio.cadastrar();
 
@@ -40,7 +41,8 @@ class PatrimonioController {
     async listagemView(req, res){
         let patrimonio = new PatrimonioModel();
         let listaPatrim = await patrimonio.listar();
-        res.render('listar/patrimonio', {listaPatrim: listaPatrim})
+        const saldo = await patrimonio.getSaldo();
+        res.render('listar/patrimonio', {listaPatrim: listaPatrim, saldo: saldo})
     }
 
     async listagemDoaCad(req, res){
@@ -62,11 +64,12 @@ class PatrimonioController {
         const dataTratar = new Date(Date.parse(req.body.createdAt))
         const dataTratar2 = DateTime.fromJSDate(dataTratar)
         const dataCriacao = dataTratar2.toISODate()
-
         console.log(req.body)
-
-        if (req.body.saldo != "" && req.body.doa_id != ""){
-            let patrimonio = new PatrimonioModel(req.body.id, req.body.saldo, req.body.doa_id, dataCriacao, dataHoje.toISODate());
+        let patrimonio = new PatrimonioModel();
+        const saldo = await patrimonio.getPenultSaldo(req.body.id) + Number(req.body.valor);
+        console.log(saldo)
+        if (req.body.valor !== "" || req.body.doa_id !== ""){
+            let patrimonio = new PatrimonioModel(req.body.id, saldo, req.body.doa_id === '' ? null : req.body.doa_id, dataCriacao, dataHoje.toISODate(), req.body.valor);
 
             let result = await patrimonio.editar();
 
