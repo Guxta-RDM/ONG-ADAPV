@@ -33,13 +33,33 @@
         </div>
 
         <div class="col-md-6">
-            <label for="prod_id" class="form-label">Produto Entrada/Saída<span class="text-danger">*</span></label>
+            <label for="prod_id" class="form-label" >Produto Entrada/Saída<span class="text-danger">*</span></label>
             <select name="prod_id" id="prod_id" class="form-control">
                 <option value="" selected>Selecione...</option>
                 <% listaProduto.forEach(function(produto) { %>
                     <option value="<%= produto.prod_id %>">NOME: <%= produto.prod_nome %> - TIPO: <%= produto.prod_tipo%></option>
                 <% }); %>
             </select>
+        </div>
+        <div class="col-md-6 dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dropdown button
+            </button>
+
+            <ul class="dropdown-menu">
+                <li class="dropdown-item">
+                  <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
+                  <label class="form-check-label" for="firstCheckbox">First checkbox</label>
+                </li>
+                <li class="dropdown-item">
+                  <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">
+                  <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
+                </li>
+                <li class="dropdown-item">
+                  <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">
+                  <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
+                </li>
+              </ul>
         </div>
 
         <div class="col-md-6">

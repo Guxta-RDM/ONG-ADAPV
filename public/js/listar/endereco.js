@@ -1,16 +1,17 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
+    document.getElementById("btnExportarExcel").addEventListener("click", exportarExcel);
     let btns = document.querySelectorAll(".btnExclusao");
 
-    for(let i = 0; i<btns.length; i++) {
+    for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", excluir);
     }
 
     function excluir() {
         let id = this.dataset.codigoexclusao;
 
-        if(id != null) {
-            if(confirm("Tem certeza que deseja excluir essa endereco?")) {
+        if (id != null) {
+            if (confirm("Tem certeza que deseja excluir essa endereco?")) {
                 let obj = {
                     id: id
                 }
@@ -22,25 +23,29 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     body: JSON.stringify(obj)
                 })
-                .then(r => {
-                    return r.json()
-                })
-                .then(r=> {
-                    if(r.ok) {
-                        window.location.reload();
-                    }
-                    else{
-                        alert(r.msg);
-                    }
+                    .then(r => {
+                        return r.json()
+                    })
+                    .then(r => {
+                        if (r.ok) {
+                            window.location.reload();
+                        }
+                        else {
+                            alert(r.msg);
+                        }
 
-                })
+                    })
 
             }
         }
-        else{
+        else {
             alert("Nenhum ID encontrado para exclusão");
         }
     }
 
+    function exportarExcel() {
+        var wb = XLSX.utils.table_to_book(document.getElementById("tabelaEndereco"));
+        XLSX.writeFile(wb, "relatorio-enderecos.xlsx");
+    }
 
 })

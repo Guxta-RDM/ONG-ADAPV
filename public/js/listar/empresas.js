@@ -1,8 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
+    document.getElementById("btnExportarExcel").addEventListener("click", exportarExcel);
     let btns = document.querySelectorAll(".btnExclusao");
 
-    for (let i = 0; i<btns.length; i++){
+    for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", excluir);
     }
 
@@ -40,4 +41,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+    function exportarExcel() {
+        var wb = XLSX.utils.table_to_book(document.getElementById("tabelaEmpresas"));
+        XLSX.writeFile(wb, "relatorio-empresas.xlsx");
+    }
 })

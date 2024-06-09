@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    document.getElementById("btnExportarExcel").addEventListener("click", exportarExcel);
     let bts = document.querySelectorAll(".btnExclusao");
 
     for (let i = 0; i < bts.length; i++) {
@@ -40,4 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function exportarExcel() {
+        var wb = XLSX.utils.table_to_book(document.getElementById("tabelaAdocao"));
+        XLSX.writeFile(wb, "relatorio-adocao.xlsx");
+    }
 })

@@ -1,11 +1,20 @@
+<link rel="stylesheet" type="text/css"  media="print" href="/css/print.css">
 <script src="/js/listar/doacoes.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.2/package/dist/xlsx.full.min.js"></script>
 
 <h1>Doações Cadastradas</h1>
-<a class="btn btn-secondary" style="max-width: 200px;" href="/doacoes/cadastrar">Nova doação</a>
+<div style="display: flex; justify-content: space-between;">
+    <a id="novoReg" class="btn btn-secondary" style="max-width: 200px;" href="/doacoes/cadastrar">Nova doação</a>
+    <div>
+        <button id="btnExportarExcel" class="btn btn-info" >Exportar para Excel</button>
+        <button id="btnExportarPdf"  onclick="window.print()" class="btn btn-info">Exportar para PDF</button>
+    </div>
+</div>
+
 <hr>
     <div>
 
-        <table class="table table-striped">
+        <table id="tabelaDoacoes" class="table table-striped">
             <thead>
                 <th>Id</th>
                 <th>Tipo</th>
@@ -34,8 +43,8 @@
                         <td><%= listaDoacoes[i].createdAt %></td>
                         <td><%= listaDoacoes[i].updatedAt %></td>
                         <td>
-                            <a href="/doacoes/alterar/<%= listaDoacoes[i].doa_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                            <button data-codigoexclusao="<%= listaDoacoes[i].doa_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
+                            <a id="alterabtn" href="/doacoes/alterar/<%= listaDoacoes[i].doa_id %>" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <button id="delbtn" data-codigoexclusao="<%= listaDoacoes[i].doa_id %>" class="btn btn-danger btnExclusao"><i class="fas fa-trash"></i></button>
                         </td>
                         
                     </tr>

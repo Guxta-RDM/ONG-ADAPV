@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    document.getElementById("btnExportarExcel").addEventListener("click", exportarExcel);
     let bts = document.querySelectorAll(".btnExclusao");
 
     for (let i = 0; i < bts.length; i++) {
@@ -39,4 +40,10 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Nenhum ID encontrado para exclusão");
         }
     }
+
+    function exportarExcel() {
+        var wb = XLSX.utils.table_to_book(document.getElementById("tabelaEstoque"));
+        XLSX.writeFile(wb, "relatorio-estoque.xlsx");
+    }
+
 })
