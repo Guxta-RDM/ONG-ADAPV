@@ -53,11 +53,17 @@ class AdocaoController {
     }
 
     async alterarView(req, res) {
+        res.render('alterar/adocao');
+    }
+
+    async listagemAltView(req, res) {
         let adocao = new AdocaoModel();
-
         adocao = await adocao.obterAdoId(req.params.id);
-
-        res.render('alterar/adocao', { adocao: adocao });
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa();
+        let animal = new AnimalModel();
+        let listaAnimal = await animal.listarAnimais()
+        res.render('alterar/adocao', { listaPessoa: listaPessoa, listaAnimal: listaAnimal, adocao: adocao });
     }
 
     async alterar(req, res) {

@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let nome = document.querySelector("#nome").value;
         let sexo = document.querySelector("#sexo").value;
         let ester = document.querySelector("#ester").value;
-        let campoData = document.querySelector("#campoData").value;
+        let campoData = document.querySelector("#campoData").value.split("/").reverse().join("-");
         let especie = document.querySelector("#especie").value;
         let estado = document.querySelector("#estado").value;
         let raca = document.querySelector("#raca").value;

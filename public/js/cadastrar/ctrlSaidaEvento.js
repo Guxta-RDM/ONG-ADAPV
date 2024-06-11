@@ -17,11 +17,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let desc = document.getElementById("ctrlEven_desc").value;
         let estado = document.getElementById("ctrlEven_estado").value;
-        let prod_id = document.getElementById("prod_id").value;
+
+        let prod_id = document.getElementById("prod_id").value;//! TRABALHAR PARA QUE SEJA POSSÍVEL CADASTRAR VÁRIOS PRODUTOS, TRABALHO PARADO POIS DARÁ MUITO TRABALHO
+        let parts = prod_id.split("/") //! ALTERAR O BANCO DE DADOS PARA TRANSFORMAR STRING EM NUMBER PARA QUE FAÇA A BUSCA EM UNIDADE E LINKAR COM O ID DO CTRL SAIDA EVENTO
+        let prod_ids = parts.map(part => part.trim().match(/^\d+/g)).toString() 
+
         let prod_qnt = document.getElementById("prod_qnt").value;
         let even_id = document.getElementById("even_id").value;
         let patrim_valor = document.getElementById("patrim_valor").value;
         let ani_id = document.getElementById("ani_id").value;
+        console.log(even_id);
+        console.log(prod_id);
 
         let listaErros = [];
         if(even_id === ""){
@@ -64,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let obj = {
                 desc: desc,
                 estado: estado,
-                prod_id: prod_id,
+                prod_id: prod_ids,
                 prod_qnt: prod_qnt,
                 even_id: even_id,
                 patrim_valor: patrim_valor,

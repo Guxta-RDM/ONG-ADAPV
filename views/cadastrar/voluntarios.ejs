@@ -10,7 +10,7 @@
 
         <div class="col-md-6">
             <label for="idVolun" class="form-label">Nome do voluntário<span class="text-danger">*</span></label>
-            <select name="idVolun" id="idVolun">
+            <select name="idVolun" class="form-select" id="idVolun">
                 <option value="" selected>Selecione...</option>
                 <% listaPessoa.forEach(function(pessoas) { %>
                     <option value="<%= pessoas.pess_id %>">NOME: <%= pessoas.pess_nome %> - CPF: <%= pessoas.pess_cpf %></option>

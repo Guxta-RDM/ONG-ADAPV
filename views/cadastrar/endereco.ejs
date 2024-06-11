@@ -2,7 +2,7 @@
 <div class="container">
     <div class="container-fluid">
 
-     <h1 class="h3 mb-4 text-gray-800">Cadastrar Pessoa</h1>
+     <h1 class="h3 mb-4 text-gray-800">Cadastrar Endereço</h1>
         <div>
             <% if (typeof msg != "undefined") { %>             
                 <span  ><%= msg %></span>
@@ -15,7 +15,7 @@
         </div>
 
 
-        <div class="col-md-8">
+        <div class="col-md-6">
             <label for="end_rua" class="form-label">Rua<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="end_rua" name="end_rua" placeholder="Digite o nome da rua">
         </div>
@@ -27,13 +27,13 @@
         </div>
 
 
-        <div class="col-md-2">
+        <div class="col-md-4">
             <label for="end_numero" class="form-label">Número<span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="end_numero" name="end_numero" placeholder="Digite o número">
         </div>
 
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="end_cidade" class="form-label">Cidade<span class="text-danger">*</span></label>
             <select id="end_cidade" class="form-select" name="end_cidade">
                 <option value="" selected>Selecione...</option>
@@ -51,12 +51,12 @@
         </div>
 
 
-        <div class="col-md-12">
+        <div class="col-md-6">
             <label for="end_complemento" class="form-label">Complemento</label>
             <input type="text" class="form-control" id="end_complemento" name="end_complemento" placeholder="Digite o complemento">
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label for="pess_id" class="form-label">ID da Pessoa<span class="text-danger">*</span></label>
             <input type="number" class="form-control" id="pess_id" name="pess_id" placeholder="Digite o ID da pessoa">
         </div>

@@ -10,20 +10,20 @@
 
         <div class="col-md-6">
             <label for="idAdo" class="form-label">Nome do adotante<span class="text-danger">*</span></label>
-            <select name="idAdo" id="idAdo">
-                <option value="" selected>Selecione...</option>
+            <select name="idAdo" id="idAdo" class="form-select">
+                <option value="" selected disabled>Selecione...</option>
                 <% listaPessoa.forEach(function(pessoa) { %>
-                    <option value="<%= pessoa.pess_id %>">NOME: <%= pessoa.pess_nome %> - CPF: <%= pessoa.pess_cpf%></option>
+                    <option value="<%= pessoa.pess_id %>"> <%= pessoa.pess_id %> - Nome: <%= pessoa.pess_nome %> - CPF: <%= pessoa.pess_cpf%></option>
                 <% }); %>
             </select>
         </div>
 
         <div class="col-md-6">
             <label for="idAni" class="form-label">Nome do animal<span class="text-danger">*</span></label>
-            <select name="idAni" id="idAni">
-                <option value="" selected>Selecione...</option>
+            <select name="idAni" id="idAni" class="form-select">
+                <option value="" selected disabled>Selecione...</option>
                 <% listaAnimal.forEach(function(animal) { %>
-                    <option value="<%= animal.ani_id %>">NOME: <%= animal.ani_nome %> - RAÇA: <%= animal.ani_raca%></option>
+                    <option value="<%= animal.ani_id %>"> <%= animal.ani_id %> - Nome: <%= animal.ani_nome %> - Raça: <%= animal.ani_raca%></option>
                 <% }); %>
             </select>
         </div>

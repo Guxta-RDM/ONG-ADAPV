@@ -3,7 +3,7 @@
 
     <div class="container-fluid">
         
-        <h1 class="h3 mb-4 text-gray-800">Alterar Adocao</h1>
+        <h1 class="h3 mb-4 text-gray-800">Alterar Adoção</h1>
         <% if (typeof msg != "undefined") {%>
             <span><%= msg %></span>
         <% } %>
@@ -12,13 +12,23 @@
         <input id="createdAt" hidden value="<%= adocao.createdAt %>">
 
         <div class="col-md-6">
-            <label for="IdAdotante" class="form-label">Id do Adotante<span class="text-danger">*</span></label>
-            <input type="text" value="<%= adocao.pess_id %>" class="form-control" id="IdAdotante" name="IdAdotante" placeholder="Digite o ID do adotante">
+            <label for="IdAdotante" class="form-label">Adotante<span class="text-danger">*</span></label>
+            <select name="IdAdotante" id="IdAdotante" class="form-select">
+                <option value="" disabled>Selecione...</option>
+                <% listaPessoa.forEach(function(pessoa) { %>
+                    <option value="<%= pessoa.pess_id %>" <%= adocao.pess_id === pessoa.pess_id ? "selected" : "" %> > <%= pessoa.pess_id %> - Nome: <%= pessoa.pess_nome %> - CPF: <%= pessoa.pess_cpf%></option>
+                <% }); %>
+            </select>
         </div>
 
         <div class="col-md-6">
             <label for="nome" class="form-label">Id do Animal<span class="text-danger">*</span></label>
-            <input type="text" value="<%= adocao.ani_id %>" class="form-control" id="IdAnimal" name="IdAnimal" placeholder="Digite o ID do animal">
+            <select name="IdAnimal" id="IdAnimal" class="form-select">
+                <option value="" disabled>Selecione...</option>
+                <% listaAnimal.forEach(function(animal) { %>
+                    <option value="<%= animal.ani_id %>" <%= adocao.ani_id === animal.ani_id ? "selected" : "" %> > <%= animal.ani_id %> - Nome: <%= animal.ani_nome %> - Raça: <%= animal.ani_raca%></option>
+                <% }); %>
+            </select>
         </div>
 
         <br>

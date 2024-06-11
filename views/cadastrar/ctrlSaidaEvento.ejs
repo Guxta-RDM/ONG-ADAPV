@@ -9,7 +9,7 @@
 
         <div class="col-md-6">
             <label for="even_id" class="form-label">Evento<span class="text-danger">*</span></label>
-            <select name="even_id" class="form-control" id="even_id">
+            <select name="even_id" class="form-select" id="even_id">
                 <option value="" selected>Selecione...</option>
                 <% listaEvento.forEach(function(evento) { %>
                     <% var isEntrada = listaCtrlEven.find(ctrlEven => ctrlEven.even_id === evento.even_id && ctrlEven.ctrlEven_estado === 'Entrada') %>
@@ -25,42 +25,79 @@
 
         <div class="col-md-6">
             <label for="ctrlEven_estado" class="form-label">Registro de saída ou entrada?<span class="text-danger">*</span></label>
-            <select name="ctrlEven_estado" id="ctrlEven_estado" class="form-control">
+            <select name="ctrlEven_estado" id="ctrlEven_estado" class="form-select">
                 <option value="" selected>Selecione...</option>
                 <option value="Saida">Saída</option>
                 <option disabled value="Entrada">Entrada</option>
             </select>
         </div>
 
-        <div class="col-md-6">
-            <label for="prod_id" class="form-label" >Produto Entrada/Saída<span class="text-danger">*</span></label>
-            <select name="prod_id" id="prod_id" class="form-control">
-                <option value="" selected>Selecione...</option>
-                <% listaProduto.forEach(function(produto) { %>
-                    <option value="<%= produto.prod_id %>">NOME: <%= produto.prod_nome %> - TIPO: <%= produto.prod_tipo%></option>
-                <% }); %>
-            </select>
-        </div>
-        <div class="col-md-6 dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown button
-            </button>
 
-            <ul class="dropdown-menu">
-                <li class="dropdown-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox">
-                  <label class="form-check-label" for="firstCheckbox">First checkbox</label>
-                </li>
-                <li class="dropdown-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" id="secondCheckbox">
-                  <label class="form-check-label" for="secondCheckbox">Second checkbox</label>
-                </li>
-                <li class="dropdown-item">
-                  <input class="form-check-input me-1" type="checkbox" value="" id="thirdCheckbox">
-                  <label class="form-check-label" for="thirdCheckbox">Third checkbox</label>
-                </li>
-              </ul>
+
+
+
+
+
+
+
+
+        <div class="col-md-12 d-flex flex-column">
+            <label for="prod_id" class="form-label">Produto Entrada/Saída<span class="text-danger">*</span></label>
+            <input class="btn btn-outline-dark dropdown-toggle col-md-6 flex justify-content-start" type="button" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Selecione..." id="prod_id" name="prod_id" >
+
+            <ul class="dropdown-menu col-md-6 p-2">
+                <% listaProduto.forEach(function(produto) { %>
+                    <li class="dropdown-item">
+                        <input class="form-check-input me-1" type="checkbox" value="<%= produto.prod_id %>" onclick="updateSelectedProducts(this)">
+                        <label> <%= produto.prod_id %> - NOME: <%= produto.prod_nome %> - TIPO: <%= produto.prod_tipo%></label>
+                    </li>
+                <% }); %>
+            </ul>
         </div>
+<!-- 
+        <script>
+            function checkTheBox() {
+                var checkboxes = document.querySelectorAll("input[type=checkbox]");
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = true;
+                    updateSelectedProducts(checkbox);
+                });
+            }
+        </script> -->
+
+        <script>
+            function updateSelectedProducts(checkbox) {
+                var selectedProducts = document.getElementById("prod_id");
+                var productName = checkbox.parentNode.querySelector("label").innerText;
+                console.log(typeof(selectedProducts))
+                if (checkbox.checked) {
+                    if(selectedProducts.value === ""){
+                        selectedProducts.value = productName;
+                    }else{
+                        selectedProducts.value += "/ " + productName;
+                    }
+                } else {
+                    if (selectedProducts.value.includes("/ " + productName)) {
+                        selectedProducts.value = selectedProducts.value.replace("/ " + productName, "");
+                    } else if (selectedProducts.value.includes(productName + "/ ")) {
+                        selectedProducts.value = selectedProducts.value.replace(productName + "/ ", "");
+                    } else{
+                        selectedProducts.value = selectedProducts.value.replace(productName, "");
+                    }
+                }
+            }
+        </script>
+
+
+
+
+
+
+
+
+
+
+
 
         <div class="col-md-6">
             <label for="prod_qnt" class="form-label">Quantidade de produtos<span class="text-danger">*</span></label>
@@ -74,7 +111,7 @@
 
         <div class="col-md-6">
             <label for="ani_id" class="form-label">Nome do animal<span class="text-danger">*</span></label>
-            <select name="ani_id" id="ani_id" class="form-control">
+            <select name="ani_id" id="ani_id" class="form-select">
                 <option value="" selected>Selecione...</option>
                 <% listaAnimal.forEach(function(animal) { %>
                     <option value="<%= animal.ani_id %>">NOME: <%= animal.ani_nome %> - RAÇA: <%= animal.ani_raca%></option>
