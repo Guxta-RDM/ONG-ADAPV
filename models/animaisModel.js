@@ -92,7 +92,32 @@ class AnimaisModel {
                 rows[i]["updatedAt"]
             ));
         }
+        return lista;
+    }
 
+    async listarAnimaisDisponiveis(id) {
+        let sql = "SELECT * FROM tb_animais WHERE ani_estado = 'Habitando na ONG'";
+        let rows = await banco.ExecutaComando(sql);
+        let lista = [];
+
+        for (let i = 0; i < rows.length; i++) {
+            lista.push(new AnimaisModel(
+                rows[i]["ani_id"],
+                rows[i]["ani_nome"],
+                rows[i]["ani_nascimento"],
+                rows[i]["ani_raca"],
+                rows[i]["ani_sexo"],
+                rows[i]["ani_especie"],
+                rows[i]["ani_pelagem"],
+                rows[i]["ani_ester"],
+                rows[i]["ani_estado"],
+                rows[i]["ani_disponivel"],
+                rows[i]["ani_descricao"],
+                rows[i]["createdAt"],
+                rows[i]["updatedAt"]
+            ));
+            console.log(lista)
+        }
         return lista;
     }
 

@@ -17,11 +17,15 @@ class AdocaoController {
 
             let result = await adocao.criarAdocao();
 
+            let resultAltEstado = await adocao.alterarEstadoAnimal(req.body.animal);
+
             if (result) {
-                res.send({
-                    ok: true,
-                    msg: "Adoção registrada com sucesso!"
-                });
+                if (resultAltEstado) {
+                    res.send({
+                        ok: true,
+                        msg: "Adoção registrada com sucesso!"
+                    });
+                }
             }
             else {
                 res.send({
@@ -42,7 +46,7 @@ class AdocaoController {
         let pessoa = new PessoaModel();
         let listaPessoas = await pessoa.listarPessoa()
         let animal = new AnimalModel();
-        let listaAnimal = await animal.listarAnimais()
+        let listaAnimal = await animal.listarAnimaisDisponiveis(null)
         res.render('cadastrar/adocao', { listaPessoa: listaPessoas, listaAnimal: listaAnimal })
     }
 
@@ -62,15 +66,21 @@ class AdocaoController {
         let pessoa = new PessoaModel();
         let listaPessoa = await pessoa.listarPessoa();
         let animal = new AnimalModel();
-        let listaAnimal = await animal.listarAnimais()
+        let listaAnimal = await animal.listarAnimaisDisponiveis(req.params.id);
+        let addAnimal = await animal.obterAnimId(adocao.ani_id);
+        listaAnimal.push(addAnimal);
         res.render('alterar/adocao', { listaPessoa: listaPessoa, listaAnimal: listaAnimal, adocao: adocao });
     }
 
     async alterar(req, res) {
         const dataHoje = DateTime.now()
+        const dataTratar = new Date(Date.parse(req.body.createdAt))
+        const dataTratar2 = DateTime.fromJSDate(dataTratar)
+        const dataCriacao = dataTratar2.toISODate()
+        console.log(dataCriacao)
 
         if (req.body.adotante != "0" && req.body.animal != "0") {
-            let usuario = new AdocaoModel(req.body.id, req.body.adotante, req.body.animal, req.body.createdAt, dataHoje.toISODate());
+            let usuario = new AdocaoModel(req.body.id, req.body.adotante, req.body.animal, dataCriacao, dataHoje.toISODate());
 
             let result = await usuario.editarAdocao();
             console.log(req.body, "\n\n", usuario)

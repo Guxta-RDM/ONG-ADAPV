@@ -23,23 +23,38 @@
         
         <div class="col-md-4">
             <label for="atv_data" class="form-label">Data<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="atv_data" name="atv_data" value="<%= atividade.atv_data %>">
+            <input type="date" class="form-control" id="atv_data" name="atv_data" value="<%= atividade.atv_data %>">
         </div>
         
         <div class="col-md-4">
             <label for="vol_id" class="form-label">Voluntário<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="vol_id" name="vol_id" value="<%= atividade.vol_id %>">
+            <select name="vol_id" id="vol_id" class="form-select">
+                <option value="" selected disabled>Selecione...</option>
+                <% listaVolun.forEach(function(volun) { %>
+                    <% var isPessoa = listaPessVolun.find(pessoa => pessoa.pess_id === volun.pess_id) %>
+                    <option value="<%= volun.vol_id %>" <%= atividade.vol_id === volun.vol_id ? "selected" : "" %> > <%= volun.vol_id %> - Nome: <%= isPessoa.pess_nome %> - CPF: <%= isPessoa.pess_cpf%></option>
+                <% }); %>
+            </select>
         </div>
         
         <div class="col-md-4">
             <label for="emp_id" class="form-label">Empresa<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="emp_id" name="emp_id" value="<%= atividade.emp_id %>">
+            <select name="emp_id" id="emp_id" class="form-select">
+                <option value="" selected disabled>Selecione...</option>
+                <% listaEmp.forEach(function(empresa) { %>
+                    <option value="<%= empresa.emp_id %>" <%= atividade.emp_id === empresa.emp_id ? "selected" : "" %> > <%= empresa.emp_id %> - Nome: <%= empresa.emp_nome %>%></option>
+                <% }); %>
+            </select>        
         </div>
         
         <div class="col-md-4">
             <label for="pro_id" class="form-label">Projeto<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="pro_id" name="pro_id" value="<%= atividade.pro_id %>">
-        </div>
+            <select name="pro_id" id="pro_id" class="form-select">
+                <option value="" selected disabled>Selecione...</option>
+                <% listaProj.forEach(function(projeto) { %>
+                    <option value="<%= projeto.pro_id %>" <%= atividade.pro_id === projeto.pro_id ? "selected" : "" %> > <%= projeto.pro_id %> - <%= projeto.pro_nome %> - Descrição: <%= projeto.pro_desc %>%></option>
+                <% }); %>
+            </select>         </div>
 
         <br><br>
         <div class="col-12">

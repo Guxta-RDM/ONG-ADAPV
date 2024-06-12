@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let nome = document.querySelector("#atv_nome").value;
         let desc = document.querySelector("#atv_desc").value;
-        let data = document.querySelector("#atv_data").value;
+        let data = document.querySelector("#atv_data").value.split("/").reverse().join("-");
         let vol_id = document.querySelector("#vol_id").value;
         let emp_id = document.querySelector("#emp_id").value;
         let pro_id = document.querySelector("#pro_id").value;
@@ -32,15 +32,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (data === "") {
             listaErros.push("atv_data");
         }
-        if (vol_id === "") {
-            listaErros.push("vol_id");
-        }
-        if (emp_id === "") {
-            listaErros.push("emp_id");
-        }
-        if (pro_id === "") {
+        if(pro_id === ""){
             listaErros.push("pro_id");
         }
+        console.log(listaErros)
 
         if (listaErros.length == 0) {
 

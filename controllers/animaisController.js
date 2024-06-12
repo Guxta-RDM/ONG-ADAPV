@@ -1,5 +1,7 @@
 const { DateTime } = require("luxon");
 const AnimaisModel = require("../models/animaisModel");
+const AdocaoModel = require("../models/adocaoModel");
+const CtrlSaidaEventoModel = require("../models/ctrlSaidaEventoModel");
 
 class AnimalController {
 
@@ -85,13 +87,22 @@ class AnimalController {
     async excluir(req, res){
         if(req.body.id != null) {
             let animal = new AnimaisModel();
-            let ok = await animal.excluir(req.body.id);
-            if(ok) {
-                res.send({ok: true});
-            }
-            else{
-                res.send({ok: false, msg: "Erro ao excluir animal"})
-            }
+            let adocao = new AdocaoModel()
+            let ctrlSaidaEvento = new CtrlSaidaEventoModel()
+            let verificar = await adocao.obterAdoAniId(req.body.id);
+            let verificar2 = await ctrlSaidaEvento.obterAniId(req.body.id);
+
+            if(verificar || verificar2){
+                return res.send({ok: false, msg: "Não é possível excluir um animal já registrado em uma atividade do sistema!"})
+            }else{
+                let ok = await animal.excluir(req.body.id);
+                if(ok) {
+                    res.send({ok: true});
+                }
+                else{
+                    res.send({ok: false, msg: "Erro ao excluir animal"})
+                }
+            }            
         }
         else{
             res.send({ok: false, msg: "O id para exclusão não foi enviado"})

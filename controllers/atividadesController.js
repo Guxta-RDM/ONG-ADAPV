@@ -3,6 +3,7 @@ const AtividadesModel = require("../models/atividadesModel");
 const VoluntariosModel = require("../models/voluntariosModel");
 const ProjetosModel = require("../models/projetosModel");
 const EmpresasModel = require("../models/empresasModel");
+const PessoaModel = require("../models/pessoaModel");
 
 class AtividadesController {
     cadastroView(req, res) {
@@ -12,8 +13,8 @@ class AtividadesController {
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
         console.log(req.body)
-        if (req.body.nome != "" && req.body.desc != "" && req.body.data != "" && req.body.vol_id != "" && req.body.emp_id != "" && req.body.pro_id != "") {
-            let atividades = new AtividadesModel(0, req.body.nome, req.body.desc, req.body.data, req.body.vol_id, req.body.emp_id, req.body.pro_id, dataHoje.toISODate(), dataHoje.toISODate());
+        if (req.body.nome != "" && req.body.desc != "" && req.body.data != "" && req.body.pro_id != "") {
+            let atividades = new AtividadesModel(0, req.body.nome, req.body.desc, req.body.data, req.body.vol_id === "" ? null : req.body.vol_id, req.body.emp_id === "" ? null : req.body.emp_id, req.body.pro_id, dataHoje.toISODate(), dataHoje.toISODate());
             let result = await atividades.cadastrarAtividades();
 
             if (result) {   
@@ -54,9 +55,20 @@ class AtividadesController {
     }
 
     async alterarView(req, res) {
+        res.render('alterar/atividades');
+    }
+
+    async listagemAltView(req, res) {
+        let voluntario = new VoluntariosModel();
+        let listaVolun = await voluntario.listarVoluntarios()
+        let listaPessVolun = await voluntario.listarPessoasVoluntarios()
+        let empresa = new EmpresasModel();
+        let listaEmp = await empresa.listarEmpresas()
+        let projeto = new ProjetosModel();
+        let listaProj = await projeto.listarProjetos()
         let atividade = new AtividadesModel();
         atividade = await atividade.obterAtvId(req.params.id);
-        res.render('alterar/atividades', { atividade: atividade });
+        res.render('alterar/atividades', { listaVolun: listaVolun, listaEmp: listaEmp, listaProj: listaProj, listaPessVolun: listaPessVolun, atividade: atividade})
     }
 
     async alterar(req, res) {
@@ -68,8 +80,8 @@ class AtividadesController {
         const dataTratar2Doa = DateTime.fromJSDate(dataTratarDoa)
         const dataTratadaDoa = dataTratar2Doa.toISODate()
         console.log(req.body)
-        if (req.body.nome != "" && req.body.desc != "" && req.body.data != "" && req.body.vol_id != "" && req.body.emp_id != "" && req.body.pro_id != "") {
-            let atividade = new AtividadesModel(req.body.id, req.body.nome, req.body.desc, dataTratadaDoa, req.body.vol_id, req.body.emp_id, req.body.pro_id, dataCriacao, dataHoje.toISODate());
+        if (req.body.nome != "" && req.body.desc != "" && req.body.data != "" && req.body.pro_id != "") {
+            let atividade = new AtividadesModel(req.body.id, req.body.nome, req.body.desc, req.body.data, req.body.vol_id === "" ? null : req.body.vol_id, req.body.emp_id === "" ? null : req.body.emp_id, req.body.pro_id, dataCriacao, dataHoje.toISODate());
 
             let result = await atividade.alterarAtividades();
 

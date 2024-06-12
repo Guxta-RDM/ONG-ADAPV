@@ -79,9 +79,28 @@ class AdocaoModel {
                 row["createdAt"],
                 row["updatedAt"]
             );
-
         }
+    }
 
+    async obterAdoAniId(id) {
+            
+            let sql = "SELECT * FROM tb_adocao WHERE ani_id = ?";
+    
+            let val = [id];
+    
+            let rows = await banco.ExecutaComando(sql, val);
+    
+            if (rows.length > 0) {
+                let row = rows[0];
+    
+                return new AdocaoModel(
+                    row["ado_id"],
+                    row["pess_id"],
+                    row["ani_id"],
+                    row["createdAt"],
+                    row["updatedAt"]
+                );
+            }
     }
 
     async criarAdocao() {
@@ -94,6 +113,16 @@ class AdocaoModel {
 
             return result;
         }
+    }
+
+    async alterarEstadoAnimal(id) {
+        let sql = "UPDATE tb_animais SET ani_estado = 'Adotado', ani_disponivel = 'Nao' WHERE ani_id = ?";
+
+        let valores = [id];
+
+        let result = await banco.ExecutaComandoNonQuery(sql, valores);
+
+        return result;
     }
 
     async editarAdocao() {

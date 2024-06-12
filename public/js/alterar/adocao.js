@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let id = document.querySelector("#id").value;
         let adotante = document.querySelector("#IdAdotante").value;
         let animal = document.querySelector("#IdAnimal").value;
+        let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
 
@@ -28,7 +29,8 @@ document.addEventListener("DOMContentLoaded", function () {
             let obj = {
                 id: id,
                 adotante: adotante,
-                animal: animal
+                animal: animal,
+                createdAt: createdAt
             };
 
             fetch("/adocao/alterar", {

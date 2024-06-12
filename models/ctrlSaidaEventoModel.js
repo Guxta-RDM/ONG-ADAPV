@@ -108,6 +108,30 @@ class CtrlSaidaEventoModel {
         }
     }
 
+    async obterAniId(id) {
+        let sql = "SELECT * FROM tb_ctrlSaidaEvento WHERE ani_id = ?";
+        let val = [id];
+
+        let rows = await banco.ExecutaComando(sql, val);
+
+        if (rows.length > 0) {
+            let row = rows[0];
+
+            return new CtrlSaidaEventoModel(
+                row["ctrlEven_id"],
+                row["ctrlEven_desc"],
+                row["ctrlEven_estado"],
+                row["createdAt"],
+                row["updatedAt"],
+                row["prod_id"],
+                row["prod_qnt"],
+                row["even_id"],
+                row["patrim_valor"],
+                row["ani_id"]
+            );
+        }
+    }
+
     async verificarEstadoEntrada(id){
         let sql = "SELECT * FROM tb_ctrlSaidaEvento WHERE even_id = ? AND ctrlEven_estado = 'Entrada'";
         let val = [id];

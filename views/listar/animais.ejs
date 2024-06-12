@@ -34,7 +34,7 @@
                     <tr>
                         <td><%= lista[i].ani_id %></td>
                         <td><%= lista[i].ani_nome %></td>
-                        <td><%= lista[i].ani_nascimento %></td>
+                        <td><%= lista[i].ani_nascimento.split("-").reverse().join("/") %></td>
                         <td><%= lista[i].ani_raca %></td>
                         <td><%= lista[i].ani_sexo %></td>
                         <td><%= lista[i].ani_especie %></td>

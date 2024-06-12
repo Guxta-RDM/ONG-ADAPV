@@ -20,11 +20,11 @@
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Data</th>
-                <th>Id de voluntário</th>
-                <th>Id de empresa</th>
-                <th>Id de projeto</th>
-                <th>createdAt</th>
-                <th>updatedAt</th>
+                <th>Voluntário participante</th>
+                <th>Empresa investidora</th>
+                <th>Projeto responsável</th>
+                <th>Registro criado</th>
+                <th>Registro atualizado</th>
             </thead>
             <tbody>
                 <% for (let i = 0; i < listaAtividade.length; i++) { %>
@@ -32,7 +32,7 @@
                         <td><%= listaAtividade[i].atv_id %></td>
                         <td><%= listaAtividade[i].atv_nome %></td>
                         <td><%= listaAtividade[i].atv_desc %></td>
-                        <td><%= listaAtividade[i].atv_data %></td>
+                        <td><%= listaAtividade[i].atv_data.split("-").reverse().join("/") %></td>
                         <td><%= listaAtividade[i].vol_id %></td>
                         <td><%= listaAtividade[i].emp_id %></td>
                         <td><%= listaAtividade[i].pro_id %></td>
