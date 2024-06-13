@@ -16,6 +16,10 @@ let PatrimonioRoute = require("./routes/patrimonioRoutes")
 let ProdutosRoute = require("./routes/produtosRoutes")
 let EstoqueRoute = require("./routes/estoqueRoutes")
 let CtrlSaidaEventoRoutes = require("./routes/ctrlSaidaEventoRoutes")
+let AdminRoute = require("./routes/adminRoutes");
+let loginRoute = require("./routes/loginRoutes");
+const cookieParser = require('cookie-parser');
+const AuthMiddleware = require('./middleware/authMiddleware');
 
 const app = express();
 
@@ -28,8 +32,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"))
 app.use(expressEjsLayout);
+app.use(cookieParser());
 
 // ---
+
+app.use('/login', loginRoute)
+
+let auth = new AuthMiddleware();
+app.use(auth.auth);
 
 // Rotas ---
 app.use('/', HomeRoute)
@@ -47,6 +57,8 @@ app.use('/patrimonio', PatrimonioRoute)
 app.use('/produtos', ProdutosRoute)
 app.use('/estoque', EstoqueRoute)
 app.use('/ctrlSaidaEvento', CtrlSaidaEventoRoutes)
+app.use('/admin', AdminRoute)
+// app.use('/ONGADAPV/, ')
 
 
 
