@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/estoque/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("prod_id").style["border-color"] = "#ced4da";
         document.getElementById("doa_id").style["border-color"] = "#ced4da";
@@ -43,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(r => {
                     if (r.ok) {
-                        window.location.href = "/";
+                        window.location.href = "/estoque/listar";
                     }
                     else {
                         alert(r.msg);

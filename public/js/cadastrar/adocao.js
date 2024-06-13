@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/adocao/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("idAdo").style["border-color"] = "#ced4da";
         document.getElementById("idAni").style["border-color"] = "#ced4da";
@@ -41,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(r => {
                     if (r.ok) {
-                        window.location.href = "/";
+                        window.location.href = "/adocao/listar";
                     }
                     else {
                         alert(r.msg);

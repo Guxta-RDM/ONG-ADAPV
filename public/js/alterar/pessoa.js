@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/pessoa/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
         document.getElementById("cpf").style["border-color"] = "#ced4da";

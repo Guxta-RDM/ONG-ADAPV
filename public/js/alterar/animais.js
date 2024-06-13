@@ -1,6 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
+
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/animais/listar";
+    }
 
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
@@ -31,39 +37,39 @@ document.addEventListener("DOMContentLoaded", function() {
         let createdAt = document.querySelector("#createdAt").value;
 
         let listaErros = [];
-        if(nome === "") {
+        if (nome === "") {
             listaErros.push("nome");
         }
-        if(sexo === "") {
+        if (sexo === "") {
             listaErros.push("sexo");
         }
-        if(ester === "") {
+        if (ester === "") {
             listaErros.push("ester");
         }
-        if(campoData === "") {
+        if (campoData === "") {
             listaErros.push("campoData");
         }
-        if(especie === "") {
+        if (especie === "") {
             listaErros.push("especie");
         }
-        if(estado === "") {
+        if (estado === "") {
             listaErros.push("estado");
         }
-        if(raca === "") {
+        if (raca === "") {
             listaErros.push("raca");
         }
-        if(pelagem === "") {
+        if (pelagem === "") {
             listaErros.push("pelagem");
         }
-        if(desc === "") {
+        if (desc === "") {
             listaErros.push("desc");
         }
-        if(disp === "") {
+        if (disp === "") {
             listaErros.push("disp");
         }
-        
 
-        if(listaErros.length == 0) {
+
+        if (listaErros.length == 0) {
             //enviar ao backend com fetch
 
             let obj = {
@@ -80,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 disp: disp,
                 createdAt: createdAt
             };
-            
+
 
             fetch("/animais/alterar", {
                 method: 'POST',
@@ -89,22 +95,22 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r=> {
-                return r.json();
-            })
-            .then(r=> {
-                if(r.ok) {
-                    alert(r.msg);
-                    window.location.href="/animais/listar";
-                }   
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        alert(r.msg);
+                        window.location.href = "/animais/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
         }
-        else{
+        else {
             //avisar sobre o preenchimento incorreto
-            for(let i = 0; i < listaErros.length; i++) {
+            for (let i = 0; i < listaErros.length; i++) {
                 let campos = document.getElementById(listaErros[i]);
                 campos.style["border-color"] = "red";
             }

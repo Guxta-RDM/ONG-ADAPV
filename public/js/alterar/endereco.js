@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/endereco/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("end_cep").style["border-color"] = "#ced4da";
         document.getElementById("end_rua").style["border-color"] = "#ced4da";
@@ -17,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         limparValidacao();
 
         let id = document.querySelector("#end_id").value;
-        let cep = document.querySelector("#end_cep").value;   
+        let cep = document.querySelector("#end_cep").value;
         let rua = document.querySelector("#end_rua").value;
         let numero = document.querySelector("#end_numero").value;
         let bairro = document.querySelector("#end_bairro").value;
@@ -76,17 +82,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r => {
-                return r.json();
-            })
-            .then(r => {
-                if (r.ok) {
-                    window.location.href = "/";
-                }
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/endereco/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
 
         }
         else {

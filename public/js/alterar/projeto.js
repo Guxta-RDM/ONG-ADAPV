@@ -1,6 +1,12 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
+
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/projeto/listar";
+    }
 
     function limparValidacao() {
         document.getElementById("nomePro").style["border-color"] = "#ced4da";
@@ -8,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("descPro").style["border-color"] = "#ced4da";
     }
 
-    function alterar(){
+    function alterar() {
         limparValidacao();
 
         let id = document.querySelector("#id").value;
@@ -19,17 +25,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
         let listaErros = [];
 
-        if(nome === ""){
+        if (nome === "") {
             listaErros.push("nome");
         }
-        if(data === ""){
+        if (data === "") {
             listaErros.push("data");
         }
-        if(desc === ""){
+        if (desc === "") {
             listaErros.push("desc");
         }
 
-        if (listaErros.length == 0){
+        if (listaErros.length == 0) {
 
             let obj = {
                 id: id,
@@ -47,20 +53,20 @@ document.addEventListener("DOMContentLoaded", function(){
                 }
             })
 
-            .then (r => { return r.json();})
-            .then (r => {
-                if (r.ok){
-                    alert(r.msg);
-                    window.location.href = "/projeto/listar";
-                }
-                else{
-                    alert(r.msg);
-                }
-            })
+                .then(r => { return r.json(); })
+                .then(r => {
+                    if (r.ok) {
+                        alert(r.msg);
+                        window.location.href = "/projeto/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
 
         }
-        else{
-            for (let i = 0; i < listaErros.length; i++){
+        else {
+            for (let i = 0; i < listaErros.length; i++) {
                 let campos = document.getElementById(listaErros[i]);
                 campos.style["border-color"] = "red";
             }

@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/atividades/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("atv_nome").style["border-color"] = "#ced4da";
         document.getElementById("atv_desc").style["border-color"] = "#ced4da";
@@ -57,17 +63,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r => {
-                return r.json();
-            })
-            .then(r => {
-                if (r.ok) {
-                    window.location.href = "/";
-                }
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/atividades/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
 
         }
         else {

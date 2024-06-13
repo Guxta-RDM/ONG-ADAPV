@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/voluntarios/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("idVolun").style["border-color"] = "#ced4da";
     }
@@ -39,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(r => {
                     if (r.ok) {
-                        window.location.href = "/";
+                        window.location.href = "/voluntarios/listar";
                     }
                     else {
                         alert(r.msg);

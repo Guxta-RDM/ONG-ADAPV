@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/endereco/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("end_cep").style["border-color"] = "#ced4da";
         document.getElementById("end_rua").style["border-color"] = "#ced4da";
@@ -72,17 +78,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r => {
-                return r.json();
-            })
-            .then(r => {
-                if (r.ok) {
-                    window.location.href = "/";
-                }
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/endereco/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
 
         }
         else {

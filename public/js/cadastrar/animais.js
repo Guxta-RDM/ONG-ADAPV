@@ -1,6 +1,12 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
+
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/animais/listar";
+    }
 
     function limparValidacao() {
         document.getElementById("nome").style["border-color"] = "#ced4da";
@@ -31,39 +37,39 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(campoData)
 
         let listaErros = [];
-        if(nome === "") {
+        if (nome === "") {
             listaErros.push("nome");
         }
-        if(sexo === "") {
+        if (sexo === "") {
             listaErros.push("sexo");
         }
-        if(ester === "") {
+        if (ester === "") {
             listaErros.push("ester");
         }
-        if(campoData === "") {
+        if (campoData === "") {
             listaErros.push("campoData");
         }
-        if(especie === "") {
+        if (especie === "") {
             listaErros.push("especie");
         }
-        if(estado === "") {
+        if (estado === "") {
             listaErros.push("estado");
         }
-        if(raca === "") {
+        if (raca === "") {
             listaErros.push("raca");
         }
-        if(pelagem === "") {
+        if (pelagem === "") {
             listaErros.push("pelagem");
         }
-        if(descricao === "") {
+        if (descricao === "") {
             listaErros.push("desc");
         }
-        if(disponivel === "") {
+        if (disponivel === "") {
             listaErros.push("disp");
         }
-        
 
-        if(listaErros.length == 0) {
+
+        if (listaErros.length == 0) {
             //enviar ao backend com fetch
 
             let obj = {
@@ -78,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 desc: descricao,
                 disp: disponivel
             };
-            
+
 
             fetch("/animais/cadastrar", {
                 method: 'POST',
@@ -87,21 +93,21 @@ document.addEventListener("DOMContentLoaded", function() {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r=> {
-                return r.json();
-            })
-            .then(r=> {
-                if(r.ok) {
-                    window.location.href="/";
-                }   
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/animais/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
         }
-        else{
+        else {
             //avisar sobre o preenchimento incorreto
-            for(let i = 0; i < listaErros.length; i++) {
+            for (let i = 0; i < listaErros.length; i++) {
                 let campos = document.getElementById(listaErros[i]);
                 campos.style["border-color"] = "red";
             }

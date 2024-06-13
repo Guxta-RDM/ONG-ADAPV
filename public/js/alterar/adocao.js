@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/adocao/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("IdAdotante").style["border-color"] = "#ced4da";
         document.getElementById("IdAnimal").style["border-color"] = "#ced4da";

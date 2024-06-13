@@ -2,33 +2,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/projeto/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("nomePro").style["border-color"] = "#ced4da";
         document.getElementById("dataPro").style["border-color"] = "#ced4da";
         document.getElementById("descPro").style["border-color"] = "#ced4da";
     }
 
-    function cadastrar(){
+    function cadastrar() {
         limparValidacao();
 
         let nome = document.querySelector("#nomePro").value;
         let data = document.querySelector("#dataPro").value;
         let desc = document.querySelector("#descPro").value;
-        
+
 
         let listaErros = [];
 
-        if(nome === ""){
+        if (nome === "") {
             listaErros.push("nome");
         }
-        if(data === ""){
+        if (data === "") {
             listaErros.push("data");
         }
-        if(desc === ""){
+        if (desc === "") {
             listaErros.push("desc");
         }
 
-        if (listaErros.length == 0){
+        if (listaErros.length == 0) {
 
             let obj = {
                 nome: nome,
@@ -40,23 +46,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: 'POST',
                 body: JSON.stringify(obj),
                 headers: {
-                    "Content-Type" : "application/json",
+                    "Content-Type": "application/json",
                 }
             })
-            .then(r=> {
-                return r.json();
-            })
-            .then(r=> {
-                if(r.ok) {
-                    window.location.href="/";
-                }   
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/projeto/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
         }
-        else{
-            for (let i = 0; i <listaErros.length; i++){
+        else {
+            for (let i = 0; i < listaErros.length; i++) {
                 let campos = document.getElementById(listaErros[i]);
                 campos.style["border-color"] = "red";
             }

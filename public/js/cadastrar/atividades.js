@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/atividades/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("atv_nome").style["border-color"] = "#ced4da";
         document.getElementById("atv_desc").style["border-color"] = "#ced4da";
@@ -32,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (data === "") {
             listaErros.push("atv_data");
         }
-        if(pro_id === ""){
+        if (pro_id === "") {
             listaErros.push("pro_id");
         }
         console.log(listaErros)
@@ -55,17 +61,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r => {
-                return r.json();
-            })
-            .then(r => {
-                if (r.ok) {
-                    window.location.href = "/";
-                }
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/atividades/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
 
         }
         else {

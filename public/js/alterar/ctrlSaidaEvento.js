@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnAlterar").addEventListener("click", alterar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/ctrlSaidaEvento/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("ctrlEven_desc").style["border-color"] = "#ced4da";
         document.getElementById("ctrlEven_estado").style["border-color"] = "#ced4da";
@@ -26,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let createdAt = document.getElementById("createdAt").value;
 
         let listaErros = [];
-        if(even_id === ""){
+        if (even_id === "") {
             if (even_id === "") {
                 listaErros.push("even_id");
             }
@@ -37,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (estado === "") {
             listaErros.push("ctrlEven_estado");
         }
-        if(prod_id !== '' && prod_qnt === '' || prod_id === '' && prod_qnt !== ''){
+        if (prod_id !== '' && prod_qnt === '' || prod_id === '' && prod_qnt !== '') {
             if (prod_id === "") {
                 listaErros.push("prod_id");
             }
@@ -45,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 listaErros.push("prod_qnt");
             }
         }
-        if(prod_id === "" && prod_qnt === "" && patrim_valor === "" && ani_id === ""){
+        if (prod_id === "" && prod_qnt === "" && patrim_valor === "" && ani_id === "") {
             if (prod_id === "") {
                 listaErros.push("prod_id");
             }
@@ -87,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .then(r => {
                     if (r.ok) {
-                        window.location.href = "/";
+                        window.location.href = "/ctrlSaidaEvento/listar";
                     }
                     else {
                         alert(r.msg);

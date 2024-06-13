@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.getElementById("btnCadastrar").addEventListener("click", cadastrar);
 
+    document.getElementById("cancelar").addEventListener("click", redirecionar);
+
+    function redirecionar() {
+        window.location.href = "/doacoes/listar";
+    }
+
     function limparValidacao() {
         document.getElementById("doa_tipo").style["border-color"] = "#ced4da";
         document.getElementById("doa_desc").style["border-color"] = "#ced4da";
@@ -56,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
         } else {
-            if((doador !== "" || cpf_cnpj !== "" || rg !== "") && pess_id !== "") {
+            if ((doador !== "" || cpf_cnpj !== "" || rg !== "") && pess_id !== "") {
                 listaErros.push("pess_id");
                 listaErros.push("doa_doador");
                 listaErros.push("doa_cpf_cnpj");
@@ -96,17 +102,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Content-Type": "application/json",
                 }
             })
-            .then(r => {
-                return r.json();
-            })
-            .then(r => {
-                if (r.ok) {
-                    window.location.href = "/";
-                }
-                else {
-                    alert(r.msg);
-                }
-            })
+                .then(r => {
+                    return r.json();
+                })
+                .then(r => {
+                    if (r.ok) {
+                        window.location.href = "/doacoes/listar";
+                    }
+                    else {
+                        alert(r.msg);
+                    }
+                })
 
         }
         else {
