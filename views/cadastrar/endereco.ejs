@@ -1,4 +1,16 @@
 <script src="/js/cadastrar/endereco.js"></script>
+
+<script>
+    function formatCep(cep) {
+        var v = cep.value;
+
+        if (v.length == 6) {
+            cep.value = v.replace(/[^0-9-]/g, "").slice(0, -1) + "-";
+        } else if (v.length == 10) {
+            cep.value = v.replace(/[^0-9-]/g, "").slice(0, -1);
+        }
+    }
+</script>
 <div class="container">
     <div class="container-fluid">
 
@@ -11,25 +23,25 @@
 
         <div class="col-md-4">
             <label for="end_cep" class="form-label">CEP<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="end_cep" name="end_cep" placeholder="Digite o CEP">
+            <input type="text" class="form-control" id="end_cep" name="end_cep" placeholder="Digite o CEP" oninput="formatCep(this)" maxlength="9">
         </div>
 
 
         <div class="col-md-6">
             <label for="end_rua" class="form-label">Rua<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="end_rua" name="end_rua" placeholder="Digite o nome da rua">
+            <input type="text" class="form-control" id="end_rua" name="end_rua" placeholder="Digite o nome da rua" maxlength="200">
         </div>
 
 
         <div class="col-md-6">
             <label for="end_bairro" class="form-label">Bairro<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="end_bairro" name="end_bairro" placeholder="Digite o bairro">
+            <input type="text" class="form-control" id="end_bairro" name="end_bairro" placeholder="Digite o bairro" maxlength="200">
         </div>
 
 
         <div class="col-md-4">
             <label for="end_numero" class="form-label">Número<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="end_numero" name="end_numero" placeholder="Digite o número">
+            <input type="text" class="form-control" id="end_numero" name="end_numero" placeholder="Digite o número" maxlength="200">
         </div>
 
 
@@ -53,12 +65,17 @@
 
         <div class="col-md-6">
             <label for="end_complemento" class="form-label">Complemento</label>
-            <input type="text" class="form-control" id="end_complemento" name="end_complemento" placeholder="Digite o complemento">
+            <input type="text" class="form-control" id="end_complemento" name="end_complemento" placeholder="Digite o complemento" maxlength="200">
         </div>
 
         <div class="col-md-4">
-            <label for="pess_id" class="form-label">ID da Pessoa<span class="text-danger">*</span></label>
-            <input type="number" class="form-control" id="pess_id" name="pess_id" placeholder="Digite o ID da pessoa">
+            <label for="pess_id" class="form-label">Pessoa<span class="text-danger">*</span></label>
+            <select name="pess_id" id="pess_id" class="form-select">
+                <option value="" selected disabled>Selecione...</option>
+                <% listaPessoa.forEach(pessoa => { %>
+                    <option value="<%= pessoa.pess_id %>"><%= pessoa.pess_nome %></option>
+                <% }) %>
+            </select>
         </div>
 
         <br><br>

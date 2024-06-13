@@ -10,8 +10,8 @@ class DoacoesController {
     async cadastrar(req, res) {
         const dataHoje = DateTime.now();
         console.log(req.body)
-        if (req.body.tipo != "" && req.body.desc != "" && req.body.qnt != "" && req.body.data != "" && req.body.pess_id != "") {
-            let doacoes = new DoacoesModel(0, req.body.tipo, req.body.desc, req.body.qnt, req.body.doador, req.body.cpf_cnpj, req.body.rg, req.body.data, req.body.pess_id, dataHoje.toISODate(), dataHoje.toISODate());
+        if (req.body.tipo != "" && req.body.desc != "" && req.body.qnt != "" && req.body.data != "") {
+            let doacoes = new DoacoesModel(0, req.body.tipo, req.body.desc, req.body.qnt, req.body.doador === "" ? null : req.body.doador, req.body.cpf_cnpj === "" ? null : req.body.cpf_cnpj, req.body.rg === "" ? null : req.body.rg, req.body.data, req.body.pess_id === "" ? null : req.body.pess_id, dataHoje.toISODate(), dataHoje.toISODate());
             let result = await doacoes.cadastrarDoacao();
 
             if (result) {
@@ -38,7 +38,9 @@ class DoacoesController {
     async listagemView(req, res) {
         let doacoes = new DoacoesModel();
         let listaDoacoes = await doacoes.listaDoacoes()
-        res.render('listar/doacoes', { listaDoacoes: listaDoacoes })
+        let pessoa = new PessoaModel();
+        let listaPessoas = await pessoa.listarPessoa()
+        res.render('listar/doacoes', { listaDoacoes: listaDoacoes, listaPess: listaPessoas})
     }
 
     async listagemPessoaCadView(req, res) {
@@ -47,10 +49,16 @@ class DoacoesController {
         res.render('cadastrar/doacoes', { listaPessoa: listaPessoas})
     }
 
-    async alterarView(req, res) {
+    async listagemAltView(req, res) {
+        let pessoa = new PessoaModel();
+        let listaPess = await pessoa.listarPessoa()
         let doacoes = new DoacoesModel();
         doacoes = await doacoes.obterDoaId(req.params.id);
-        res.render('alterar/doacoes', { doacoes: doacoes });
+        res.render('alterar/doacoes', { listaPess: listaPess, doacoes: doacoes })
+    }
+
+    async alterarView(req, res) {
+        res.render('alterar/doacoes');
     }
 
     async alterar(req, res) {
@@ -62,8 +70,8 @@ class DoacoesController {
         const dataTratar2Doa = DateTime.fromJSDate(dataTratarDoa)
         const dataTratadaDoa = dataTratar2Doa.toISODate()
         console.log(req.body)
-        if (req.body.tipo != "" && req.body.desc != "" && req.body.qnt != "" && req.body.data != "" && req.body.pess_id != "") {
-            let doacoes = new DoacoesModel(req.body.id, req.body.tipo, req.body.desc, req.body.qnt, req.body.doador, req.body.cpf_cnpj, req.body.rg, dataTratadaDoa, req.body.pess_id, dataCriacao, dataHoje.toISODate());
+        if (req.body.tipo != "" && req.body.desc != "" && req.body.qnt != "" && req.body.data != "") {
+            let doacoes = new DoacoesModel(req.body.id, req.body.tipo, req.body.desc, req.body.qnt, req.body.doador === "" ? null : req.body.doador, req.body.cpf_cnpj === "" ? null : req.body.cpf_cnpj, req.body.rg === "" ? null : req.body.rg, req.body.data, req.body.pess_id === "" ? null : req.body.pess_id, dataCriacao, dataHoje.toISODate());
 
             let result = await doacoes.editarDoacao();
 

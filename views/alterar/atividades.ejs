@@ -13,12 +13,12 @@
         <input id="createdAt" hidden value="<%= atividade.createdAt %>">
         <div class="col-md-4">
             <label for="atv_nome" class="form-label">Nome da atividade<span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="atv_nome" name="atv_nome" placeholder="Digite o nome da atividade" value="<%= atividade.atv_nome %>">
+            <input type="text" class="form-control" id="atv_nome" name="atv_nome" placeholder="Digite o nome da atividade" value="<%= atividade.atv_nome %>" maxlength="200">
         </div>
         
         <div class="col-md-8">
             <label for="atv_desc" class="form-label">Descrição<span class="text-danger">*</span></label>
-            <input class="form-control" id="atv_desc" name="atv_desc" placeholder="Digite a descrição da atividade" value="<%= atividade.atv_desc %>">
+            <input class="form-control" id="atv_desc" name="atv_desc" placeholder="Digite a descrição da atividade" value="<%= atividade.atv_desc %>" maxlength="200">
         </div>
         
         <div class="col-md-4">
@@ -27,7 +27,7 @@
         </div>
         
         <div class="col-md-4">
-            <label for="vol_id" class="form-label">Voluntário<span class="text-danger">*</span></label>
+            <label for="vol_id" class="form-label">Voluntário</label>
             <select name="vol_id" id="vol_id" class="form-select">
                 <option value="" selected disabled>Selecione...</option>
                 <% listaVolun.forEach(function(volun) { %>
@@ -38,7 +38,7 @@
         </div>
         
         <div class="col-md-4">
-            <label for="emp_id" class="form-label">Empresa<span class="text-danger">*</span></label>
+            <label for="emp_id" class="form-label">Empresa</label>
             <select name="emp_id" id="emp_id" class="form-select">
                 <option value="" selected disabled>Selecione...</option>
                 <% listaEmp.forEach(function(empresa) { %>

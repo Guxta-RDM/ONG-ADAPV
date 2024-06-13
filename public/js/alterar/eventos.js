@@ -38,6 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
             listaErros.push("even_dataFinal");
         }
 
+        let inicioData = new Date(inicio).toISOString();
+        let finalData = new Date(fim).toISOString();
+        if(inicioData > finalData){
+            listaErros.push("even_dataInicio");
+            listaErros.push("even_dataFinal");
+        }
+        
+
         if (listaErros.length == 0) {
 
             let obj = {

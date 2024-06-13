@@ -28,6 +28,27 @@
             </thead>
             <tbody>
                 <% for (let i = 0; i < listaAtividade.length; i++) { %>
+                    <%
+                    for(let j = 0; j < listaVolun.length; j++){
+                        if(listaVolun[j].vol_id == listaAtividade[i].vol_id){
+                            for(let k = 0; k < listaPessoa.length; k++){
+                                if(listaPessoa[k].pess_id == listaVolun[j].pess_id){
+                                    listaAtividade[i].vol_id = listaPessoa[k].pess_nome
+                                }
+                            }
+                        }
+                    }
+                    for(let j = 0; j < listaEmp.length; j++){
+                        if(listaEmp[j].emp_id == listaAtividade[i].emp_id){
+                            listaAtividade[i].emp_id = listaEmp[j].emp_nome
+                        }
+                    }
+                    for(let j = 0; j < listaProj.length; j++){
+                        if(listaProj[j].pro_id == listaAtividade[i].pro_id){
+                            listaAtividade[i].pro_id = listaProj[j].pro_nome
+                        }
+                    }
+                    %>
                     <tr>
                         <td><%= listaAtividade[i].atv_id %></td>
                         <td><%= listaAtividade[i].atv_nome %></td>

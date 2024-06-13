@@ -41,7 +41,15 @@ class AtividadesController {
     async listagemView(req, res) {
         let atividade = new AtividadesModel();
         let listaAtividade = await atividade.listarAtividades();
-        res.render('listar/atividades', { listaAtividade: listaAtividade })
+        let voluntario = new VoluntariosModel();
+        let listaVolun = await voluntario.listarVoluntarios()
+        let empresa = new EmpresasModel();
+        let listaEmp = await empresa.listarEmpresas()
+        let projeto = new ProjetosModel();
+        let listaProj = await projeto.listarProjetos()
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa()
+        res.render('listar/atividades', { listaAtividade: listaAtividade, listaVolun: listaVolun, listaEmp: listaEmp, listaProj: listaProj, listaPessoa: listaPessoa})
     }
 
     async listagemCadView(req, res) {

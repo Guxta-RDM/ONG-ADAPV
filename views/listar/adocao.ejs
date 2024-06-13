@@ -23,6 +23,20 @@
             </thead>
             <tbody>
                 <% for (let i = 0; i < listaAdocao.length; i++)  { %>
+                    <%
+                    valor = listaAdocao[i].pess_id
+                    for(let j = 0; j < listaPessoa.length; j++){
+                        if(listaPessoa[j].pess_id == valor){
+                            listaAdocao[i].pess_id = listaPessoa[j].pess_nome
+                        }
+                    }
+                    valor = listaAdocao[i].ani_id
+                    for(let j = 0; j < listaAnimal.length; j++){
+                        if(listaAnimal[j].ani_id == valor){
+                            listaAdocao[i].ani_id = listaAnimal[j].ani_nome
+                        }
+                    }
+                    %>
                     <tr>
                         <td><%= listaAdocao[i].ado_id %></td>
                         <td><%= listaAdocao[i].pess_id %></td>

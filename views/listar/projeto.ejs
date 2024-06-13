@@ -27,7 +27,7 @@
                 <tr>
                     <td><%= listaPro[i].pro_id %></td>
                     <td><%= listaPro[i].pro_nome %></td>
-                    <td><%= listaPro[i].pro_data %></td>
+                    <td><%= listaPro[i].pro_data.split("-").reverse().join("/") %></td>
                     <td><%= listaPro[i].pro_desc %></td>
                     <td><%= listaPro[i].createdAt %></td>
                     <td><%= listaPro[i].updatedAt %></td>

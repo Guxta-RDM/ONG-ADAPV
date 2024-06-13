@@ -34,7 +34,7 @@
                         <td><%= lista[i].pess_nome %></td>
                         <td><%= lista[i].pess_cpf %></td>
                         <td><%= lista[i].pess_rg %></td>
-                        <td><%= lista[i].pess_nasc %></td>
+                        <td><%= lista[i].pess_nasc.split("-").reverse().join("/") %></td>
                         <td><%= lista[i].pess_nacio %></td>
                         <td><%= lista[i].pess_genero %></td>
                         <td><%= lista[i].pess_tel %></td>

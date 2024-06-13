@@ -1,5 +1,6 @@
 const { DateTime } = require("luxon");
 const EnderecoModel = require("../models/enderecoModel");
+const PessoaModel = require("../models/pessoaModel");
 
 class EnderecoController {
 
@@ -35,6 +36,12 @@ class EnderecoController {
         }
     }
 
+    async listagemCadView(req, res) {
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa()   
+        res.render('cadastrar/endereco', { listaPessoa: listaPessoa})
+    }
+
     async listagemView(req, res) {
         let endereco = new EnderecoModel();
         let listaEndereco = await endereco.listarEndereco()
@@ -44,7 +51,9 @@ class EnderecoController {
     async alterarView(req, res) {
         let endereco = new EnderecoModel();
         endereco = await endereco.obterEndId(req.params.id);
-        res.render('alterar/endereco', { endereco: endereco });
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa()  
+        res.render('alterar/endereco', { endereco: endereco, listaPessoa: listaPessoa});
     }
 
     async alterar(req, res) {

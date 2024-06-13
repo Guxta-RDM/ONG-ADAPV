@@ -31,8 +31,8 @@
                     <td><%= listaEve[i].even_nome %></td>
                     <td><%= listaEve[i].even_descricao %></td>
                     <td><%= listaEve[i].even_local %></td>
-                    <td><%= listaEve[i].even_dataInicio %></td>
-                    <td><%= listaEve[i].even_dataFinal %></td>
+                    <td><%= listaEve[i].even_dataInicio.split("-").reverse().join("/") %></td>
+                    <td><%= listaEve[i].even_dataFinal.split("-").reverse().join("/") %></td>
                     <td><%= listaEve[i].createdAt %></td>
                     <td><%= listaEve[i].updatedAt %></td>
                     <td>

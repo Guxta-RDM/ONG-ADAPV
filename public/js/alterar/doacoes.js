@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("doa_qnt").style["border-color"] = "#ced4da";
         document.getElementById("doa_data").style["border-color"] = "#ced4da";
         document.getElementById("pess_id").style["border-color"] = "#ced4da";
+        document.getElementById("doa_doador").style["border-color"] = "#ced4da";
+        document.getElementById("doa_cpf_cnpj").style["border-color"] = "#ced4da";
+        document.getElementById("doa_rg").style["border-color"] = "#ced4da";
     }
 
     function alterar() {
@@ -36,6 +39,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         if (data === "") {
             listaErros.push("doa_data");
+        }
+
+        if (pess_id === "") {
+            if (doador === "" && cpf_cnpj === "" && rg === "") {
+                listaErros.push("pess_id");
+            } else {
+                if (doador === "") {
+                    listaErros.push("doa_doador");
+                }
+                if (cpf_cnpj === "") {
+                    listaErros.push("doa_cpf_cnpj");
+                }
+                if (rg === "") {
+                    listaErros.push("doa_rg");
+                }
+            }
+        } else {
+            if((doador !== "" || cpf_cnpj !== "" || rg !== "") && pess_id !== "") {
+                listaErros.push("pess_id");
+                listaErros.push("doa_doador");
+                listaErros.push("doa_cpf_cnpj");
+                listaErros.push("doa_rg");
+            }
+            if (doador !== "" || cpf_cnpj !== "" || rg !== "") {
+                listaErros.push("pess_id");
+                if (doador === "") {
+                    listaErros.push("doa_doador");
+                }
+                if (cpf_cnpj === "") {
+                    listaErros.push("doa_cpf_cnpj");
+                }
+                if (rg === "") {
+                    listaErros.push("doa_rg");
+                }
+            }
         }
 
         if (listaErros.length == 0) {

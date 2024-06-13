@@ -53,7 +53,11 @@ class AdocaoController {
     async listagemView(req, res) {
         let adocao = new AdocaoModel()
         let listaAdocao = await adocao.listarAdocao();
-        res.render('listar/adocao', { listaAdocao: listaAdocao });
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa();
+        let animal = new AnimalModel();
+        let listaAnimal = await animal.listarAnimais();
+        res.render('listar/adocao', { listaAdocao: listaAdocao, listaPessoa: listaPessoa, listaAnimal: listaAnimal});
     }
 
     async alterarView(req, res) {

@@ -24,12 +24,19 @@
                 <th>CPF/CNPJ</th>
                 <th>RG</th>
                 <th>Data de doação</th>
-                <th>Id doador</th>
-                <th>createdAt</th>
-                <th>updatedAt</th>
+                <th>Doador registrado</th>
+                <th>Registro criado</th>
+                <th>Registro atualizado</th>
             </thead>
             <tbody>
                 <% for (let i = 0; i < listaDoacoes.length; i++) { %>
+                    <% 
+                    for (let j = 0; j < listaPess.length; j++) {
+                        if (listaDoacoes[i].pess_id == listaPess[j].pess_id) {
+                            listaDoacoes[i].pess_id = listaPess[j].pess_nome;
+                        }
+                    }
+                    %>
                     <tr>
                         <td><%= listaDoacoes[i].doa_id %></td>
                         <td><%= listaDoacoes[i].doa_tipo %></td>
@@ -38,7 +45,7 @@
                         <td><%= listaDoacoes[i].doa_doador %></td>
                         <td><%= listaDoacoes[i].doa_cpf_cnpj %></td>
                         <td><%= listaDoacoes[i].doa_rg %></td>
-                        <td><%= listaDoacoes[i].doa_data %></td>
+                        <td><%= listaDoacoes[i].doa_data.split("-").reverse().join("/") %></td>
                         <td><%= listaDoacoes[i].pess_id %></td>
                         <td><%= listaDoacoes[i].createdAt %></td>
                         <td><%= listaDoacoes[i].updatedAt %></td>
