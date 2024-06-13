@@ -63,12 +63,36 @@ class PatrimonioModel {
         return lista;
     }
 
+    async getPatrimPorDoacao(id) {
+        let sql = "SELECT * FROM tb_patrimonio WHERE doa_id = ?";
+        let val = [id];
+
+        let rows = await banco.ExecutaComando(sql, val);
+
+        if (rows.length > 0) {
+            let row = rows[0];
+
+            return new PatrimonioModel(
+                row["patrim_id"],
+                row["patrim_saldo"],
+                row["doa_id"],
+                row["createdAt"],
+                row["updatedAt"],
+                row["patrim_valor"]
+            );
+        }
+    }
+
     async getSaldo() {
         let sql = "SELECT patrim_saldo FROM tb_patrimonio ORDER BY patrim_id DESC LIMIT 1";
 
         let rows = await banco.ExecutaComando(sql);
 
-        return rows[0]["patrim_saldo"];
+        if (rows.length > 0) {
+            return rows[0]["patrim_saldo"];
+        }else{
+            return 0;
+        }
     }
 
     async getPenultSaldo(id) {
@@ -113,6 +137,7 @@ class PatrimonioModel {
             ];
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
+            
 
             return result;
         }

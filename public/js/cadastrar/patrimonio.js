@@ -14,10 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
         
 
         let listaErros = [];
-        if(patrim_valor === "" && doa_id === ""){
-            if(patrim_valor === ""){
-                listaErros.push("patrim_valor");
-            }
+        
+        if(patrim_valor === ""){
+            listaErros.push("patrim_valor");
         }
 
         if (listaErros.length == 0){

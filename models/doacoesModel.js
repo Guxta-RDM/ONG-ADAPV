@@ -118,9 +118,34 @@ class DoacoesModel {
 
             let result = await banco.ExecutaComandoNonQuery(sql, valores);
 
+            console.log(result)
+
             return result;
         }
 
+    }
+
+    async obterUltimoDoacao() {
+        let sql = "SELECT * FROM tb_doacoes ORDER BY doa_id DESC LIMIT 1";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        if (rows.length > 0) {
+            let row = rows[0];
+            return new DoacoesModel(
+                row["doa_id"],
+                row["doa_tipo"],
+                row["doa_desc"],
+                row["doa_qnt"],
+                row["doa_doador"],
+                row["doa_cpf_cnpj"],
+                row["doa_rg"],
+                row["doa_data"],
+                row["pess_id"],
+                row["createdAt"],
+                row["updatedAt"]
+            );
+        }
     }
 
     async editarDoacao() {

@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const DoacoesModel = require("../models/doacoesModel");
 const PessoaModel = require("../models/pessoaModel");
+const PatrimonioModel = require("../models/patrimonioModel");
 
 class DoacoesController {
     cadastroView(req, res) {
@@ -15,6 +16,23 @@ class DoacoesController {
             let result = await doacoes.cadastrarDoacao();
 
             if (result) {
+                let lastDoa_id = await doacoes.obterUltimoDoacao();
+                console.log(lastDoa_id.doa_id)
+
+                if(req.body.tipo === "Dinheiro"){
+                    let patrimonio = new PatrimonioModel();
+                    const saldo = await patrimonio.getSaldo() + Number(req.body.qnt);
+                    let patrim = new PatrimonioModel(0, saldo, lastDoa_id.doa_id, dataHoje.toISODate(), dataHoje.toISODate(), req.body.qnt);
+                    let resultPatrim = await patrim.cadastrar();
+
+                    if(!resultPatrim){
+                        return res.send({
+                            ok: false,
+                            msg: "Erro ao cadastrar o patrimônio"
+                        });
+                    }
+                }
+
                 res.send({
                     ok: true,
                     msg: "Doação cadastrada com sucesso!"
@@ -76,6 +94,21 @@ class DoacoesController {
             let result = await doacoes.editarDoacao();
 
             if (result) {
+                if(req.body.tipo === "Dinheiro"){
+                    let patrimonio = new PatrimonioModel();
+                    let getPatrim = await patrimonio.getPatrimPorDoacao(req.body.id);
+                    const saldo = (getPatrim.patrim_saldo - getPatrim.patrim_valor) + Number(req.body.qnt);
+
+                    let patrim = new PatrimonioModel(getPatrim.patrim_id, saldo, getPatrim.doa_id, getPatrim.createdAt, dataHoje.toISODate(), req.body.qnt);
+                    let resultPatrim = await patrim.editar();
+                    
+                    if(!resultPatrim){
+                        return res.send({
+                            ok: false,
+                            msg: "Erro ao alterar o patrimônio"
+                        });
+                    }
+                }
                 res.send({
                     ok: true,
                     msg: "Doação alterada com sucesso!"

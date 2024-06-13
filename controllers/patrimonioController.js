@@ -1,6 +1,7 @@
 const { DateTime } = require("luxon");
 const PatrimonioModel = require("../models/patrimonioModel");
 const DoacoesModel = require("../models/doacoesModel");
+const PessoaModel = require("../models/pessoaModel");
 
 class PatrimonioController {
 
@@ -11,6 +12,7 @@ class PatrimonioController {
     async cadastrar(req, res){
         const dataHoje = DateTime.now();
         const patrimonio = new PatrimonioModel();
+        
         const saldo = await patrimonio.getSaldo() + Number(req.body.valor);
         if (req.body.valor != ""){
             let patrimonio = new PatrimonioModel(0, saldo, req.body.doa_id === '' ? null : req.body.doa_id, dataHoje.toISODate(), dataHoje.toISODate(), req.body.valor);
@@ -41,14 +43,20 @@ class PatrimonioController {
     async listagemView(req, res){
         let patrimonio = new PatrimonioModel();
         let listaPatrim = await patrimonio.listar();
-        const saldo = await patrimonio.getSaldo();
-        res.render('listar/patrimonio', {listaPatrim: listaPatrim, saldo: saldo})
+        let doacao = new DoacoesModel();
+        let listaDoa = await doacao.listaDoacoes();
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa();
+        let saldo = await patrimonio.getSaldo();
+        res.render('listar/patrimonio', {listaPatrim: listaPatrim, saldo: saldo, listaDoa: listaDoa, listaPessoa: listaPessoa})
     }
 
     async listagemDoaCad(req, res){
         let doacao = new DoacoesModel();
         let listaDoa = await doacao.listaDoacoes();
-        res.render('cadastrar/patrimonio', {listaDoa: listaDoa})
+        let pessoa = new PessoaModel();
+        let listaPessoa = await pessoa.listarPessoa();
+        res.render('cadastrar/patrimonio', {listaDoa: listaDoa, listaPessoa: listaPessoa})
     }
 
     async alterarView(req, res){

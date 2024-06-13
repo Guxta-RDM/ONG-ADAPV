@@ -26,6 +26,21 @@
         </thead>
         <tbody>
             <% for (let i = 0; i < listaPatrim.length; i++) { %>
+                <%
+                for (let j = 0; j < listaDoa.length; j++) {
+                    if (listaPatrim[i].doa_id === listaDoa[j].doa_id) {
+                        if(listaDoa[j].pess_id !== null){
+                            for(let k = 0; k < listaPessoa.length; k++){
+                                if(listaDoa[j].pess_id === listaPessoa[k].pess_id){
+                                    listaPatrim[i].doa_id = listaPessoa[k].pess_nome;
+                                }
+                            }
+                        }else{
+                            listaPatrim[i].doa_id = listaDoa[j].doa_doador;
+                        }
+                    }
+                }
+                %>
                 <tr>
                     <td><%= listaPatrim[i].patrim_id %></td>
                     <td><%= listaPatrim[i].patrim_valor %></td>

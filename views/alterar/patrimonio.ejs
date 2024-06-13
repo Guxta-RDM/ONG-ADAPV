@@ -17,7 +17,7 @@
 
         <div class="col-md-6" <%= patrimonio.doa_id === null ? 'hidden' : '' %>>
             <label for="doa_id" class="form-label">Doador<span class="text-danger">*</span></label>
-            <input type="text" value="<%= patrimonio.doa_id %>" name="doa_id" class="form-control" id="doa_id">
+            <input type="text" disabled value="<%= patrimonio.doa_id %>" name="doa_id" class="form-control" id="doa_id">
         </div>
 
         <br>
