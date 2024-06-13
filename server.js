@@ -18,6 +18,7 @@ let EstoqueRoute = require("./routes/estoqueRoutes")
 let CtrlSaidaEventoRoutes = require("./routes/ctrlSaidaEventoRoutes")
 let AdminRoute = require("./routes/adminRoutes");
 let loginRoute = require("./routes/loginRoutes");
+// let ONGADAPVRoute = require("./routes/ONGADAPVRoutes");
 const cookieParser = require('cookie-parser');
 const AuthMiddleware = require('./middleware/authMiddleware');
 
@@ -58,7 +59,7 @@ app.use('/produtos', ProdutosRoute)
 app.use('/estoque', EstoqueRoute)
 app.use('/ctrlSaidaEvento', CtrlSaidaEventoRoutes)
 app.use('/admin', AdminRoute)
-// app.use('/ONGADAPV/, ')
+// app.use('/ONGADAPV', ONGADAPVRoute)
 
 
 

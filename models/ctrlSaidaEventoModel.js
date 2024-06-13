@@ -132,6 +132,34 @@ class CtrlSaidaEventoModel {
         }
     }
 
+    async verificarQntSaida(){
+        let sql = "SELECT * FROM tb_ctrlSaidaEvento WHERE ctrlEven_estado = 'Saida'";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        let qnt = 0;
+
+        for(let i = 0; i < rows.length; i++){
+            qnt++;
+        }
+
+        return qnt;
+    }
+
+    async verificarQntEntrada(){
+        let sql = "SELECT * FROM tb_ctrlSaidaEvento WHERE ctrlEven_estado = 'Entrada'";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        let qnt = 0;
+
+        for(let i = 0; i < rows.length; i++){
+            qnt++;
+        }
+
+        return qnt;
+    }
+
     async verificarEstadoEntrada(id){
         let sql = "SELECT * FROM tb_ctrlSaidaEvento WHERE even_id = ? AND ctrlEven_estado = 'Entrada'";
         let val = [id];

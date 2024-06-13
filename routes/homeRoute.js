@@ -5,6 +5,6 @@ let ctrl = new HomeController();
 
 let router = express.Router();
 
-router.get('/', ctrl.homeView)
+router.get('/', ctrl.listarView, ctrl.homeView)
 
 module.exports = router;

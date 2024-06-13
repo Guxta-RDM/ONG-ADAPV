@@ -57,7 +57,11 @@ class CtrlSaidaEventoController {
         for(let i=0; i<listaCtrlEven.length; i++){
             lista.push(await ctrlEven.verificarEstadoEntrada(listaCtrlEven[i].even_id))
         }
-        res.render('listar/ctrlSaidaEvento', { listaCtrlEven: listaCtrlEven, listaEntrada: lista });
+        let evento = new EventoModel()
+        let listaEvento = await evento.listarEvento()
+        let produto = new ProdutosModel()
+        let listaProduto = await produto.listar()
+        res.render('listar/ctrlSaidaEvento', { listaCtrlEven: listaCtrlEven, listaEntrada: lista, listaEvento: listaEvento, listaProduto: listaProduto});
     }
 
     async cadastrarEntradaView(req, res) {

@@ -30,6 +30,18 @@
             </thead>
             <tbody>
                 <% for (let i = 0; i < listaCtrlEven.length; i++)  { %>
+                    <%
+                    for (let j = 0; j < listaEvento.length; j++) {
+                        if (listaCtrlEven[i].even_id === listaEvento[j].even_id) {
+                            listaCtrlEven[i].even_id = listaEvento[j].even_nome;
+                        }
+                    }
+                    for (let j = 0; j < listaProduto.length; j++) {
+                        if (listaCtrlEven[i].prod_id === listaProduto[j].prod_id) {
+                            listaCtrlEven[i].prod_id = listaProduto[j].prod_nome;
+                        }
+                    }
+                    %>
                     <tr>
                         <td><%= listaCtrlEven[i].ctrlEven_id %></td>
                         <td><%= listaCtrlEven[i].even_id %></td>

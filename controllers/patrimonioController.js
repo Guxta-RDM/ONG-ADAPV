@@ -14,6 +14,7 @@ class PatrimonioController {
         const patrimonio = new PatrimonioModel();
         
         const saldo = await patrimonio.getSaldo() + Number(req.body.valor);
+
         if (req.body.valor != ""){
             let patrimonio = new PatrimonioModel(0, saldo, req.body.doa_id === '' ? null : req.body.doa_id, dataHoje.toISODate(), dataHoje.toISODate(), req.body.valor);
 
@@ -47,7 +48,8 @@ class PatrimonioController {
         let listaDoa = await doacao.listaDoacoes();
         let pessoa = new PessoaModel();
         let listaPessoa = await pessoa.listarPessoa();
-        let saldo = await patrimonio.getSaldo();
+        const saldo = await patrimonio.getSaldo();
+        console.log(saldo)
         res.render('listar/patrimonio', {listaPatrim: listaPatrim, saldo: saldo, listaDoa: listaDoa, listaPessoa: listaPessoa})
     }
 

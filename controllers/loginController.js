@@ -18,10 +18,12 @@ class LoginController {
                 console.log('LOGADO')
             }
             else {
+                res.redirect("/login");
                 msg = "Usuário/Senha incorretos!";
             }
         }
         else {
+            res.redirect("/login");
             msg = "Usuário/Senha incorretos!";
         }
     }

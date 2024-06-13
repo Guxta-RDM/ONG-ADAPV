@@ -9,7 +9,7 @@
         <button id="btnExportarExcel" class="btn btn-info" >Exportar para Excel</button>
         <button id="btnExportarPdf"  onclick="window.print()" class="btn btn-info">Exportar para PDF</button>
         <div style="background-color: #5C636A; border-radius: 8px; width: 150px; height: 50px; align-items: center; justify-content: center; display: flex;" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Top popover">
-            <span style="font-size: large; color: white;" ><span style="font-weight: 500;">Patrimônio: <span style="font-weight: 600;">$<%= saldo %></span></span></span>
+            <span style="font-size: large; color: white;" ><span style="font-weight: 500; display: flex; justify-content: center; flex-direction: column;">Patrimônio: <span style="font-weight: 600; display: flex; justify-content: center;">$<%= saldo ? saldo.toFixed(2).replace(".", ",").replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "0" %></span></span></span>
         </div>
     </div>
 </div>

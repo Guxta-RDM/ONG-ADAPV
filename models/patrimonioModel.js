@@ -83,13 +83,37 @@ class PatrimonioModel {
         }
     }
 
-    async getSaldo() {
-        let sql = "SELECT patrim_saldo FROM tb_patrimonio ORDER BY patrim_id DESC LIMIT 1";
+    async getSaldoMesAtual() {
+        let sql = "SELECT SUM(patrim_valor) as saldo FROM tb_patrimonio WHERE MONTH(createdAt) = MONTH(CURRENT_DATE()) AND YEAR(createdAt) = YEAR(CURRENT_DATE())";
 
         let rows = await banco.ExecutaComando(sql);
 
         if (rows.length > 0) {
-            return rows[0]["patrim_saldo"];
+            return rows[0]["saldo"];
+        }else{
+            return 0;
+        }
+    }
+
+    async getSaldoAnoAtual() {
+        let sql = "SELECT SUM(patrim_valor) as saldo FROM tb_patrimonio WHERE YEAR(createdAt) = YEAR(CURRENT_DATE())";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        if (rows.length > 0) {
+            return rows[0]["saldo"];
+        }else{
+            return 0;
+        }
+    }
+
+    async getSaldo() {
+        let sql = "SELECT SUM(patrim_valor) as saldo FROM tb_patrimonio";
+
+        let rows = await banco.ExecutaComando(sql);
+
+        if (rows.length > 0) {
+            return rows[0]["saldo"];
         }else{
             return 0;
         }
